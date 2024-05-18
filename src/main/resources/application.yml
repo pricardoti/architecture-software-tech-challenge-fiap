@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: delivery
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/delivery"
+    username: fiap
+    password: fiap123
