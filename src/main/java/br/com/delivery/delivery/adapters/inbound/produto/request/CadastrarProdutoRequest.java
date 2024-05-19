@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.inbound.cliente.request;
+package br.com.delivery.delivery.adapters.inbound.produto.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -7,15 +7,14 @@ import org.hibernate.validator.constraints.br.CPF;
 
 @Getter
 @Setter
-public class CadastrarClienteRequest {
+public class CadastrarProdutoRequest {
 
     @NotNull
     private String nome;
 
     @NotNull
-    private String sobrenome;
+    private String tipo;
 
-    @CPF
     @NotNull
-    private String cpf;
+    private String descricao;
 }

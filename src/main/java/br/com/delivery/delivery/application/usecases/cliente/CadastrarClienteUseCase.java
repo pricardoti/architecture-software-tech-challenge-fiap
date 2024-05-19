@@ -3,12 +3,12 @@ package br.com.delivery.delivery.application.usecases.cliente;
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
 import br.com.delivery.delivery.application.domain.cliente.Credencial;
 import br.com.delivery.delivery.application.domain.cliente.Endereco;
-import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClientePort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarProdutoPort;
 import br.com.delivery.delivery.application.ports.outbound.cliente.SalvarClientePort;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CadastrarClienteUseCase implements CadastrarClientePort {
+public class CadastrarClienteUseCase implements CadastrarProdutoPort {
 
     private final SalvarClientePort salvarClientePort;
 

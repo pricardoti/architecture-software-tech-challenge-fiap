@@ -1,6 +1,6 @@
 package br.com.delivery.delivery.adapters.config;
 
-import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClientePort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarProdutoPort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClientePort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClientePort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClientePort;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class ClienteBeanConfig {
 
     @Bean
-    public CadastrarClientePort cadastrarClientePort(SalvarClientePort salvarClientePort) {
+    public CadastrarProdutoPort cadastrarClientePort(SalvarClientePort salvarClientePort) {
         return new CadastrarClienteUseCase(salvarClientePort);
     }
 
