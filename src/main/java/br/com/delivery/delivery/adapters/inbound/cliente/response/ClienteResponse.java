@@ -2,7 +2,6 @@ package br.com.delivery.delivery.adapters.inbound.cliente.response;
 
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Getter
@@ -11,5 +10,5 @@ public class ClienteResponse {
 
     private @NonNull String idCliente;
     private @NonNull String nome;
-    private @NonNull String sobreNome;
+    private @NonNull String sobrenome;
 }

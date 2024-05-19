@@ -1,8 +1,6 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import br.com.delivery.delivery.application.domain.cliente.Credencial;
-import br.com.delivery.delivery.application.domain.cliente.Endereco;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
