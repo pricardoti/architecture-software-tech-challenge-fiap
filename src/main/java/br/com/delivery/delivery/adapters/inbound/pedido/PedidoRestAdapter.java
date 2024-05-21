@@ -19,7 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/v1/pedidos")
 public class PedidoRestAdapter {
 
     private final CadastrarPedidoPort cadastrarPedidoPort;

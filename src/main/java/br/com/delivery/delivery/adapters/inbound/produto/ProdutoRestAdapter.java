@@ -3,7 +3,7 @@ package br.com.delivery.delivery.adapters.inbound.produto;
 import br.com.delivery.delivery.adapters.inbound.produto.request.CadastrarProdutoRequest;
 import br.com.delivery.delivery.adapters.inbound.produto.response.CadastrarProdutoResponse;
 import br.com.delivery.delivery.application.domain.produto.Produto;
-import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarProdutoPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoPort;
@@ -19,7 +19,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/produtos")
+@RequestMapping("/v1/produtos")
 public class ProdutoRestAdapter {
 
     private final CadastrarProdutoPort cadastrarProdutoPort;

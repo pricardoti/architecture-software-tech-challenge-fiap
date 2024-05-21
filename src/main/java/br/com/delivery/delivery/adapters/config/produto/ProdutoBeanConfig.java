@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.config;
+package br.com.delivery.delivery.adapters.config.produto;
 
 import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPort;
