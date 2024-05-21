@@ -3,7 +3,7 @@ package br.com.delivery.delivery.adapters.inbound.cliente;
 import br.com.delivery.delivery.adapters.inbound.cliente.request.CadastrarClienteRequest;
 import br.com.delivery.delivery.adapters.inbound.cliente.response.CadastrarClienteResponse;
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarProdutoPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClientePort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClientePort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClientePort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClientePort;
@@ -19,10 +19,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/v1/clientes")
 public class ClienteRestAdapter {
 
-    private final CadastrarProdutoPort cadastrarClientePort;
+    private final CadastrarClientePort cadastrarClientePort;
     private final EditarClientePort editarClientePort;
     private final ConsultarClientePort consultarClientePort;
     private final ExcluirClientePort excluirClientePort;

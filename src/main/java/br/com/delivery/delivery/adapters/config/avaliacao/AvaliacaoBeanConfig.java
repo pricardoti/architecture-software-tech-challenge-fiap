@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.config;
+package br.com.delivery.delivery.adapters.config.avaliacao;
 
 import br.com.delivery.delivery.application.ports.inbound.avaliacao.CadastrarAvaliacaoPort;
 import br.com.delivery.delivery.application.ports.inbound.avaliacao.ConsultarAvaliacaoPort;
