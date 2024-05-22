@@ -1,6 +1,10 @@
+version: '3.8'
+
 services:
+
   postgres:
-    image: postgres
+    image: postgres:latest
+    container_name: postgres
     restart: always
     environment:
       POSTGRES_DB: delivery
@@ -11,11 +15,18 @@ services:
     ports:
       - 5432:5432
 
-  adminer:
-    image: adminer
-    restart: always
+  delivery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
     ports:
       - 8081:8080
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://localhost:5432/delivery"
+      SPRING_DATASOURCE_USERNAME: fiap
+      SPRING_DATASOURCE_PASSWORD: fiap123
 
 volumes:
   postgres_data:
