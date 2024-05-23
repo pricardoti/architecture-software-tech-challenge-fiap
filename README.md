@@ -45,7 +45,7 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 
 ### Etapa 01: Instalação do Docker Desktop ou Docker Engine
 
-Para realizar a instalação do docker, devemos selecionar a opção do nosso sistema operacional e a documentação abaixo:
+Para realizar a instalação do docker, devemos selecionar a opção do nosso sistema operacional na documentação abaixo:
 
 #### DOCKER DESKTOP
 
