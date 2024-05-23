@@ -6,11 +6,11 @@
 
 ## Grupo 15
 
-| Matrícula | Nome                                               | E-mail |
-|-----------|----------------------------------------------------|--------|
-| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas   | X      |
-| RM354692  | Paulo Ricardo Gonçalves dos Santos                 | X      |
-| RM356150  | Tarcisio Dantas de Andrade                         | X      |
+| Matrícula | Nome                                               | E-mail                                                |
+|-----------|----------------------------------------------------|-------------------------------------------------------|
+| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas   | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)     |
+| RM354692  | Paulo Ricardo Gonçalves dos Santos                 | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                |
+| RM356150  | Tarcisio Dantas de Andrade                         | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
 
 ---
 
