@@ -6,8 +6,6 @@
 
 ## Seção 01 - INFORMAÇÕES DO GRUPO E INTEGRANTES
 
----
-
 ### Grupo 15
 
 | MATRÍCULA | NOME                                             | E-MAIL                                                       |
@@ -17,8 +15,6 @@
 | RM356150  | Tarcisio Dantas de Andrade                       | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
 
 ## Seção 02 - EVENT STORMING
-
----
 
 Na abordagem utilizando o ```Event Storming``` para trazer ideias e um pouco mais de contexto para a solução do problema do
 delivery, podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
@@ -65,13 +61,9 @@ delivery, podemos apresentar alguns contextos abordados durante essa seção, se
 
 ### Sobre o Projeto ```Delivery```
 
----
-
 Projeto referente a gestão de pedidos para uma lanchonete.
 
 ## Tecnologias Usadas
-
----
 
 ![Java](https://img.shields.io/badge/java_22-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
@@ -81,8 +73,6 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 
 ## Pré-requisitos do Projeto ```DELIVERY```
 
----
-
 - ```src/main/java```: Diretório do código fonte da aplicação
 - ```src/main/java```: Diretório do código fonte dos testes da aplicação
 - ```src/main/resources```: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
@@ -90,8 +80,6 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 - ```docker-compose.yml```: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
-
----
 
 ### Etapa 01: Instalação do Docker Desktop ou Docker Engine
 
@@ -133,8 +121,6 @@ O comando supracitado irá criar e iniciar os seguintes containers:
 - ```delivery``` - Container responsável pela execução da aplicação Java **delivery**
 
 ## OpenAPI 3.0
-
----
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
