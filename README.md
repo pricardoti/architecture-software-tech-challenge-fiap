@@ -17,7 +17,7 @@
 ## Seção 02 - EVENT STORMING
 
 Na abordagem utilizando o ```Event Storming``` para trazer ideias e um pouco mais de contexto para a solução do problema do
-delivery, podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
+[delivery](), podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
 
 <details>
 <summary>  <b>Etapa 00 - Legendas e Linguagem Ubíqua</b> </summary>
