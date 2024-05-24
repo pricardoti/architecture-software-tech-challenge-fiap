@@ -4,17 +4,66 @@
 
 ----
 
-## Grupo 15
-
-| Matrícula | Nome                                               | E-mail                                                |
-|-----------|----------------------------------------------------|-------------------------------------------------------|
-| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas   | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)     |
-| RM354692  | Paulo Ricardo Gonçalves dos Santos                 | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                |
-| RM356150  | Tarcisio Dantas de Andrade                         | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
+## Seção 01 - INFORMAÇÕES DO GRUPO E INTEGRANTES
 
 ---
 
-## Sobre o Projeto ```Delivery```
+### Grupo 15
+
+| MATRÍCULA | NOME                                             | E-MAIL                                                       |
+|-----------|--------------------------------------------------|--------------------------------------------------------------|
+| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)            |
+| RM354692  | Paulo Ricardo Gonçalves dos Santos               | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                |
+| RM356150  | Tarcisio Dantas de Andrade                       | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
+
+## Seção 02 - EVENT STORMING
+
+---
+
+Na abordagem utilizando o ```Event Storming``` para trazer ideias e um pouco mais de contexto para a solução do problema do
+delivery, podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
+
+<details>
+<summary>  <b>Etapa 00 - Legendas e Linguagem Ubíqua</b> </summary>
+
+![Legendas](./docs/etapa-00_legendas.svg)
+![Linguagem Ubíqua](./docs/etapa-00_linguagem-ubiqua.svg)
+
+</details>
+
+<details>
+<summary>  <b>Etapa 01 - Brainstorm</b> </summary>
+
+![Brainstorm](./docs/etapa-01_brainstorm.svg)
+
+</details>
+
+<details>
+<summary>  <b>Etapa 02 - Eventos e Pontos de Atenção do Fluxo</b> </summary>
+
+![Eventos e Pontos de Atenção](./docs/etapa-02_eventos-e-pontos-de-atencao.svg)
+
+</details>
+
+<details>
+<summary>  <b>Etapa 03 - Versão Final dos Eventos</b> </summary>
+
+![Versão Final dos Eventos](./docs/etapa-03_versao-final-eventos.svg)
+
+</details>
+
+<details>
+<summary>  <b>Etapa 04 - Versão Final dos Agregados e Contextos Delimitados</b> </summary>
+
+![Versão Final dos Agregados e Contextos Delimitados](./docs/etapa-04_versao-final-agregados-e-contextos-delimitados.svg)
+
+</details>
+
+> Para maiores informações, o acesso para visualização no **[Miro](https://encurtador.com.br/1XQOW)**
+
+## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
+
+### Sobre o Projeto ```Delivery```
 
 ---
 
@@ -34,10 +83,11 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 
 ---
 
-- ```src/main/java```: Diretório do código fonte da aplicação;
-- ```src/main/resources```: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros);
-- <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação;
-- ```docker-compose.yml```: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**.
+- ```src/main/java```: Diretório do código fonte da aplicação
+- ```src/main/java```: Diretório do código fonte dos testes da aplicação
+- ```src/main/resources```: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
+- <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação
+- ```docker-compose.yml```: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
@@ -88,7 +138,7 @@ O comando supracitado irá criar e iniciar os seguintes containers:
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
-[Contrato API Delivery - OpenAPI](http://localhost:8080/api/swagger-ui/index.html)
+[Contrato API Delivery](http://localhost:8080/swagger-ui/index.html)
 
 
 
