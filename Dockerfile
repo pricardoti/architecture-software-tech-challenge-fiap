@@ -1,21 +1,15 @@
-FROM maven:3.9.6-eclipse-temurin-22-alpine AS builder
-
-WORKDIR /home/maven/src
-
-COPY pom.xml /home/maven/src/
-COPY src/main/resources /home/maven/src/src/main/resources
-
-RUN mvn dependency:go-offline
-
-COPY src /home/maven/src/src
-
-RUN mvn clean install -DskipTests
-
-FROM amazoncorretto:22-alpine
+FROM maven:3-eclipse-temurin-22-alpine AS build
 
 WORKDIR /app
+COPY . .
 
-COPY --from=builder /home/maven/src/target/delivery-*.jar /app/tech-challenge-delivery.jar
-COPY src/main/resources /app/resources
+RUN mvn clean package -f pom.xml -DskipTests
 
-CMD ["java", "-jar", "tech-challenge-delivery.jar"]
+FROM amazoncorretto:22-jdk
+
+COPY --from=build /app/target/*.jar /application.jar
+CMD apt-get update -y
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/application.jar"]
