@@ -16,7 +16,7 @@
 
 ## Seção 02 - EVENT STORMING
 
-Na abordagem utilizando o ```Event Storming``` para trazer ideias e um pouco mais de contexto para a solução do problema do
+Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mais de contexto para a solução do problema do
 [delivery](), podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
 
 <details>
@@ -59,7 +59,7 @@ Na abordagem utilizando o ```Event Storming``` para trazer ideias e um pouco mai
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
-### Sobre o Projeto ```Delivery```
+### Sobre o Projeto ```DELIVERY```
 
 Projeto referente a gestão de pedidos para uma lanchonete.
 
@@ -125,6 +125,3 @@ O comando supracitado irá criar e iniciar os seguintes containers:
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
 [Contrato API Delivery](http://localhost:8080/swagger-ui/index.html)
-
-
-
