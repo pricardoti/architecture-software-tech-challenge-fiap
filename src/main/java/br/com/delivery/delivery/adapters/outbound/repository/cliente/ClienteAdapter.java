@@ -2,12 +2,12 @@ package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import org.springframework.stereotype.Component;
 
-import br.com.delivery.delivery.application.ports.inbound.cliente.ClientePort;
+import br.com.delivery.delivery.application.ports.outbound.cliente.ClientePortOut;
 import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class ClienteAdapter implements ClientePort {
+public class ClienteAdapter implements ClientePortOut {
 
     private final ClienteRepository clienteRepository;
 
