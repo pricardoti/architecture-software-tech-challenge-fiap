@@ -62,11 +62,8 @@ public class ProdutoRestAdapter {
         return consultarProdutoInboundPort.consultar(UUID.fromString(codigoProduto));
     }
 
-    @DeleteMapping(
-            path = "/{idProduto}",
-            consumes = APPLICATION_JSON_VALUE
-    )
-    public void excluirCadastro(@PathVariable("idProduto") String idProduto) {
+    @DeleteMapping(path = "/{codigoProduto}")
+    public void excluirCadastro(@PathVariable("codigoProduto") String idProduto) {
         excluirProdutoInboundPort.excluir(UUID.fromString(idProduto));
     }
 }
