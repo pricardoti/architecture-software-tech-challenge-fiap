@@ -47,9 +47,9 @@ public class ClienteRestAdapter {
 		return ResponseEntity.status(NO_CONTENT).build();
 	}
 
-	@GetMapping(path = "/{idCliente}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-	public ClienteResponse consultarPorId(@PathVariable("cpf") String cpf) {
-		return consultarClientePort.consultar(cpf);
+	@GetMapping(path = "/{cpf}/ducumentoId")
+	public ResponseEntity<ClienteResponse> consultarPorId(@PathVariable("cpf") String cpf) {
+		return ResponseEntity.ok(consultarClientePort.consultar(cpf));
 	}
 
 	@DeleteMapping(path = "/{idCliente}", consumes = APPLICATION_JSON_VALUE)
