@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.inbound.cliente.response;
+package br.com.delivery.delivery.adapters.inbound.cliente.dto;
 
 import lombok.Getter;
 import lombok.NonNull;

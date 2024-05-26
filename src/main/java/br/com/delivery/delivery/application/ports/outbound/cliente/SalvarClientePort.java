@@ -1,8 +1,9 @@
 package br.com.delivery.delivery.application.ports.outbound.cliente;
 
-import br.com.delivery.delivery.application.domain.cliente.Cliente;
+import br.com.delivery.delivery.adapters.inbound.cliente.dto.CadastrarClienteRequest;
 
 public interface SalvarClientePort {
 
-    Cliente salvar(Cliente cliente);
+	void salvar(CadastrarClienteRequest cadastrarClienteRequest);
+    
 }

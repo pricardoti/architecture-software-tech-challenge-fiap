@@ -6,17 +6,18 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+
 @Data
 @Entity
 @Accessors(fluent = true)
-@Table(name = "clientes")
-public class ClienteEntity {
+@Table(name = "endereco")
+public class EnderecoEntity {
 
 	@Id
 	private Long id;
-	private String cpf;
-    private String nome;
-    private String sobrenome;
-    private EnderecoEntity endereco;
-      
+	private String rua;
+	private String bairro;
+	private String cidade;
+	private String numero;
+	private String cep;
 }
