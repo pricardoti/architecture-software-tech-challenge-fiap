@@ -1,12 +1,18 @@
 package br.com.delivery.delivery.adapters.outbound.repository.produto;
 
-import br.com.delivery.delivery.application.domain.produto.Produto;
+import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.math.BigDecimal;
+import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -14,24 +20,24 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Accessors(fluent = true)
 @Table(name = "produtos")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ProdutoEntity {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private UUID id;
 
     private String nome;
-    private String tipo;
+
     private String descricao;
-    private String comentario;
 
-    public static ProdutoEntity from(Produto produto) {
-        var produtoEntity = new ProdutoEntity();
-        produtoEntity.nome(produto.nome());
-        produtoEntity.tipo(produto.tipo());
-        produtoEntity.descricao(produto.descricao());
-        produtoEntity.comentario(produto.comentario());
+    private String imagemUrl;
 
-        return produtoEntity;
-    }
+    private BigDecimal preco;
+
+    private CategoriaProduto categoria;
+
 }

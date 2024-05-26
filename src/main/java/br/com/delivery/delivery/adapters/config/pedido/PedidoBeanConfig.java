@@ -1,14 +1,14 @@
 package br.com.delivery.delivery.adapters.config.pedido;
 
-import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedidoPort;
-import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPort;
-import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoPort;
-import br.com.delivery.delivery.application.ports.inbound.pedido.ExcluirPedidoPort;
-import br.com.delivery.delivery.application.ports.outbound.pedido.SalvarPedidoPort;
-import br.com.delivery.delivery.application.usecases.pedido.CadastrarPedidoUseCase;
-import br.com.delivery.delivery.application.usecases.pedido.ConsultarPedidoUseCase;
-import br.com.delivery.delivery.application.usecases.pedido.EditarPedidoUseCase;
-import br.com.delivery.delivery.application.usecases.pedido.ExcluirPedidoUseCase;
+import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.ExcluirPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.outbound.pedido.SalvarPedidoOutboundPort;
+import br.com.delivery.delivery.application.usecases.pedido.CadastrarPedidoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.pedido.ConsultarPedidoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.pedido.EditarPedidoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.pedido.ExcluirPedidoInboundUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,22 +16,22 @@ import org.springframework.context.annotation.Configuration;
 public class PedidoBeanConfig {
 
     @Bean
-    public CadastrarPedidoPort cadastrarPedidoPort(SalvarPedidoPort salvarPedidoPort) {
-        return new CadastrarPedidoUseCase(salvarPedidoPort);
+    public CadastrarPedidoInboundPort cadastrarPedidoPort(SalvarPedidoOutboundPort salvarPedidoOutboundPort) {
+        return new CadastrarPedidoInboundUseCase(salvarPedidoOutboundPort);
     }
 
     @Bean
-    public EditarPedidoPort editarPedidoPort() {
-        return new EditarPedidoUseCase();
+    public EditarPedidoInboundPort editarPedidoPort() {
+        return new EditarPedidoInboundUseCase();
     }
 
     @Bean
-    public ConsultarPedidoPort consultarPedidoPort() {
-        return new ConsultarPedidoUseCase();
+    public ConsultarPedidoInboundPort consultarPedidoPort() {
+        return new ConsultarPedidoInboundUseCase();
     }
 
     @Bean
-    public ExcluirPedidoPort excluirPedidoPort() {
-        return new ExcluirPedidoUseCase();
+    public ExcluirPedidoInboundPort excluirPedidoPort() {
+        return new ExcluirPedidoInboundUseCase();
     }
 }

@@ -1,6 +1,5 @@
 package br.com.delivery.delivery.application.domain.pedido;
 
-import br.com.delivery.delivery.application.domain.avaliacao.Avaliacao;
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
 import br.com.delivery.delivery.application.domain.produto.Produto;
 
@@ -16,8 +15,6 @@ public record Pedido(
         BigDecimal taxaEntrega,
         BigDecimal totalPedido,
         Cliente cliente,
-        List<Produto> produtos,
-        Avaliacao avaliacao/*,
-        Pagamento pagamento*/
+        List<Produto> produtos
 ) {
 }

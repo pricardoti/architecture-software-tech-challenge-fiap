@@ -1,26 +1,31 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
+import java.util.UUID;
 
 @Data
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Accessors(fluent = true)
 @Table(name = "endereco")
+@NoArgsConstructor
+@AllArgsConstructor
 public class EnderecoEntity {
 
-	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String rua;
-	private String bairro;
-	private String cidade;
-	private String numero;
-	private String cep;
+    @EqualsAndHashCode.Include
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private UUID codigo;
+    private String logradouro;
+    private String numero;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String cep;
 }

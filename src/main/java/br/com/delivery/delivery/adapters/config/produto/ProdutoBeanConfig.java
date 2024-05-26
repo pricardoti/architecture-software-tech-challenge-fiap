@@ -1,14 +1,14 @@
 package br.com.delivery.delivery.adapters.config.produto;
 
-import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.SalvarProdutoPort;
-import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoUseCase;
-import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoUseCase;
-import br.com.delivery.delivery.application.usecases.produto.EditarProdutoUseCase;
-import br.com.delivery.delivery.application.usecases.produto.ExcluirProdutoUseCase;
+import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.SalvarProdutoOutboundPort;
+import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.EditarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ExcluirProdutoInboundUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,22 +16,22 @@ import org.springframework.context.annotation.Configuration;
 public class ProdutoBeanConfig {
 
     @Bean
-    public CadastrarProdutoPort cadastrarProdutoPort(SalvarProdutoPort salvarProdutoPort) {
-        return new CadastrarProdutoUseCase(salvarProdutoPort);
+    public CadastrarProdutoInboundPort cadastrarProdutoPort(SalvarProdutoOutboundPort salvarProdutoOutboundPort) {
+        return new CadastrarProdutoInboundUseCase(salvarProdutoOutboundPort);
     }
 
     @Bean
-    public EditarProdutoPort editarProdutoPort() {
-        return new EditarProdutoUseCase();
+    public EditarProdutoInboundPort editarProdutoPort() {
+        return new EditarProdutoInboundUseCase();
     }
 
     @Bean
-    public ConsultarProdutoPort consultarProdutoPort() {
-        return new ConsultarProdutoUseCase();
+    public ConsultarProdutoInboundPort consultarProdutoPort() {
+        return new ConsultarProdutoInboundUseCase();
     }
 
     @Bean
-    public ExcluirProdutoPort excluirProdutoPort() {
-        return new ExcluirProdutoUseCase();
+    public ExcluirProdutoInboundPort excluirProdutoPort() {
+        return new ExcluirProdutoInboundUseCase();
     }
 }
