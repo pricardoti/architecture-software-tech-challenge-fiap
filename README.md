@@ -16,42 +16,43 @@
 
 ## Seção 02 - EVENT STORMING
 
-Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mais de contexto para a solução do problema do
-[delivery](), podemos apresentar alguns contextos abordados durante essa seção, sendo eles:
+Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mais de contexto para a solução do problema
+do [delivery](./docs/contexto/delivery-tech-challenge-fiap.md), podemos apresentar alguns contextos abordados durante
+essa seção, sendo eles:
 
 <details>
 <summary>  <b>Etapa 00 - Legendas e Linguagem Ubíqua</b> </summary>
 
-![Legendas](./docs/etapa-00_legendas.svg)
-![Linguagem Ubíqua](./docs/etapa-00_linguagem-ubiqua.svg)
+![Legendas](docs/images/etapa-00_legendas.svg)
+![Linguagem Ubíqua](docs/images/etapa-00_linguagem-ubiqua.svg)
 
 </details>
 
 <details>
 <summary>  <b>Etapa 01 - Brainstorm</b> </summary>
 
-![Brainstorm](./docs/etapa-01_brainstorm.svg)
+![Brainstorm](docs/images/etapa-01_brainstorm.svg)
 
 </details>
 
 <details>
 <summary>  <b>Etapa 02 - Eventos e Pontos de Atenção do Fluxo</b> </summary>
 
-![Eventos e Pontos de Atenção](./docs/etapa-02_eventos-e-pontos-de-atencao.svg)
+![Eventos e Pontos de Atenção](docs/images/etapa-02_eventos-e-pontos-de-atencao.svg)
 
 </details>
 
 <details>
 <summary>  <b>Etapa 03 - Versão Final dos Eventos</b> </summary>
 
-![Versão Final dos Eventos](./docs/etapa-03_versao-final-eventos.svg)
+![Versão Final dos Eventos](docs/images/etapa-03_versao-final-eventos.svg)
 
 </details>
 
 <details>
 <summary>  <b>Etapa 04 - Versão Final dos Agregados e Contextos Delimitados</b> </summary>
 
-![Versão Final dos Agregados e Contextos Delimitados](./docs/etapa-04_versao-final-agregados-e-contextos-delimitados.svg)
+![Versão Final dos Agregados e Contextos Delimitados](docs/images/etapa-04_versao-final-agregados-e-contextos-delimitados.svg)
 
 </details>
 
@@ -59,7 +60,7 @@ Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mai
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
-### Sobre o Projeto ```DELIVERY```
+### Sobre o Projeto DELIVERY`
 
 Projeto referente a gestão de pedidos para uma lanchonete.
 
@@ -73,11 +74,11 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 
 ## Pré-requisitos do Projeto ```DELIVERY```
 
-- ```src/main/java```: Diretório do código fonte da aplicação
-- ```src/main/java```: Diretório do código fonte dos testes da aplicação
-- ```src/main/resources```: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
+- `src/main/java`: Diretório do código fonte da aplicação
+- `src/main/java`: Diretório do código fonte dos testes da aplicação
+- `src/main/resources`: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
 - <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação
-- ```docker-compose.yml```: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
+- `docker-compose.yml`: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
@@ -104,12 +105,11 @@ Para realizar a instalação do docker, devemos selecionar a opção do nosso si
 
 Para realizar a execução da aplicação, será necessário antes, a construção das imagens para o containers do **Docker**.
 
-Estando com o **Docker Desktop** aberto ou com seu serviço em execução, precisa navegar até o diretório do projeto para executar o comando abaixo:
+Estando com o **Docker Desktop** aberto ou com seu serviço em execução, precisa navegar até o diretório do projeto para
+executar o comando abaixo:
 
 ```docker
-
 docker compose up -d
-
 ```
 
 > Lembrando que o parâmetro "-d", vem de "detached mode" ou modo desanexado.

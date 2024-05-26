@@ -1,14 +1,21 @@
 package br.com.delivery.delivery.adapters.outbound.repository.pedido;
 
-import br.com.delivery.delivery.application.domain.pedido.Pedido;
+import br.com.delivery.delivery.adapters.outbound.repository.produto.ProdutoPedidoEntity;
+import br.com.delivery.delivery.application.domain.enums.StatusPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -16,42 +23,20 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Accessors(fluent = true)
 @Table(name = "pedidos")
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PedidoEntity {
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-
-    private String nomeEstabelecimento;
-    private String dataHoraSolicitacao;
-    private String dataHoraFinalizacao;
-    private BigDecimal subtotal;
-    private BigDecimal descontos;
-    private BigDecimal taxaEntrega;
+    private Long codigo;
+    private UUID codigoCliente;
     private BigDecimal totalPedido;
+    private StatusPedido statusPedido;
+    private LocalDateTime dataHoraCriacao;
 
-    // TODO: mapear value objects
-    // private Cliente cliente;
-    // private List<Produto> produtos;
-    // private Avaliacao avaliacao;
-    // private Pagamento pagamento;
+    List<ProdutoPedidoEntity> produtos;
 
-    public static PedidoEntity from(Pedido pedido) {
-        var pedidoEntity = new PedidoEntity();
-        pedidoEntity.nomeEstabelecimento(pedido.nomeEstabelecimento());
-        pedidoEntity.dataHoraSolicitacao(pedido.dataHoraSolicitacao());
-        pedidoEntity.dataHoraFinalizacao(pedido.dataHoraFinalizacao());
-        pedidoEntity.subtotal(pedido.subtotal());
-        pedidoEntity.descontos(pedido.descontos());
-        pedidoEntity.taxaEntrega(pedido.taxaEntrega());
-        pedidoEntity.totalPedido(pedido.totalPedido());
-
-        // TODO: mapear value objects
-        // pedidoEntity.cliente(pedido.cliente());
-        // pedidoEntity.produtos(pedido.produtos());
-        // pedidoEntity.avaliacao(pedido.avaliacao());
-        // pedidoEntity.pagamento(pedido.pagamento());
-
-        return pedidoEntity;
-    }
 }

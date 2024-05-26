@@ -2,20 +2,16 @@ package br.com.delivery.delivery.adapters.inbound.cliente;
 
 import br.com.delivery.delivery.adapters.inbound.cliente.dto.CadastrarClienteRequest;
 import br.com.delivery.delivery.adapters.inbound.cliente.dto.ClienteResponse;
-import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import br.com.delivery.delivery.application.ports.inbound.cliente.ClientePortIn;
-import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClientePort;
-import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClientePort;
-import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClientePort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClienteInboundPort;
 import lombok.RequiredArgsConstructor;
 
-import org.apache.coyote.http11.Http11InputBuffer;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpClient;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -27,10 +23,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/clientes")
 public class ClienteRestAdapter {
 
-	private final ClientePortIn cadastrarClientePort;
-	private final EditarClientePort editarClientePort;
-	private final ConsultarClientePort consultarClientePort;
-	private final ExcluirClientePort excluirClientePort;
+	private final CadastrarClienteInboundPort cadastrarClientePort;
+	private final EditarClienteInboundPort editarClienteInboundPort;
+	private final ConsultarClienteInboundPort consultarClienteInboundPort;
+	private final ExcluirClienteInboundPort excluirClienteInboundPort;
 
 	@PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 	@ResponseStatus(CREATED)
@@ -43,17 +39,17 @@ public class ClienteRestAdapter {
 	@ResponseStatus(NO_CONTENT)
 	public ResponseEntity<Void> atualizarCadastro(@PathVariable("idCliente") String idCliente,
 			@RequestBody CadastrarClienteRequest cadastrarClienteRequest) {
-		editarClientePort.editar(null);
+		editarClienteInboundPort.editar(null);
 		return ResponseEntity.status(NO_CONTENT).build();
 	}
 
 	@GetMapping(path = "/{cpf}/ducumentoId")
 	public ResponseEntity<ClienteResponse> consultarPorId(@PathVariable("cpf") String cpf) {
-		return ResponseEntity.ok(consultarClientePort.consultar(cpf));
+		return ResponseEntity.ok(consultarClienteInboundPort.consultar(cpf));
 	}
 
 	@DeleteMapping(path = "/{idCliente}", consumes = APPLICATION_JSON_VALUE)
 	public void excluirCadastro(@PathVariable("idCliente") String idCliente) {
-		excluirClientePort.excluir(UUID.fromString(idCliente));
+		excluirClienteInboundPort.excluir(UUID.fromString(idCliente));
 	}
 }

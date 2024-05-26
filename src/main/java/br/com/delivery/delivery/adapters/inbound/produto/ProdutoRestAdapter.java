@@ -3,10 +3,10 @@ package br.com.delivery.delivery.adapters.inbound.produto;
 import br.com.delivery.delivery.adapters.inbound.produto.request.CadastrarProdutoRequest;
 import br.com.delivery.delivery.adapters.inbound.produto.response.CadastrarProdutoResponse;
 import br.com.delivery.delivery.application.domain.produto.Produto;
-import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +22,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping("/v1/produtos")
 public class ProdutoRestAdapter {
 
-    private final CadastrarProdutoPort cadastrarProdutoPort;
-    private final EditarProdutoPort editarProdutoPort;
-    private final ConsultarProdutoPort consultarProdutoPort;
-    private final ExcluirProdutoPort excluirProdutoPort;
+    private final CadastrarProdutoInboundPort cadastrarProdutoInboundPort;
+    private final EditarProdutoInboundPort editarProdutoInboundPort;
+    private final ConsultarProdutoInboundPort consultarProdutoInboundPort;
+    private final ExcluirProdutoInboundPort excluirProdutoInboundPort;
 
     @PostMapping(
             consumes = APPLICATION_JSON_VALUE,
@@ -33,7 +33,7 @@ public class ProdutoRestAdapter {
     )
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarProdutoResponse> cadastrar(@RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
-        var produto = cadastrarProdutoPort.salvar(null);
+        var produto = cadastrarProdutoInboundPort.salvar(null);
         var response = CadastrarProdutoResponse.from(UUID.randomUUID().toString());
         return ResponseEntity
                 .ofNullable(response);
@@ -49,7 +49,7 @@ public class ProdutoRestAdapter {
             @PathVariable("idProduto") String idProduto,
             @RequestBody CadastrarProdutoRequest cadastrarProdutoRequest
     ) {
-        editarProdutoPort.editar(null);
+        editarProdutoInboundPort.editar(null);
         return ResponseEntity
                 .status(NO_CONTENT)
                 .build();
@@ -61,7 +61,7 @@ public class ProdutoRestAdapter {
             produces = APPLICATION_JSON_VALUE
     )
     public Produto consultarPorId(@PathVariable("idProduto") String idProduto) {
-        return consultarProdutoPort.consultar(null);
+        return consultarProdutoInboundPort.consultar(null);
     }
 
     @DeleteMapping(
@@ -69,6 +69,6 @@ public class ProdutoRestAdapter {
             consumes = APPLICATION_JSON_VALUE
     )
     public void excluirCadastro(@PathVariable("idProduto") String idProduto) {
-        excluirProdutoPort.excluir(UUID.fromString(idProduto));
+        excluirProdutoInboundPort.excluir(UUID.fromString(idProduto));
     }
 }

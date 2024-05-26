@@ -4,7 +4,6 @@ public record Cliente(
         String nome,
         String sobrenome,
         String cpf,
-        Credencial credencial,
         Endereco endereco
 ) {
 }

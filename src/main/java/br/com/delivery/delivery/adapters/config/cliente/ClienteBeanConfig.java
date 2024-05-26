@@ -3,36 +3,36 @@ package br.com.delivery.delivery.adapters.config.cliente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.delivery.delivery.application.ports.inbound.cliente.ClientePortIn;
-import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClientePort;
-import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClientePort;
-import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClientePort;
-import br.com.delivery.delivery.application.ports.outbound.cliente.ClientePortOut;
-import br.com.delivery.delivery.application.usecases.cliente.ClienteUseCase;
-import br.com.delivery.delivery.application.usecases.cliente.ConsultarClienteUseCase;
-import br.com.delivery.delivery.application.usecases.cliente.EditarClienteUseCase;
-import br.com.delivery.delivery.application.usecases.cliente.ExcluirClienteUseCase;
+import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClienteInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirClienteInboundPort;
+import br.com.delivery.delivery.application.ports.outbound.cliente.CadastrarClienteOutboundPort;
+import br.com.delivery.delivery.application.usecases.cliente.CadastrarClienteInboundUseCase;
+import br.com.delivery.delivery.application.usecases.cliente.ConsultarClienteInboundUseCase;
+import br.com.delivery.delivery.application.usecases.cliente.EditarClienteInboundUseCase;
+import br.com.delivery.delivery.application.usecases.cliente.ExcluirClienteInboundUseCase;
 
 @Configuration
 public class ClienteBeanConfig {
 
     @Bean
-    public ClientePortIn cadastrarClientePort(ClientePortOut clientePortOut) {
-        return new ClienteUseCase(clientePortOut);
+    public CadastrarClienteInboundPort cadastrarClientePort(CadastrarClienteOutboundPort cadastrarClienteOutboundPort) {
+        return new CadastrarClienteInboundUseCase(cadastrarClienteOutboundPort);
     }
 
     @Bean
-    public EditarClientePort editarClientePort() {
-        return new EditarClienteUseCase();
+    public EditarClienteInboundPort editarClientePort() {
+        return new EditarClienteInboundUseCase();
     }
 
     @Bean
-    public ConsultarClientePort consultarClientePort(ClientePortOut clientePortOut) {
-        return new ConsultarClienteUseCase(clientePortOut);
+    public ConsultarClienteInboundPort consultarClientePort(CadastrarClienteOutboundPort cadastrarClienteOutboundPort) {
+        return new ConsultarClienteInboundUseCase(cadastrarClienteOutboundPort);
     }
 
     @Bean
-    public ExcluirClientePort excluirClientePort() {
-        return new ExcluirClienteUseCase();
+    public ExcluirClienteInboundPort excluirClientePort() {
+        return new ExcluirClienteInboundUseCase();
     }
 }
