@@ -13,7 +13,7 @@ public class ClienteAdapter implements ClientePortOut {
 
 	@Override
 	public ClienteEntity findByCpf(String cpf) {
-		return findByCpf(cpf);
+		return clienteRepository.findByCpf(cpf);
 	}
 
 	@Override
