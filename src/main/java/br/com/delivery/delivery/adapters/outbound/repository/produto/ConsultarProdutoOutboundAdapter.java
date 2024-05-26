@@ -18,6 +18,6 @@ public class ConsultarProdutoOutboundAdapter implements ConsultarProdutoOutbound
         var produtoEntity = produtoRepository.findById(codigoProduto);
         return produtoEntity
                 .orElseThrow(IllegalArgumentException::new)
-                .convertToProduto();
+                .toDomain();
     }
 }

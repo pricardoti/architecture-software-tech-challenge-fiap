@@ -14,6 +14,6 @@ public class EditarProdutoOutboundAdapter implements EditarProdutoOutboundPort {
     @Override
     public Produto editar(Produto produto) {
         var produtoEntity = produtoRepository.save(ProdutoEntity.from(produto));
-        return produtoEntity.convertToProduto();
+        return produtoEntity.toDomain();
     }
 }

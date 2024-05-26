@@ -43,7 +43,7 @@ public class ProdutoEntity {
         );
     }
 
-    public Produto convertToProduto() {
+    public Produto toDomain() {
         return new Produto(
                 codigo,
                 nome,
