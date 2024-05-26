@@ -55,12 +55,11 @@ public class ProdutoRestAdapter {
     }
 
     @GetMapping(
-            path = "/{idProduto}",
-            consumes = APPLICATION_JSON_VALUE,
+            path = "/{codigoProduto}",
             produces = APPLICATION_JSON_VALUE
     )
-    public Produto consultarPorId(@PathVariable("idProduto") String idProduto) {
-        return consultarProdutoInboundPort.consultar(null);
+    public Produto consultarPorId(@PathVariable("codigoProduto") String codigoProduto) {
+        return consultarProdutoInboundPort.consultar(UUID.fromString(codigoProduto));
     }
 
     @DeleteMapping(

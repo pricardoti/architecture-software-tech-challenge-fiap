@@ -2,7 +2,9 @@ package br.com.delivery.delivery.application.ports.outbound.produto;
 
 import br.com.delivery.delivery.application.domain.produto.Produto;
 
-public interface SalvarProdutoOutboundPort {
+import java.util.UUID;
 
-    Produto cadastrar(Produto produto);
+public interface ConsultarProdutoOutboundPort {
+
+    Produto consultar(UUID codigoProduto);
 }
