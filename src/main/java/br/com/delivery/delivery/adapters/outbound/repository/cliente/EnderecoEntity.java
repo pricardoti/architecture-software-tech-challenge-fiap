@@ -1,6 +1,8 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,9 +20,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class EnderecoEntity {
 
-    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private UUID codigo;
     private String logradouro;
     private String numero;

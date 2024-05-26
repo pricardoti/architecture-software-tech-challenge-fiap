@@ -20,12 +20,13 @@ public class ClienteEntity {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID codigo;
+
     @Column(unique = true)
     private String cpf;
     private String nome;
     private String email;
+
     @OneToOne(cascade = CascadeType.ALL)
     private EnderecoEntity endereco;
 

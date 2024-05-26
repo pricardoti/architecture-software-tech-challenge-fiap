@@ -9,15 +9,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-@Data
-@Entity
-@Accessors(fluent = true)
-@Table(name = "produtos")
-@AllArgsConstructor
-@NoArgsConstructor
+
+// TODO: ajustar logica de produto
+//@Data
+//@Entity
+//@Accessors(fluent = true)
+//@Table(name = "produtos")
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class ProdutoPedidoEntity {
 
-    @EmbeddedId
+//    @EmbeddedId
     private ProdutoEntity produto;
     private int quantidade;
 }

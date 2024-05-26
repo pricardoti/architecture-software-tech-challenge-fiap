@@ -2,7 +2,6 @@ package br.com.delivery.delivery.adapters.outbound.repository.produto;
 
 import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,8 +13,6 @@ import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
-
 @Data
 @Entity
 @Accessors(fluent = true)
@@ -25,19 +22,13 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ProdutoEntity {
 
-    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @EqualsAndHashCode.Include
     private UUID id;
-
     private String nome;
-
     private String descricao;
-
     private String imagemUrl;
-
     private BigDecimal preco;
-
     private CategoriaProduto categoria;
 
 }

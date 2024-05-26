@@ -37,6 +37,7 @@ public class PedidoEntity {
     private StatusPedido statusPedido;
     private LocalDateTime dataHoraCriacao;
 
-    List<ProdutoPedidoEntity> produtos;
+    // TODO: ajustar logica de produto
+//    List<ProdutoPedidoEntity> produtos;
 
 }
