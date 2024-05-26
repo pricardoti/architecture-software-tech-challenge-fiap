@@ -2,7 +2,7 @@ package br.com.delivery.delivery.application.domain.enums;
 
 public enum CategoriaProduto {
 
-    SANDUICHE("SANDUICHE"),
+    LANCHE("LANCHE"),
     ACOMPANHAMENTO("ACOMPANHAMENTO"),
     BEBIDA("BEBIDA"),
     SOBREMESA("SOBREMESA");

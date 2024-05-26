@@ -2,19 +2,17 @@ package br.com.delivery.delivery.adapters.inbound.produto;
 
 import br.com.delivery.delivery.adapters.inbound.produto.request.CadastrarProdutoRequest;
 import br.com.delivery.delivery.adapters.inbound.produto.response.CadastrarProdutoResponse;
+import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
 import br.com.delivery.delivery.application.domain.produto.Produto;
-import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.UUID;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
@@ -24,13 +22,11 @@ public class ProdutoRestAdapter {
 
     private final CadastrarProdutoInboundPort cadastrarProdutoInboundPort;
     private final EditarProdutoInboundPort editarProdutoInboundPort;
-    private final ConsultarProdutoInboundPort consultarProdutoInboundPort;
+    private final ConsultarProdutoPorIdInboundPort consultarProdutoPorIdInboundPort;
+    private final ConsultarProdutoInboundPort consultarProdutosInboundPort;
     private final ExcluirProdutoInboundPort excluirProdutoInboundPort;
 
-    @PostMapping(
-            consumes = APPLICATION_JSON_VALUE,
-            produces = APPLICATION_JSON_VALUE
-    )
+    @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarProdutoResponse> cadastrar(@RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
         var produto = cadastrarProdutoInboundPort.cadastrar(cadastrarProdutoRequest.toDomain());
@@ -55,12 +51,17 @@ public class ProdutoRestAdapter {
                 .build();
     }
 
-    @GetMapping(
-            path = "/{codigoProduto}",
-            produces = APPLICATION_JSON_VALUE
-    )
-    public Produto consultarPorId(@PathVariable("codigoProduto") String codigoProduto) {
-        return consultarProdutoInboundPort.consultar(UUID.fromString(codigoProduto));
+    @GetMapping(path = "/{codigoProduto}", produces = APPLICATION_JSON_VALUE)
+    public Produto consultarProdutoPorId(@PathVariable("codigoProduto") String codigoProduto) {
+        return consultarProdutoPorIdInboundPort.consultar(UUID.fromString(codigoProduto));
+    }
+
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<Produto>> consultarProdutos(@RequestParam("categoria") CategoriaProduto categoria) {
+        var produtos = consultarProdutosInboundPort.consultar(categoria);
+        return ResponseEntity
+                .status(OK)
+                .body(produtos);
     }
 
     @DeleteMapping(path = "/{codigoProduto}")

@@ -1,11 +1,12 @@
 package br.com.delivery.delivery.application.usecases.produto;
 
+import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
 import br.com.delivery.delivery.application.domain.produto.Produto;
 import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
 import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
 import lombok.RequiredArgsConstructor;
 
-import java.util.UUID;
+import java.util.Collection;
 
 @RequiredArgsConstructor
 public class ConsultarProdutoInboundUseCase implements ConsultarProdutoInboundPort {
@@ -13,7 +14,7 @@ public class ConsultarProdutoInboundUseCase implements ConsultarProdutoInboundPo
     private final ConsultarProdutoOutboundPort consultarProdutoOutboundPort;
 
     @Override
-    public Produto consultar(UUID codigoProduto) {
-        return consultarProdutoOutboundPort.consultar(codigoProduto);
+    public Collection<Produto> consultar(CategoriaProduto categoria) {
+        return consultarProdutoOutboundPort.consultar(categoria);
     }
 }
