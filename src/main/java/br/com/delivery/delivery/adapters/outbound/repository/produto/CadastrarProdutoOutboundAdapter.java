@@ -12,7 +12,8 @@ public class CadastrarProdutoOutboundAdapter implements SalvarProdutoOutboundPor
     private final ProdutoRepository produtoRepository;
 
     @Override
-    public Produto salvar(Produto produto) {
-        return null;
+    public Produto cadastrar(Produto produto) {
+        var produtoEntity = produtoRepository.save(ProdutoEntity.from(produto));
+        return produtoEntity.convertToProduto();
     }
 }

@@ -33,10 +33,9 @@ public class ProdutoRestAdapter {
     )
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarProdutoResponse> cadastrar(@RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
-        var produto = cadastrarProdutoInboundPort.salvar(null);
-        var response = CadastrarProdutoResponse.from(UUID.randomUUID().toString());
+        var produto = cadastrarProdutoInboundPort.cadastrar(cadastrarProdutoRequest.convertToProductDomain());
         return ResponseEntity
-                .ofNullable(response);
+                .ofNullable(CadastrarProdutoResponse.from(produto.codigo()));
     }
 
     @PutMapping(

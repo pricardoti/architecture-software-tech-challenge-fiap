@@ -4,5 +4,5 @@ import br.com.delivery.delivery.application.domain.produto.Produto;
 
 public interface CadastrarProdutoInboundPort {
 
-    Produto salvar(Produto produto);
+    Produto cadastrar(Produto produto);
 }

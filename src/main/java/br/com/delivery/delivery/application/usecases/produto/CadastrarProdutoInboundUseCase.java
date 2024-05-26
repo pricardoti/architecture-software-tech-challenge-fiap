@@ -11,7 +11,7 @@ public class CadastrarProdutoInboundUseCase implements CadastrarProdutoInboundPo
     private final SalvarProdutoOutboundPort salvarProdutoOutboundPort;
 
     @Override
-    public Produto salvar(Produto produto) {
-        return salvarProdutoOutboundPort.salvar(null);
+    public Produto cadastrar(Produto produto) {
+        return salvarProdutoOutboundPort.cadastrar(produto);
     }
 }
