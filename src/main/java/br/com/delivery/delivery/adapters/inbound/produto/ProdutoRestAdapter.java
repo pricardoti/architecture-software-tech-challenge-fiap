@@ -33,22 +33,23 @@ public class ProdutoRestAdapter {
     )
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarProdutoResponse> cadastrar(@RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
-        var produto = cadastrarProdutoInboundPort.cadastrar(cadastrarProdutoRequest.convertToProductDomain());
+        var produto = cadastrarProdutoInboundPort.cadastrar(cadastrarProdutoRequest.toDomain());
         return ResponseEntity
                 .ofNullable(CadastrarProdutoResponse.from(produto.codigo()));
     }
 
     @PutMapping(
-            path = "/{idProduto}",
+            path = "/{codigoProduto}",
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE
     )
     @ResponseStatus(NO_CONTENT)
     public ResponseEntity<Void> atualizarCadastro(
-            @PathVariable("idProduto") String idProduto,
+            @PathVariable("codigoProduto") String codigoProduto,
             @RequestBody CadastrarProdutoRequest cadastrarProdutoRequest
     ) {
-        editarProdutoInboundPort.editar(null);
+        var produto = cadastrarProdutoRequest.toDomain(UUID.fromString(codigoProduto));
+        editarProdutoInboundPort.editar(produto);
         return ResponseEntity
                 .status(NO_CONTENT)
                 .build();
@@ -63,7 +64,7 @@ public class ProdutoRestAdapter {
     }
 
     @DeleteMapping(path = "/{codigoProduto}")
-    public void excluirCadastro(@PathVariable("codigoProduto") String idProduto) {
-        excluirProdutoInboundPort.excluir(UUID.fromString(idProduto));
+    public void excluirCadastro(@PathVariable("codigoProduto") String codigoProduto) {
+        excluirProdutoInboundPort.excluir(UUID.fromString(codigoProduto));
     }
 }

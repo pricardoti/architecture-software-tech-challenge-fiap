@@ -6,6 +6,7 @@ import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoI
 import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
 import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.EditarProdutoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.produto.ExcluirProdutoOutboundPort;
 import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
@@ -23,8 +24,8 @@ public class ProdutoBeanConfig {
     }
 
     @Bean
-    public EditarProdutoInboundPort editarProdutoPort() {
-        return new EditarProdutoInboundUseCase();
+    public EditarProdutoInboundPort editarProdutoPort(EditarProdutoOutboundPort editarProdutoOutboundPort) {
+        return new EditarProdutoInboundUseCase(editarProdutoOutboundPort);
     }
 
     @Bean

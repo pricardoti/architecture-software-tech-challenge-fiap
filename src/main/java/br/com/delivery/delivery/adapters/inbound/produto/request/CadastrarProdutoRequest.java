@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -27,7 +28,11 @@ public class CadastrarProdutoRequest {
 
     private String imagemUrl;
 
-    public Produto convertToProductDomain() {
+    public Produto toDomain() {
         return new Produto(nome, descricao, preco, categoria, imagemUrl);
+    }
+
+    public Produto toDomain(UUID codigoProduto) {
+        return new Produto(codigoProduto, nome, descricao, preco, categoria, imagemUrl);
     }
 }
