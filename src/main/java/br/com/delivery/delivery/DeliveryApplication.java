@@ -7,7 +7,13 @@ import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import static br.com.delivery.delivery.application.constants.SwaggerConstants.*;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_CONTACT_NAME;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_CONTACT_URL;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_DESCRIPTION;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_META_INFO_LICENSE;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_META_INFO_LICENSE_URL;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_TITLE;
+import static br.com.delivery.delivery.application.constants.SwaggerConstants.SWAGGER_VERSION;
 
 @SpringBootApplication
 @OpenAPIDefinition(

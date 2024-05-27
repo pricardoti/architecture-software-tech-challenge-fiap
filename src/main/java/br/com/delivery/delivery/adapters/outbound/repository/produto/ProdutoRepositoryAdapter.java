@@ -2,7 +2,11 @@ package br.com.delivery.delivery.adapters.outbound.repository.produto;
 
 import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
 import br.com.delivery.delivery.application.domain.produto.Produto;
-import br.com.delivery.delivery.application.ports.outbound.produto.*;
+import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoPorIdOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.EditarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ExcluirProdutoOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

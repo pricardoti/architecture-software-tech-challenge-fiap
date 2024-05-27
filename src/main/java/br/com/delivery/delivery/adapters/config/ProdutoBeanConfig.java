@@ -1,8 +1,20 @@
 package br.com.delivery.delivery.adapters.config;
 
-import br.com.delivery.delivery.application.ports.inbound.produto.*;
-import br.com.delivery.delivery.application.ports.outbound.produto.*;
-import br.com.delivery.delivery.application.usecases.produto.*;
+import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPorIdInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoPorIdOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.EditarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ExcluirProdutoOutboundPort;
+import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoPorIdInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.EditarProdutoInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ExcluirProdutoInboundUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
