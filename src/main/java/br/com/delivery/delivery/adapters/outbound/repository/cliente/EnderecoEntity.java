@@ -57,4 +57,21 @@ public class EnderecoEntity {
                 cep
         );
     }
+
+    public EnderecoEntity(UUID codigo,
+                          String logradouro,
+                          String numero,
+                          String complemento,
+                          String bairro,
+                          String cidade,
+                          String cep
+    ) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+    }
 }

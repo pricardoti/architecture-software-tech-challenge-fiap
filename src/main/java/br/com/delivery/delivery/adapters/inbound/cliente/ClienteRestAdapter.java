@@ -44,16 +44,16 @@ public class ClienteRestAdapter {
     }
 
     @PutMapping(
-            path = "/{idCliente}",
+            path = "/{codigoCliente}",
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE
     )
     @ResponseStatus(NO_CONTENT)
     public ResponseEntity<Void> atualizarCadastro(
-            @PathVariable("idCliente") String idCliente,
+            @PathVariable("codigoCliente") String codigoCliente,
             @RequestBody @Valid AtualizarClienteRequest atualizarClienteRequest
     ) {
-        var cliente = atualizarClienteRequest.toDomain(UUID.fromString(idCliente));
+        var cliente = atualizarClienteRequest.toDomain(UUID.fromString(codigoCliente));
         editarClienteInboundPort.editar(cliente);
         return ResponseEntity
                 .status(NO_CONTENT)
@@ -71,8 +71,8 @@ public class ClienteRestAdapter {
                 .body(clientes);
     }
 
-    @DeleteMapping(path = "/{idCliente}", consumes = APPLICATION_JSON_VALUE)
-    public void excluirCadastro(@PathVariable("idCliente") String idCliente) {
-        excluirClienteInboundPort.excluir(UUID.fromString(idCliente));
+    @DeleteMapping(path = "/{codigoCliente}", consumes = APPLICATION_JSON_VALUE)
+    public void excluirCadastro(@PathVariable("codigoCliente") String codigoCliente) {
+        excluirClienteInboundPort.excluir(UUID.fromString(codigoCliente));
     }
 }
