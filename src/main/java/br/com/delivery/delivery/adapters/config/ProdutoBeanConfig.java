@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.config.produto;
+package br.com.delivery.delivery.adapters.config;
 
 import br.com.delivery.delivery.application.ports.inbound.produto.*;
 import br.com.delivery.delivery.application.ports.outbound.produto.*;

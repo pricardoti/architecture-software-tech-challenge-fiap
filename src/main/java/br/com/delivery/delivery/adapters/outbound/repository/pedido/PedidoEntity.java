@@ -1,9 +1,8 @@
 package br.com.delivery.delivery.adapters.outbound.repository.pedido;
 
-import br.com.delivery.delivery.adapters.outbound.repository.produto.ProdutoPedidoEntity;
 import br.com.delivery.delivery.application.domain.enums.StatusPedido;
+import br.com.delivery.delivery.application.domain.pedido.Pedido;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,24 +13,20 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
-
-import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
-@Accessors(fluent = true)
 @Table(name = "pedidos")
+@Accessors(fluent = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PedidoEntity {
 
-    @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long codigo;
+    @EqualsAndHashCode.Include
+    private UUID codigo;
     private UUID codigoCliente;
     private BigDecimal totalPedido;
     private StatusPedido statusPedido;
@@ -39,5 +34,10 @@ public class PedidoEntity {
 
     // TODO: ajustar logica de produto
 //    List<ProdutoPedidoEntity> produtos;
+
+    public static PedidoEntity createByDomain(Pedido pedido) {
+        var pedidoEntity = new PedidoEntity();
+        return pedidoEntity;
+    }
 
 }

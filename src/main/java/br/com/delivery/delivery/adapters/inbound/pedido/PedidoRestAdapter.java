@@ -6,12 +6,10 @@ import br.com.delivery.delivery.application.domain.pedido.Pedido;
 import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.pedido.ExcluirPedidoInboundPort;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
@@ -25,18 +23,18 @@ public class PedidoRestAdapter {
     private final CadastrarPedidoInboundPort cadastrarPedidoInboundPort;
     private final EditarPedidoInboundPort editarPedidoInboundPort;
     private final ConsultarPedidoInboundPort consultarPedidoInboundPort;
-    private final ExcluirPedidoInboundPort excluirPedidoInboundPort;
 
     @PostMapping(
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE
     )
     @ResponseStatus(CREATED)
-    public ResponseEntity<CadastrarPedidoResponse> cadastrar(@RequestBody CadastrarPedidoRequest cadastrarPedidoRequest) {
-        var pedido = cadastrarPedidoInboundPort.salvar(null);
-        var response = CadastrarPedidoResponse.from(UUID.randomUUID().toString());
+    public ResponseEntity<CadastrarPedidoResponse> cadastrar(@RequestBody @Valid CadastrarPedidoRequest cadastrarPedidoRequest) {
+        var pedido = cadastrarPedidoInboundPort.cadastrar(cadastrarPedidoRequest.toDomain());
+        var response = CadastrarPedidoResponse.createByCodigoPedido(pedido.codigoPedido());
         return ResponseEntity
-                .ofNullable(response);
+                .status(CREATED)
+                .body(response);
     }
 
     @PutMapping(
@@ -62,13 +60,5 @@ public class PedidoRestAdapter {
     )
     public Pedido consultarPorId(@PathVariable("idPedido") String idPedido) {
         return consultarPedidoInboundPort.consultar(null);
-    }
-
-    @DeleteMapping(
-            path = "/{idPedido}",
-            consumes = APPLICATION_JSON_VALUE
-    )
-    public void excluirCadastro(@PathVariable("idPedido") String idPedido) {
-        excluirPedidoInboundPort.excluir(UUID.fromString(idPedido));
     }
 }

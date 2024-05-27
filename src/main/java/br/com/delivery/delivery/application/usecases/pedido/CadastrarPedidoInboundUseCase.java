@@ -11,7 +11,7 @@ public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort
     private final SalvarPedidoOutboundPort salvarPedidoOutboundPort;
 
     @Override
-    public Pedido salvar(Pedido cliente) {
-        return salvarPedidoOutboundPort.salvar(null);
+    public Pedido cadastrar(Pedido pedido) {
+        return salvarPedidoOutboundPort.salvar(pedido);
     }
 }

@@ -4,5 +4,5 @@ import br.com.delivery.delivery.application.domain.pedido.Pedido;
 
 public interface CadastrarPedidoInboundPort {
 
-    Pedido salvar(Pedido pedido);
+    Pedido cadastrar(Pedido pedido);
 }

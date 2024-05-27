@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.config.cliente;
+package br.com.delivery.delivery.adapters.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

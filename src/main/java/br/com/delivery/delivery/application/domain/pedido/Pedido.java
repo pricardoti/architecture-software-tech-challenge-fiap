@@ -5,16 +5,13 @@ import br.com.delivery.delivery.application.domain.produto.Produto;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 public record Pedido(
-        String nomeEstabelecimento,
-        String dataHoraSolicitacao,
-        String dataHoraFinalizacao,
-        BigDecimal subtotal,
-        BigDecimal descontos,
-        BigDecimal taxaEntrega,
-        BigDecimal totalPedido,
+        UUID codigoPedido,
         Cliente cliente,
+        String dataHoraSolicitacao,
+        BigDecimal totalPedido,
         List<Produto> produtos
 ) {
 }

@@ -13,6 +13,7 @@ public class CadastrarPedidoOutboundAdapter implements SalvarPedidoOutboundPort 
 
     @Override
     public Pedido salvar(Pedido pedido) {
-        return null;
+        PedidoEntity
+        return pedidoRepository.save(null);
     }
 }
