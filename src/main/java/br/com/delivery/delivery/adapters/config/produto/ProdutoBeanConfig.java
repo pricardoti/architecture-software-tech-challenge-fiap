@@ -1,15 +1,8 @@
 package br.com.delivery.delivery.adapters.config.produto;
 
-import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
-import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
-import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
-import br.com.delivery.delivery.application.usecases.produto.EditarProdutoInboundUseCase;
-import br.com.delivery.delivery.application.usecases.produto.ExcluirProdutoInboundUseCase;
+import br.com.delivery.delivery.application.ports.inbound.produto.*;
+import br.com.delivery.delivery.application.ports.outbound.produto.*;
+import br.com.delivery.delivery.application.usecases.produto.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,8 +15,13 @@ public class ProdutoBeanConfig {
     }
 
     @Bean
-    public EditarProdutoInboundPort editarProdutoPort() {
-        return new EditarProdutoInboundUseCase();
+    public EditarProdutoInboundPort editarProdutoPort(EditarProdutoOutboundPort editarProdutoOutboundPort) {
+        return new EditarProdutoInboundUseCase(editarProdutoOutboundPort);
+    }
+
+    @Bean
+    public ConsultarProdutoPorIdInboundPort consultarProdutoPorIdPort(ConsultarProdutoPorIdOutboundPort consultarProdutoPorIdOutboundPort) {
+        return new ConsultarProdutoPorIdInboundUseCase(consultarProdutoPorIdOutboundPort);
     }
 
     @Bean
@@ -32,7 +30,7 @@ public class ProdutoBeanConfig {
     }
 
     @Bean
-    public ExcluirProdutoInboundPort excluirProdutoPort() {
-        return new ExcluirProdutoInboundUseCase();
+    public ExcluirProdutoInboundPort excluirProdutoPort(ExcluirProdutoOutboundPort excluirProdutoOutboundPort) {
+        return new ExcluirProdutoInboundUseCase(excluirProdutoOutboundPort);
     }
 }
