@@ -2,16 +2,16 @@ package br.com.delivery.delivery.application.usecases.produto;
 
 import br.com.delivery.delivery.application.domain.produto.Produto;
 import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.SalvarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class CadastrarProdutoInboundUseCase implements CadastrarProdutoInboundPort {
 
-    private final SalvarProdutoOutboundPort salvarProdutoOutboundPort;
+    private final CadastrarProdutoOutboundPort cadastrarProdutoOutboundPort;
 
     @Override
-    public Produto salvar(Produto produto) {
-        return salvarProdutoOutboundPort.salvar(null);
+    public Produto cadastrar(Produto produto) {
+        return cadastrarProdutoOutboundPort.cadastrar(produto);
     }
 }

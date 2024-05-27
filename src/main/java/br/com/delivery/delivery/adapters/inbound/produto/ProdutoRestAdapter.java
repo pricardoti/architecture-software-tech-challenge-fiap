@@ -33,10 +33,9 @@ public class ProdutoRestAdapter {
     )
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarProdutoResponse> cadastrar(@RequestBody CadastrarProdutoRequest cadastrarProdutoRequest) {
-        var produto = cadastrarProdutoInboundPort.salvar(null);
-        var response = CadastrarProdutoResponse.from(UUID.randomUUID().toString());
+        var produto = cadastrarProdutoInboundPort.cadastrar(cadastrarProdutoRequest.convertToProductDomain());
         return ResponseEntity
-                .ofNullable(response);
+                .ofNullable(CadastrarProdutoResponse.from(produto.codigo()));
     }
 
     @PutMapping(
@@ -56,12 +55,11 @@ public class ProdutoRestAdapter {
     }
 
     @GetMapping(
-            path = "/{idProduto}",
-            consumes = APPLICATION_JSON_VALUE,
+            path = "/{codigoProduto}",
             produces = APPLICATION_JSON_VALUE
     )
-    public Produto consultarPorId(@PathVariable("idProduto") String idProduto) {
-        return consultarProdutoInboundPort.consultar(null);
+    public Produto consultarPorId(@PathVariable("codigoProduto") String codigoProduto) {
+        return consultarProdutoInboundPort.consultar(UUID.fromString(codigoProduto));
     }
 
     @DeleteMapping(

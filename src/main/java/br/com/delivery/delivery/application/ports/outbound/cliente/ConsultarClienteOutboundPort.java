@@ -1,10 +1,10 @@
-package br.com.delivery.delivery.application.ports.inbound.cliente;
+package br.com.delivery.delivery.application.ports.outbound.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
 
 import java.util.Collection;
 
-public interface ConsultarClienteInboundPort {
+public interface ConsultarClienteOutboundPort {
 
     Cliente consultarPorCpf(String cpf);
 

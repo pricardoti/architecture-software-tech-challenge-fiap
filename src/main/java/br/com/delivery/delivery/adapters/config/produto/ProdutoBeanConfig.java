@@ -4,7 +4,8 @@ import br.com.delivery.delivery.application.ports.inbound.produto.CadastrarProdu
 import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.produto.ExcluirProdutoInboundPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.SalvarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.CadastrarProdutoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoOutboundPort;
 import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.EditarProdutoInboundUseCase;
@@ -16,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
 public class ProdutoBeanConfig {
 
     @Bean
-    public CadastrarProdutoInboundPort cadastrarProdutoPort(SalvarProdutoOutboundPort salvarProdutoOutboundPort) {
-        return new CadastrarProdutoInboundUseCase(salvarProdutoOutboundPort);
+    public CadastrarProdutoInboundPort cadastrarProdutoPort(CadastrarProdutoOutboundPort cadastrarProdutoOutboundPort) {
+        return new CadastrarProdutoInboundUseCase(cadastrarProdutoOutboundPort);
     }
 
     @Bean
@@ -26,8 +27,8 @@ public class ProdutoBeanConfig {
     }
 
     @Bean
-    public ConsultarProdutoInboundPort consultarProdutoPort() {
-        return new ConsultarProdutoInboundUseCase();
+    public ConsultarProdutoInboundPort consultarProdutoPort(ConsultarProdutoOutboundPort consultarProdutoOutboundPort) {
+        return new ConsultarProdutoInboundUseCase(consultarProdutoOutboundPort);
     }
 
     @Bean
