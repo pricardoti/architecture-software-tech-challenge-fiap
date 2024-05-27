@@ -1,6 +1,5 @@
 package br.com.delivery.delivery.adapters.outbound.repository.pedido;
 
-import br.com.delivery.delivery.adapters.outbound.repository.produto.ProdutoPedidoEntity;
 import br.com.delivery.delivery.application.domain.enums.StatusPedido;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;

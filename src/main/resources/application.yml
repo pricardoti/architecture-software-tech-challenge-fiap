@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/delivery}
+    username: ${SPRING_DATASOURCE_USERNAME:fiap}
+    password: ${SPRING_DATASOURCE_PASSWORD:fiap123}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
