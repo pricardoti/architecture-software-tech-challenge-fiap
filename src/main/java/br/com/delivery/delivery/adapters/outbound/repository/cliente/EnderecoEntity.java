@@ -1,8 +1,7 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.delivery.delivery.application.domain.cliente.Endereco;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,11 +12,11 @@ import java.util.UUID;
 
 @Data
 @Entity
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Accessors(fluent = true)
-@Table(name = "endereco")
-@NoArgsConstructor
+@Table(name = "enderecos")
 @AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class EnderecoEntity {
 
     @Id
@@ -29,4 +28,50 @@ public class EnderecoEntity {
     private String bairro;
     private String cidade;
     private String cep;
+
+    @OneToOne
+    @JoinColumn(referencedColumnName = "codigo", name = "codigo_cliente")
+    private ClienteEntity cliente;
+
+    public static EnderecoEntity from(Endereco endereco) {
+        return new EnderecoEntity(
+                endereco.codigo(),
+                endereco.logradouro(),
+                endereco.numero(),
+                endereco.complemento(),
+                endereco.bairro(),
+                endereco.cidade(),
+                endereco.cep(),
+                null
+        );
+    }
+
+    public Endereco convertToEndereco() {
+        return new Endereco(
+                codigo,
+                logradouro,
+                numero,
+                complemento,
+                bairro,
+                cidade,
+                cep
+        );
+    }
+
+    public EnderecoEntity(UUID codigo,
+                          String logradouro,
+                          String numero,
+                          String complemento,
+                          String bairro,
+                          String cidade,
+                          String cep
+    ) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+    }
 }
