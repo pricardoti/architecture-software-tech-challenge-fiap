@@ -4,22 +4,12 @@ import br.com.delivery.delivery.adapters.outbound.repository.cliente.ClienteEnti
 import br.com.delivery.delivery.adapters.outbound.repository.produto.PedidoProdutoEntity;
 import br.com.delivery.delivery.application.domain.enums.StatusPedido;
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,7 +24,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class PedidoEntity {
+public class PedidoEntity implements Serializable {
+
+    private static final long serialVersionUID = 7575332886608055310L;
 
     @Id
     @EqualsAndHashCode.Include

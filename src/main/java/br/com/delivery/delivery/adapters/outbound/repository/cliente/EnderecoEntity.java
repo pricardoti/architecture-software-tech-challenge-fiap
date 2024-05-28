@@ -1,18 +1,14 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Endereco;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
@@ -22,7 +18,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class EnderecoEntity {
+public class EnderecoEntity implements Serializable {
+
+    private static final long serialVersionUID = 1662069931406378792L;
 
     @Id
     @EqualsAndHashCode.Include
@@ -32,7 +30,6 @@ public class EnderecoEntity {
     private String complemento;
     private String bairro;
     private String cidade;
-
 
     @Column(length = 9)
     private String cep;
@@ -66,14 +63,14 @@ public class EnderecoEntity {
 
     public static EnderecoEntity from(Endereco endereco) {
         return new EnderecoEntity(
-                endereco.codigo(),
-                endereco.logradouro(),
-                endereco.numero(),
-                endereco.complemento(),
-                endereco.bairro(),
-                endereco.cidade(),
-                endereco.cep(),
-                endereco.uf()
+                endereco.getCodigo(),
+                endereco.getLogradouro(),
+                endereco.getNumero(),
+                endereco.getComplemento(),
+                endereco.getBairro(),
+                endereco.getCidade(),
+                endereco.getCep(),
+                endereco.getUf()
         );
     }
 

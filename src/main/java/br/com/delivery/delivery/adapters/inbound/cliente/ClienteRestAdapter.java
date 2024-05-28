@@ -11,25 +11,14 @@ import br.com.delivery.delivery.application.ports.inbound.cliente.ExcluirCliente
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 import static java.util.Objects.nonNull;
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
@@ -51,7 +40,7 @@ public class ClienteRestAdapter {
             @RequestBody @Valid CadastrarClienteRequest cadastrarClienteRequest
     ) {
         var cliente = cadastrarClienteInboundPort.cadastrar(cadastrarClienteRequest.toDomain());
-        return ResponseEntity.status(CREATED).body(CadastrarClienteResponse.from(cliente.codigo()));
+        return ResponseEntity.status(CREATED).body(CadastrarClienteResponse.from(cliente.getCodigo()));
     }
 
     @PutMapping(
@@ -59,7 +48,7 @@ public class ClienteRestAdapter {
             consumes = APPLICATION_JSON_VALUE,
             produces = APPLICATION_JSON_VALUE
     )
-    @ResponseStatus(NO_CONTENT)
+    @ResponseStatus(OK)
     public ResponseEntity<Void> atualizarCadastro(
             @PathVariable("codigoCliente") String codigoCliente,
             @RequestBody @Valid AtualizarClienteRequest atualizarClienteRequest
@@ -67,12 +56,12 @@ public class ClienteRestAdapter {
         var cliente = atualizarClienteRequest.toDomain(UUID.fromString(codigoCliente));
         editarClienteInboundPort.editar(cliente);
         return ResponseEntity
-                .status(NO_CONTENT)
+                .status(OK)
                 .build();
     }
 
-    @GetMapping
-    public ResponseEntity<Collection<Cliente>> consultarPorCpf(@RequestParam(value = "cpf", required = false) String cpf) {
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Collection<Cliente>> consultarClientes(@RequestParam(value = "cpf", required = false) String cpf) {
         if (nonNull(cpf))
             return ResponseEntity.ok(List.of(consultarClienteInboundPort.consultarPorCpf(cpf)));
 

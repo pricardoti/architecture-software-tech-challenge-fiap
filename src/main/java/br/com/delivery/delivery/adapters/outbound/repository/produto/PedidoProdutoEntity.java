@@ -3,18 +3,12 @@ package br.com.delivery.delivery.adapters.outbound.repository.produto;
 
 import br.com.delivery.delivery.adapters.outbound.repository.pedido.PedidoEntity;
 import br.com.delivery.delivery.application.domain.pedido.PedidoProduto;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
@@ -25,7 +19,9 @@ import static jakarta.persistence.FetchType.EAGER;
 @Accessors(fluent = true)
 @NoArgsConstructor
 @IdClass(PedidoProdutoKey.class)
-public class PedidoProdutoEntity {
+public class PedidoProdutoEntity implements Serializable {
+
+    private static final long serialVersionUID = -7806748989577090141L;
 
     @Id
     @Column(name = "codigo_pedido", nullable = false)
