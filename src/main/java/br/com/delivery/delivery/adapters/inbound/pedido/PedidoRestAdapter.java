@@ -60,8 +60,7 @@ public class PedidoRestAdapter {
             @RequestBody AtualizarPedidoRequest atualizarPedidoRequest
     ) {
         var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
-        pedido.setStatus(atualizarPedidoRequest.getStatus());
-        editarPedidoInboundPort.editar(pedido);
+        editarPedidoInboundPort.editar(pedido, atualizarPedidoRequest.getStatus());
         return ResponseEntity
                 .status(NO_CONTENT)
                 .build();

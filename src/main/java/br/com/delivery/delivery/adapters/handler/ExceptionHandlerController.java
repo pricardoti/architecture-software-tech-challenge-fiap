@@ -33,24 +33,24 @@ public class ExceptionHandlerController {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorDTO> handleIllegalArgumentException(IllegalArgumentException exception) {
-        return handlerExceptionPadrao("Parametros ou body da requisao invalido", exception);
+        return handlerExceptionPadrao("Parametros ou body da requisao invalido", exception.getMessage());
     }
 
     @ExceptionHandler({DuplicateKeyException.class, HttpMessageNotReadableException.class, IdentifierGenerationException.class})
     public ResponseEntity<ErrorDTO> handleDuplicateKeyException(Exception exception) {
-        return handlerExceptionPadrao("Verifique as informacoes da request", exception);
+        return handlerExceptionPadrao("Verifique as informacoes da request", exception.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDTO> handleException(Exception exception) {
-        return handlerExceptionPadrao("Nao foi possivel processar a requisicao", exception);
+        return handlerExceptionPadrao("Nao foi possivel processar a requisicao", exception.getMessage());
     }
 
-    private static ResponseEntity<ErrorDTO> handlerExceptionPadrao(String messagem, Exception exception) {
+    private static ResponseEntity<ErrorDTO> handlerExceptionPadrao(String messagem, String cause) {
         return ResponseEntity
                 .badRequest()
                 .body(
-                        new ErrorDTO(messagem, exception.getCause().getMessage())
+                        new ErrorDTO(messagem, cause)
                 );
     }
 }
