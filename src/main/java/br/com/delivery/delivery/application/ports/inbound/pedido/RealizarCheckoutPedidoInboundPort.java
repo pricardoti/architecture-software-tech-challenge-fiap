@@ -2,7 +2,7 @@ package br.com.delivery.delivery.application.ports.inbound.pedido;
 
 import java.util.UUID;
 
-public interface ExcluirPedidoInboundPort {
+public interface RealizarCheckoutPedidoInboundPort {
 
-    void excluir(UUID idPedido);
+    void checkout(UUID codigoPedido);
 }

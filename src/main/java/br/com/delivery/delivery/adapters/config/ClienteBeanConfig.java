@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.adapters.config.cliente;
+package br.com.delivery.delivery.adapters.config;
 
 import br.com.delivery.delivery.application.ports.inbound.cliente.CadastrarClienteInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.cliente.ConsultarClienteInboundPort;

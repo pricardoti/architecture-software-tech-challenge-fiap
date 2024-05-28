@@ -2,7 +2,9 @@ package br.com.delivery.delivery.application.ports.outbound.pedido;
 
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
 
-public interface SalvarPedidoOutboundPort {
+import java.util.UUID;
 
-    Pedido salvar(Pedido pedido);
+public interface ConsultarPedidoPorCodigoOutboundPort {
+
+    Pedido consultar(UUID codigoPedido);
 }

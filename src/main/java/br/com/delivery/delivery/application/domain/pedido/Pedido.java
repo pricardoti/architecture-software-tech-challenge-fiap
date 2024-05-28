@@ -1,20 +1,24 @@
 package br.com.delivery.delivery.application.domain.pedido;
 
-import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import br.com.delivery.delivery.application.domain.produto.Produto;
+import br.com.delivery.delivery.application.domain.enums.StatusPedido;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
-public record Pedido(
-        String nomeEstabelecimento,
-        String dataHoraSolicitacao,
-        String dataHoraFinalizacao,
-        BigDecimal subtotal,
-        BigDecimal descontos,
-        BigDecimal taxaEntrega,
-        BigDecimal totalPedido,
-        Cliente cliente,
-        List<Produto> produtos
-) {
+@Getter
+@Setter
+@Builder
+public class Pedido {
+
+    private UUID codigoPedido;
+    private UUID cliente;
+    private BigDecimal valorTotal;
+    private List<PedidoProduto> produtos;
+    private StatusPedido status;
+    private LocalDateTime dataHoraSolicitacao;
 }
