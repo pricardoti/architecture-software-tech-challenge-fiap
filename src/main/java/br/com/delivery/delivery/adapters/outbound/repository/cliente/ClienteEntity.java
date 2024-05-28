@@ -1,19 +1,17 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.repository.cdi.Eager;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Data
@@ -24,7 +22,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class ClienteEntity {
+@Eager
+public class ClienteEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2526137963441029927L;
 
     @EqualsAndHashCode.Include
     @Id
@@ -32,7 +34,7 @@ public class ClienteEntity {
 
     @Column(unique = true)
     private String cpf;
-    private String nome;
+    private String nomeCompleto;
     private String email;
 
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
@@ -43,7 +45,7 @@ public class ClienteEntity {
         var clienteEntity = new ClienteEntity(
                 cliente.codigo(),
                 cliente.cpf(),
-                cliente.nome(),
+                cliente.nomeCompleto(),
                 cliente.email(),
                 enderecoEntity
         );
@@ -55,7 +57,7 @@ public class ClienteEntity {
         return new Cliente(
                 codigo,
                 cpf,
-                nome,
+                nomeCompleto,
                 email,
                 endereco.convertToEndereco()
         );

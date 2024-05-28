@@ -71,7 +71,7 @@ public class ClienteRestAdapter {
                 .build();
     }
 
-    @GetMapping
+    @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Cliente>> consultarPorCpf(@RequestParam(value = "cpf", required = false) String cpf) {
         if (nonNull(cpf))
             return ResponseEntity.ok(List.of(consultarClienteInboundPort.consultarPorCpf(cpf)));
