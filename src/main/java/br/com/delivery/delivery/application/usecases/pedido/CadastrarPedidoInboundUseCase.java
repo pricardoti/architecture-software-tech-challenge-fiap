@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 @RequiredArgsConstructor
 public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort {
 
+    private static final int QUANTIDADE_MINIMA = 1;
+
     private final ConsultarProdutoPorIdInboundPort consultarProdutoPorCodigoInboundUseCase;
     private final CadastrarPedidoOutboundPort cadastrarPedidoOutboundPort;
 
@@ -23,6 +25,10 @@ public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort
     private BigDecimal calcularValorTotalPedido(Pedido pedido) {
         var valorTotal = BigDecimal.ZERO;
         for (var pedidoProduto : pedido.getProdutos()) {
+
+            if (pedidoProduto.getQuantidade() < QUANTIDADE_MINIMA)
+                throw new IllegalArgumentException("o produto precisa ter pelo menos uma unidade adicionada ao pedido");
+
             var produto = consultarProdutoPorCodigoInboundUseCase.consultar(pedidoProduto.getCodigoProduto());
             valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())));
         }
