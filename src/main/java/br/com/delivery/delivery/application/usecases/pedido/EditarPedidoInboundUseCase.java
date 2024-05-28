@@ -11,7 +11,7 @@ public class EditarPedidoInboundUseCase implements EditarPedidoInboundPort {
     private final EditarPedidoOutboundPort editarPedidoOutboundPort;
 
     @Override
-    public Boolean editar(Pedido pedido) {
-        return editarPedidoOutboundPort.editar(pedido);
+    public void editar(Pedido pedido) {
+        editarPedidoOutboundPort.editar(pedido);
     }
 }

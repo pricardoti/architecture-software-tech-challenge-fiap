@@ -13,8 +13,6 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.UUID;
 
-import static java.util.Objects.nonNull;
-
 @Component
 @RequiredArgsConstructor
 public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
@@ -56,8 +54,7 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
     }
 
     @Override
-    public Boolean editar(Pedido pedido) {
-        var pedidoEntity = pedidoRepository.save(PedidoEntity.createByDomain(pedido));
-        return nonNull(pedidoEntity);
+    public void editar(Pedido pedido) {
+        pedidoRepository.save(PedidoEntity.createByDomain(pedido));
     }
 }
