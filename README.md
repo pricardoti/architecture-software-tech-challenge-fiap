@@ -60,7 +60,7 @@ essa seção, sendo eles:
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
-### Sobre o Projeto DELIVERY`
+### Sobre o Projeto DELIVERY
 
 Projeto referente a gestão de pedidos para uma lanchonete.
 
