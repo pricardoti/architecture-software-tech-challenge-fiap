@@ -7,12 +7,10 @@ import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedid
 import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoPorCodigoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.EditarPedidoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.RealizarCheckoutPedidoOutboundPort;
-import br.com.delivery.delivery.application.ports.outbound.produto.ConsultarProdutoPorIdOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -25,13 +23,12 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
         RealizarCheckoutPedidoOutboundPort {
 
     private final PedidoRepository pedidoRepository;
-    private final ConsultarProdutoPorIdOutboundPort produtoPorIdOutboundPort;
 
     @Override
     public Pedido salvar(Pedido pedido) {
-        pedido.setValorTotal(calcularValorTotalPedido(pedido));
-        var pedidoEntity = pedidoRepository.save(PedidoEntity.createByDomain(pedido));
-        return pedidoEntity.toDomain();
+        return pedidoRepository
+                .save(PedidoEntity.createByDomain(pedido))
+                .toDomain();
     }
 
     @Override
@@ -60,12 +57,5 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
         pedidoRepository.updateSituacao(codigoPedido, statusPedido);
     }
 
-    private BigDecimal calcularValorTotalPedido(Pedido pedido) {
-        var valorTotal = BigDecimal.ZERO;
-        for (var pedidoProduto : pedido.getProdutos()) {
-            var produto = produtoPorIdOutboundPort.consultar(pedidoProduto.getCodigoProduto());
-            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())));
-        }
-        return valorTotal;
-    }
+
 }

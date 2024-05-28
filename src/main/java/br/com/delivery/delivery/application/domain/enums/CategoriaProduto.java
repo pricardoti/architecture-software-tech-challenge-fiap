@@ -1,5 +1,10 @@
 package br.com.delivery.delivery.application.domain.enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public enum CategoriaProduto {
 
     LANCHE("LANCHE"),
@@ -8,13 +13,4 @@ public enum CategoriaProduto {
     SOBREMESA("SOBREMESA");
 
     private final String value;
-
-    CategoriaProduto(String value) {
-        this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return this.value;
-    }
 }

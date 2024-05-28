@@ -1,8 +1,10 @@
 package br.com.delivery.delivery.application.domain.enums;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum StatusPedido {
 
     AGUARDANDO_PAGAMENTO("AGUARDANDO_PAGAMENTO"),
@@ -13,7 +15,4 @@ public enum StatusPedido {
 
     private final String status;
 
-    StatusPedido(String status) {
-        this.status = status;
-    }
 }

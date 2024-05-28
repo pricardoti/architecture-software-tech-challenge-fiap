@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class ConsultarProdutoPorIdInboundUseCase implements ConsultarProdutoPorIdInboundPort {
+public class ConsultarProdutoPorCodigoInboundUseCase implements ConsultarProdutoPorIdInboundPort {
 
     private final ConsultarProdutoPorIdOutboundPort consultarProdutoPorIdOutboundPort;
 

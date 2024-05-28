@@ -22,8 +22,9 @@ public class ClienteOutboundAdapter implements CadastrarClienteOutboundPort,
 
     @Override
     public Cliente cadastrar(Cliente cliente) {
-        var clienteEntity = clienteRepository.save(ClienteEntity.from(cliente));
-        return clienteEntity.toDomain();
+        return clienteRepository
+                .save(ClienteEntity.from(cliente))
+                .toDomain();
     }
 
     @Override

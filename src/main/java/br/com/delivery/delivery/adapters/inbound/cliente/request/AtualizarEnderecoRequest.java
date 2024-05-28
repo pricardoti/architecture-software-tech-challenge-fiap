@@ -16,6 +16,6 @@ public class AtualizarEnderecoRequest extends CadastrarEnderecoRequest {
 
     @Override
     public Endereco toDomain() {
-        return new Endereco(UUID.fromString(codigo), getLogradouro(), getNumero(), getComplemento(), getBairro(), getCidade(), getCep());
+        return new Endereco(UUID.fromString(codigo), getLogradouro(), getNumero(), getComplemento(), getBairro(), getCidade(), getCep(), getUf());
     }
 }
