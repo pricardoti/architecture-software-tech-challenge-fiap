@@ -51,7 +51,7 @@ public class ClienteEntity {
         return clienteEntity;
     }
 
-    public Cliente convertToCliente() {
+    public Cliente toDomain() {
         return new Cliente(
                 codigo,
                 cpf,

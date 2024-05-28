@@ -7,7 +7,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
+
+import static br.com.delivery.delivery.application.domain.enums.StatusPedido.RECEBIDO;
 
 @Getter
 @Setter
@@ -23,9 +27,19 @@ public class CadastrarPedidoRequest {
     private String codigoCliente;
 
     @NotNull
-    private List<@Valid PedidoProdutoRequest> products;
+    private List<@Valid PedidoProdutoRequest> produtos;
 
     public Pedido toDomain() {
-        return null;
+        return Pedido.builder()
+                .codigoPedido(UUID.randomUUID())
+                .cliente(UUID.fromString(codigoCliente))
+                .status(RECEBIDO)
+                .dataHoraSolicitacao(LocalDateTime.now())
+                .produtos(
+                        produtos.stream()
+                                .map(PedidoProdutoRequest::toDomain)
+                                .toList()
+                )
+                .build();
     }
 }
