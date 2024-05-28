@@ -5,6 +5,7 @@ import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedido
 import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPorCodigoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.RealizarCheckoutPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.produto.ConsultarProdutoPorIdInboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.CadastrarPedidoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoPorCodigoOutboundPort;
@@ -21,8 +22,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PedidoBeanConfig {
     @Bean
-    public CadastrarPedidoInboundPort cadastrarPedidoInboundPort(CadastrarPedidoOutboundPort cadastrarClienteOutboundPort) {
-        return new CadastrarPedidoInboundUseCase(cadastrarClienteOutboundPort);
+    public CadastrarPedidoInboundPort cadastrarPedidoInboundPort(
+            ConsultarProdutoPorIdInboundPort consultarProdutoPorIdInboundPort,
+            CadastrarPedidoOutboundPort cadastrarClienteOutboundPort
+    ) {
+        return new CadastrarPedidoInboundUseCase(consultarProdutoPorIdInboundPort, cadastrarClienteOutboundPort);
     }
 
     @Bean
@@ -42,9 +46,9 @@ public class PedidoBeanConfig {
 
     @Bean
     public RealizarCheckoutPedidoInboundPort realizarCheckoutPedidoInboundPort(
-            ConsultarPedidoPorCodigoInboundUseCase consultarPedidoPorCodigoInboundUseCase,
+            ConsultarPedidoPorCodigoInboundPort consultarPedidoPorCodigoInboundPort,
             RealizarCheckoutPedidoOutboundPort realizarCheckoutPedidoOutboundPort
     ) {
-        return new RealizarCheckoutPedidoInboundUseCase(consultarPedidoPorCodigoInboundUseCase, realizarCheckoutPedidoOutboundPort);
+        return new RealizarCheckoutPedidoInboundUseCase(consultarPedidoPorCodigoInboundPort, realizarCheckoutPedidoOutboundPort);
     }
 }

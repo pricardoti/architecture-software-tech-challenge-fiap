@@ -1,5 +1,6 @@
 package br.com.delivery.delivery.application.usecases.pedido;
 
+import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPorCodigoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.RealizarCheckoutPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.RealizarCheckoutPedidoOutboundPort;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import static br.com.delivery.delivery.application.domain.enums.StatusPedido.EM_
 @RequiredArgsConstructor
 public class RealizarCheckoutPedidoInboundUseCase implements RealizarCheckoutPedidoInboundPort {
 
-    private final ConsultarPedidoPorCodigoInboundUseCase consultarPedidoPorCodigoInboundUseCase;
+    private final ConsultarPedidoPorCodigoInboundPort consultarPedidoPorCodigoInboundPort;
     private final RealizarCheckoutPedidoOutboundPort realizarCheckoutPedidoOutboundPort;
 
     /**
@@ -23,7 +24,7 @@ public class RealizarCheckoutPedidoInboundUseCase implements RealizarCheckoutPed
      */
     @Override
     public void checkout(UUID codigoPedido) {
-        var pedido = consultarPedidoPorCodigoInboundUseCase.consultar(codigoPedido);
+        var pedido = consultarPedidoPorCodigoInboundPort.consultar(codigoPedido);
 
         if (!AGUARDANDO_PAGAMENTO.equals(pedido.getStatus())) {
             throw new IllegalArgumentException("nao foi possivel realizar o checkout do pedido");

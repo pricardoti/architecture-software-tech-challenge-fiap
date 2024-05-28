@@ -12,7 +12,7 @@ import br.com.delivery.delivery.application.ports.outbound.produto.EditarProduto
 import br.com.delivery.delivery.application.ports.outbound.produto.ExcluirProdutoOutboundPort;
 import br.com.delivery.delivery.application.usecases.produto.CadastrarProdutoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoInboundUseCase;
-import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoPorIdInboundUseCase;
+import br.com.delivery.delivery.application.usecases.produto.ConsultarProdutoPorCodigoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.EditarProdutoInboundUseCase;
 import br.com.delivery.delivery.application.usecases.produto.ExcluirProdutoInboundUseCase;
 import org.springframework.context.annotation.Bean;
@@ -33,7 +33,7 @@ public class ProdutoBeanConfig {
 
     @Bean
     public ConsultarProdutoPorIdInboundPort consultarProdutoPorIdPort(ConsultarProdutoPorIdOutboundPort consultarProdutoPorIdOutboundPort) {
-        return new ConsultarProdutoPorIdInboundUseCase(consultarProdutoPorIdOutboundPort);
+        return new ConsultarProdutoPorCodigoInboundUseCase(consultarProdutoPorIdOutboundPort);
     }
 
     @Bean

@@ -1,6 +1,7 @@
 package br.com.delivery.delivery.adapters.inbound.cliente.request;
 
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,14 +16,18 @@ public class CadastrarClienteRequest {
     @CPF
     @NotNull
     private String cpf;
+
     @NotNull
     private String nomeCompleto;
+
     @NotNull
     private String email;
-    private CadastrarEnderecoRequest endereco;
+
+    @NotNull
+    private @Valid CadastrarEnderecoRequest endereco;
 
     public Cliente toDomain() {
-        return new Cliente(cpf, nomeCompleto, email, endereco.toDomain());
+        return new Cliente(UUID.randomUUID(), cpf, nomeCompleto, email, endereco.toDomain());
     }
 
     public Cliente toDomain(UUID codiogoCliente) {
