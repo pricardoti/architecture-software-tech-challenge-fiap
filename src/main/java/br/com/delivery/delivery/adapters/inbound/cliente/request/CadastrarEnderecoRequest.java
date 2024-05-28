@@ -14,9 +14,10 @@ public class CadastrarEnderecoRequest {
     private String bairro;
     private String cidade;
     private String cep;
+    private String uf;
 
     public Endereco toDomain() {
-        return new Endereco(logradouro, numero, complemento, bairro, cidade, cep);
+        return new Endereco(logradouro, numero, complemento, bairro, cidade, cep, uf);
     }
 
 }

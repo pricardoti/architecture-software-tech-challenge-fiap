@@ -117,11 +117,33 @@ docker compose up -d
 
 O comando supracitado irá criar e iniciar os seguintes containers:
 
-- ```postgres``` - Container responsável pela execução do Banco de Dados Relacional **PostgreSQL**
-- ```delivery``` - Container responsável pela execução da aplicação Java **delivery**
+- ```postgres-db-server``` - Container responsável pela execução do Banco de Dados Relacional **PostgreSQL**
+- ```app-delivery-service``` - Container responsável pela execução da aplicação Java **delivery**
 
 ## OpenAPI 3.0
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
 [Contrato API Delivery](http://localhost:8080/swagger-ui/index.html)
+
+ou
+
+```html
+http://localhost:8080/swagger-ui/index.html
+```
+
+> Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja 
+> em execução.
+
+## Seção 04 - MELHORIAS FUTURAS PARA A API
+
+### Exclusão Lógica dos Produtos
+
+Para que os produtos não gerem problemas em cadastros já realizados anteriormente no banco de dados em que estão
+sendo usados, seria necessário colocar uma *exclusão lógica*, sendo que o produto iria ter um campo boleano (TRUE|FALSE)
+que iria indicar, se o mesmo está "ativo" ou "inativo" para ser usado.
+
+### Criação de Testes Unitários | Criação de Testes de Integração | Criação de Testes Arquiteturais
+
+A criação dos testes supracitados no título, ajuda na melhoria da qualidade do código, eficiente e também trazendo mais
+resiliência para a aplicação a ser testado.

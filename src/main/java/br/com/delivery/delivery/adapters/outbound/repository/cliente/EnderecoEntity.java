@@ -28,6 +28,7 @@ public class EnderecoEntity {
     private String bairro;
     private String cidade;
     private String cep;
+    private String uf;
 
     @OneToOne
     @JoinColumn(referencedColumnName = "codigo", name = "codigo_cliente")
@@ -42,6 +43,7 @@ public class EnderecoEntity {
                 endereco.bairro(),
                 endereco.cidade(),
                 endereco.cep(),
+                endereco.uf(),
                 null
         );
     }
@@ -54,7 +56,8 @@ public class EnderecoEntity {
                 complemento,
                 bairro,
                 cidade,
-                cep
+                cep,
+                uf
         );
     }
 
