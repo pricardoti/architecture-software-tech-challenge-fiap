@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+import static java.util.Objects.isNull;
+
 @RequiredArgsConstructor
 public class ConsultarPedidoPorCodigoInboundUseCase implements ConsultarPedidoPorCodigoInboundPort {
 
@@ -14,6 +16,9 @@ public class ConsultarPedidoPorCodigoInboundUseCase implements ConsultarPedidoPo
 
     @Override
     public Pedido consultar(UUID codigoProduto) {
-        return consultarPedidoPorCodigoOutboundPort.consultar(codigoProduto);
+        var pedido = consultarPedidoPorCodigoOutboundPort.consultar(codigoProduto);
+        if (isNull(pedido))
+            throw new IllegalArgumentException("pedido nao encontrado");
+        return pedido;
     }
 }

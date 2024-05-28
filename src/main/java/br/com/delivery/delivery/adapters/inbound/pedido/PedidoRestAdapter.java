@@ -8,6 +8,7 @@ import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedido
 import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPorCodigoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.RealizarCheckoutPedidoInboundPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.UUID;
 
-import static java.util.Objects.isNull;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
@@ -38,6 +38,7 @@ public class PedidoRestAdapter {
     private final EditarPedidoInboundPort editarPedidoInboundPort;
     private final ConsultarPedidoInboundPort consultarPedidoInboundPort;
     private final ConsultarPedidoPorCodigoInboundPort consultarPedidoPorCodigoInboundPort;
+    private final RealizarCheckoutPedidoInboundPort realizarCheckoutPedidoInboundPort;
 
     @PostMapping(
             consumes = APPLICATION_JSON_VALUE,
@@ -59,24 +60,18 @@ public class PedidoRestAdapter {
             @RequestBody AtualizarPedidoRequest atualizarPedidoRequest
     ) {
         var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
-        if (isNull(pedido))
-            throw new IllegalArgumentException("pedido nao encontrado");
-
         pedido.setStatus(atualizarPedidoRequest.getStatus());
         editarPedidoInboundPort.editar(pedido);
-
         return ResponseEntity
                 .status(NO_CONTENT)
                 .build();
     }
 
-    @PostMapping(path = "/{idPedido}/checkout")
+    @PostMapping(path = "/{codigoPedido}/checkout")
     @ResponseStatus(NO_CONTENT)
-    public ResponseEntity<Void> checkout(
-            @PathVariable("idPedido") String idPedido,
-            @RequestBody CadastrarPedidoRequest cadastrarPedidoRequest
-    ) {
-        editarPedidoInboundPort.editar(null);
+    public ResponseEntity<Void> checkout(@PathVariable("codigoPedido") String codigoPedido) {
+        var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
+        realizarCheckoutPedidoInboundPort.checkout(pedido.getCodigoPedido());
         return ResponseEntity
                 .status(NO_CONTENT)
                 .build();

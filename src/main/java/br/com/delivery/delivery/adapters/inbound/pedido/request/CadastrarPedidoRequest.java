@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static br.com.delivery.delivery.application.domain.enums.StatusPedido.RECEBIDO;
+import static br.com.delivery.delivery.application.domain.enums.StatusPedido.AGUARDANDO_PAGAMENTO;
 
 @Getter
 @Setter
@@ -33,7 +33,7 @@ public class CadastrarPedidoRequest {
         return Pedido.builder()
                 .codigoPedido(UUID.randomUUID())
                 .cliente(UUID.fromString(codigoCliente))
-                .status(RECEBIDO)
+                .status(AGUARDANDO_PAGAMENTO)
                 .dataHoraSolicitacao(LocalDateTime.now())
                 .produtos(
                         produtos.stream()

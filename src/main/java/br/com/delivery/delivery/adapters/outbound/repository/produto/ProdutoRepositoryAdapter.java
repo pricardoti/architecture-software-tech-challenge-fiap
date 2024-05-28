@@ -15,27 +15,29 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class ProdutoRepositoryAdapter implements CadastrarProdutoOutboundPort, EditarProdutoOutboundPort, ConsultarProdutoPorIdOutboundPort, ConsultarProdutoOutboundPort, ExcluirProdutoOutboundPort {
+public class ProdutoRepositoryAdapter implements CadastrarProdutoOutboundPort,
+        EditarProdutoOutboundPort,
+        ConsultarProdutoPorIdOutboundPort,
+        ConsultarProdutoOutboundPort,
+        ExcluirProdutoOutboundPort {
 
     private final ProdutoRepository produtoRepository;
 
     @Override
     public Produto cadastrar(Produto produto) {
-        var produtoEntity = produtoRepository.save(ProdutoEntity.from(produto));
-        return produtoEntity.toDomain();
+        return salvarProduto(produto);
     }
 
     @Override
     public Produto editar(Produto produto) {
-        var produtoEntity = produtoRepository.save(ProdutoEntity.from(produto));
-        return produtoEntity.toDomain();
+        return salvarProduto(produto);
     }
 
     @Override
     public Produto consultar(UUID codigoProduto) {
         var produtoEntity = produtoRepository.findById(codigoProduto);
         return produtoEntity
-                .orElseThrow(IllegalArgumentException::new) // TODO: create custom exception with controller advice
+                .orElseThrow(() -> new IllegalArgumentException("produto nao encontrado"))
                 .toDomain();
     }
 
@@ -50,5 +52,11 @@ public class ProdutoRepositoryAdapter implements CadastrarProdutoOutboundPort, E
     @Override
     public void excluir(UUID codigoProduto) {
         produtoRepository.deleteById(codigoProduto);
+    }
+
+    private Produto salvarProduto(Produto produto) {
+        return produtoRepository
+                .save(ProdutoEntity.from(produto))
+                .toDomain();
     }
 }
