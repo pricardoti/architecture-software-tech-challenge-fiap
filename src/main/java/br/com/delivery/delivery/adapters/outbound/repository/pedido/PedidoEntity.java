@@ -54,15 +54,15 @@ public class PedidoEntity {
 
     public static PedidoEntity createByDomain(Pedido pedido) {
         return PedidoEntity.builder()
-                .codigo(pedido.codigoPedido())
-                .codigoCliente(pedido.cliente())
-                .status(pedido.status())
-                .dataHoraSolicitacao(pedido.dataHoraSolicitacao())
-                .valorTotal(pedido.valorTotal())
+                .codigo(pedido.getCodigoPedido())
+                .codigoCliente(pedido.getCliente())
+                .status(pedido.getStatus())
+                .dataHoraSolicitacao(pedido.getDataHoraSolicitacao())
+                .valorTotal(pedido.getValorTotal())
                 .produtos(
-                        pedido.produtos()
+                        pedido.getProdutos()
                                 .stream()
-                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.codigoPedido(), produto))
+                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.getCodigoPedido(), produto))
                                 .toList()
                 )
                 .build();
@@ -71,8 +71,13 @@ public class PedidoEntity {
     public Pedido toDomain() {
         return Pedido.builder()
                 .codigoPedido(codigo)
+                .cliente(codigoCliente)
                 .valorTotal(valorTotal)
                 .status(status)
+                .produtos(
+                        produtos.stream()
+                                .map(PedidoProdutoEntity::toDomain)
+                                .toList())
                 .dataHoraSolicitacao(dataHoraSolicitacao)
                 .build();
     }

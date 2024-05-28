@@ -3,14 +3,16 @@ package br.com.delivery.delivery.adapters.outbound.repository.pedido;
 import br.com.delivery.delivery.adapters.outbound.repository.produto.ProdutoRepository;
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
 import br.com.delivery.delivery.application.ports.outbound.pedido.CadastrarPedidoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
 @Component
 @RequiredArgsConstructor
-public class CadastrarPedidoOutboundAdapter implements CadastrarPedidoOutboundPort {
+public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort, ConsultarPedidoOutboundPort {
 
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
@@ -19,14 +21,22 @@ public class CadastrarPedidoOutboundAdapter implements CadastrarPedidoOutboundPo
     public Pedido salvar(Pedido pedido) {
 
         var valorTotal = BigDecimal.ZERO;
-        for (var pedidoProduto : pedido.produtos()) {
-            var produto = produtoRepository.findById(pedidoProduto.codigoProduto())
+        for (var pedidoProduto : pedido.getProdutos()) {
+            var produto = produtoRepository.findById(pedidoProduto.getCodigoProduto())
                     .orElseThrow(() -> new IllegalArgumentException("produto nao encontrado"));
-            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.quantidade())));
+            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())));
         }
-        pedido.valorTotal(valorTotal);
+        pedido.setValorTotal(valorTotal);
 
         var pedidoEntity = pedidoRepository.save(PedidoEntity.createByDomain(pedido));
         return pedidoEntity.toDomain();
+    }
+
+    @Override
+    public Collection<Pedido> consultar() {
+        return pedidoRepository.findAll()
+                .stream()
+                .map(PedidoEntity::toDomain)
+                .toList();
     }
 }

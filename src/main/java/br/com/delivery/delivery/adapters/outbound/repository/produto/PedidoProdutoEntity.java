@@ -49,12 +49,15 @@ public class PedidoProdutoEntity {
 
     public PedidoProdutoEntity(UUID codigoPedido, PedidoProduto produto) {
         this.codigoPedido = codigoPedido;
-        this.codigoProduto = produto.codigoProduto();
-        this.quantidade = produto.quantidade();
+        this.codigoProduto = produto.getCodigoProduto();
+        this.quantidade = produto.getQuantidade();
     }
 
     public static PedidoProdutoEntity createByDomain(UUID codigoPedido, PedidoProduto produto) {
         return new PedidoProdutoEntity(codigoPedido, produto);
     }
 
+    public PedidoProduto toDomain() {
+        return new PedidoProduto(codigoProduto, quantidade);
+    }
 }

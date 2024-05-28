@@ -4,7 +4,6 @@ import br.com.delivery.delivery.application.domain.enums.StatusPedido;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,7 +12,6 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Accessors(fluent = true)
 @Builder
 public class Pedido {
 
