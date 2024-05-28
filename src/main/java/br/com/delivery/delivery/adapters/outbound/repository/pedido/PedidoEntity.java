@@ -18,6 +18,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -29,6 +30,7 @@ import java.util.UUID;
 @Table(name = "pedidos")
 @Accessors(fluent = true)
 @Builder
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -77,7 +79,8 @@ public class PedidoEntity {
                 .produtos(
                         produtos.stream()
                                 .map(PedidoProdutoEntity::toDomain)
-                                .toList())
+                                .toList()
+                )
                 .dataHoraSolicitacao(dataHoraSolicitacao)
                 .build();
     }

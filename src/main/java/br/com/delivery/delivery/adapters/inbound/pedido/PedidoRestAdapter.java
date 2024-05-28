@@ -1,15 +1,18 @@
 package br.com.delivery.delivery.adapters.inbound.pedido;
 
+import br.com.delivery.delivery.adapters.inbound.pedido.request.AtualizarPedidoRequest;
 import br.com.delivery.delivery.adapters.inbound.pedido.request.CadastrarPedidoRequest;
 import br.com.delivery.delivery.adapters.inbound.pedido.response.CadastrarPedidoResponse;
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
 import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedidoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPorCodigoInboundPort;
 import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.UUID;
 
+import static java.util.Objects.isNull;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
@@ -32,6 +37,7 @@ public class PedidoRestAdapter {
     private final CadastrarPedidoInboundPort cadastrarPedidoInboundPort;
     private final EditarPedidoInboundPort editarPedidoInboundPort;
     private final ConsultarPedidoInboundPort consultarPedidoInboundPort;
+    private final ConsultarPedidoPorCodigoInboundPort consultarPedidoPorCodigoInboundPort;
 
     @PostMapping(
             consumes = APPLICATION_JSON_VALUE,
@@ -46,9 +52,27 @@ public class PedidoRestAdapter {
                 .body(response);
     }
 
+    @PatchMapping(path = "/{codigoPedido}")
+    @ResponseStatus(NO_CONTENT)
+    public ResponseEntity<Void> atualizarPedido(
+            @PathVariable("codigoPedido") String codigoPedido,
+            @RequestBody AtualizarPedidoRequest atualizarPedidoRequest
+    ) {
+        var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
+        if (isNull(pedido))
+            throw new IllegalArgumentException("pedido nao encontrado");
+
+        pedido.setStatus(atualizarPedidoRequest.getStatus());
+        editarPedidoInboundPort.editar(pedido);
+
+        return ResponseEntity
+                .status(NO_CONTENT)
+                .build();
+    }
+
     @PostMapping(path = "/{idPedido}/checkout")
     @ResponseStatus(NO_CONTENT)
-    public ResponseEntity<Void> atualizarCadastro(
+    public ResponseEntity<Void> checkout(
             @PathVariable("idPedido") String idPedido,
             @RequestBody CadastrarPedidoRequest cadastrarPedidoRequest
     ) {

@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public enum StatusPedido {
 
+    AGUARDANDO_PAGAMENTO("AGUARDANDO_PAGAMENTO"),
     RECEBIDO("RECEBIDO"),
-    PAGO("PAGO"),
     EM_PREPARACAO("EM_PREPARACAO"),
     PRONTO_ENTREGA("PRONTO_ENTREGA"),
     CANCELADO("CANCELADO"),

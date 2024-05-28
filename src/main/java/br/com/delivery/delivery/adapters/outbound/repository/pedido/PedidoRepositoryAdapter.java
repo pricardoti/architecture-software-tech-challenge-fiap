@@ -4,15 +4,23 @@ import br.com.delivery.delivery.adapters.outbound.repository.produto.ProdutoRepo
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
 import br.com.delivery.delivery.application.ports.outbound.pedido.CadastrarPedidoOutboundPort;
 import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.pedido.ConsultarPedidoPorCodigoOutboundPort;
+import br.com.delivery.delivery.application.ports.outbound.pedido.EditarPedidoOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.UUID;
+
+import static java.util.Objects.nonNull;
 
 @Component
 @RequiredArgsConstructor
-public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort, ConsultarPedidoOutboundPort {
+public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
+        ConsultarPedidoOutboundPort,
+        ConsultarPedidoPorCodigoOutboundPort,
+        EditarPedidoOutboundPort {
 
     private final PedidoRepository pedidoRepository;
     private final ProdutoRepository produtoRepository;
@@ -38,5 +46,18 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort, Con
                 .stream()
                 .map(PedidoEntity::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Pedido consultar(UUID codigoPedido) {
+        return pedidoRepository.findById(codigoPedido)
+                .map(PedidoEntity::toDomain)
+                .orElseThrow(() -> new IllegalArgumentException("pedido nao econtrado"));
+    }
+
+    @Override
+    public Boolean editar(Pedido pedido) {
+        var pedidoEntity = pedidoRepository.save(PedidoEntity.createByDomain(pedido));
+        return nonNull(pedidoEntity);
     }
 }

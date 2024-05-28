@@ -2,7 +2,9 @@ package br.com.delivery.delivery.application.ports.inbound.pedido;
 
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
 
-public interface EditarPedidoInboundPort {
+import java.util.UUID;
 
-    Boolean editar(Pedido pedido);
+public interface ConsultarPedidoPorCodigoInboundPort {
+
+    Pedido consultar(UUID codigoPedido);
 }
