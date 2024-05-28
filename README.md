@@ -75,7 +75,7 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 ## Pré-requisitos do Projeto ```DELIVERY```
 
 - `src/main/java`: Diretório do código fonte da aplicação
-- `src/main/java`: Diretório do código fonte dos testes da aplicação
+- `src/test/java`: Diretório do código fonte dos testes da aplicação
 - `src/main/resources`: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
 - <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação
 - `docker-compose.yml`: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
@@ -120,6 +120,15 @@ O comando supracitado irá criar e iniciar os seguintes containers:
 - ```postgres-db-server``` - Container responsável pela execução do Banco de Dados Relacional **PostgreSQL**
 - ```app-delivery-service``` - Container responsável pela execução da aplicação Java **delivery**
 
+Para encerrar os containers, será necessário executar o comando abaixo:
+
+```docker
+docker compose down -v
+```
+
+> Lembrando que o parâmetro "-v", vem de "volume".
+> Para que o docker compose encerre a execução dos containers e exclua os volumes relacionados aos mesmos.
+
 ## Swagger
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
@@ -152,3 +161,7 @@ resiliência para a aplicação a ser testado.
 ### Adicionar Paginação nas Consultas
 
 Realizar a implementação das paginações necessários referente aos endpoints que possuem tal necessidade.
+
+### Melhoria nas Mensagens de Exceção
+
+Necessidade de trazer mensagens mais amigáveis no retorno dos enpoints para melhor entendimento do problema exposto.
