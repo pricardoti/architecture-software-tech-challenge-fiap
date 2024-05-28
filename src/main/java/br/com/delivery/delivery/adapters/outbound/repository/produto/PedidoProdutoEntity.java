@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -22,7 +21,6 @@ import static jakarta.persistence.FetchType.EAGER;
 @IdClass(PedidoProdutoKey.class)
 public class PedidoProdutoEntity implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = -7806748989577090141L;
 
     @Id

@@ -124,18 +124,17 @@ O comando supracitado irá criar e iniciar os seguintes containers:
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
-[Editor Swagger](https://editor.swagger.io/)
-
-Baixar o arquivo do swagger [contrato do projeto](./docs/swagger/xxxx)
-
-ou
-
 ```html
 http://localhost:8080/swagger-ui/index.html
 ```
 
 > Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja
 > em execução.
+ 
+ 
+## Collection Postman / Insomnia
+
+Para baixar a collection da [API de Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
 
 ## Seção 04 - MELHORIAS FUTURAS PARA A API
 

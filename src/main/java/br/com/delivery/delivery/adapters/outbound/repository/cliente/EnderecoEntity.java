@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.data.repository.cdi.Eager;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -20,10 +18,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Eager
 public class EnderecoEntity implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 1662069931406378792L;
 
     @Id
@@ -34,7 +30,6 @@ public class EnderecoEntity implements Serializable {
     private String complemento;
     private String bairro;
     private String cidade;
-
 
     @Column(length = 9)
     private String cep;
@@ -68,14 +63,14 @@ public class EnderecoEntity implements Serializable {
 
     public static EnderecoEntity from(Endereco endereco) {
         return new EnderecoEntity(
-                endereco.codigo(),
-                endereco.logradouro(),
-                endereco.numero(),
-                endereco.complemento(),
-                endereco.bairro(),
-                endereco.cidade(),
-                endereco.cep(),
-                endereco.uf()
+                endereco.getCodigo(),
+                endereco.getLogradouro(),
+                endereco.getNumero(),
+                endereco.getComplemento(),
+                endereco.getBairro(),
+                endereco.getCidade(),
+                endereco.getCep(),
+                endereco.getUf()
         );
     }
 

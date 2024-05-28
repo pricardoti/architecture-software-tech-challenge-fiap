@@ -9,7 +9,6 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +26,6 @@ import java.util.UUID;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class PedidoEntity implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 7575332886608055310L;
 
     @Id

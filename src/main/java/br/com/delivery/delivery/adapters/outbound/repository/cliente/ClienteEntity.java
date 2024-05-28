@@ -8,9 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.data.repository.cdi.Eager;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -22,10 +20,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Eager
 public class ClienteEntity implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 2526137963441029927L;
 
     @EqualsAndHashCode.Include
@@ -41,12 +37,12 @@ public class ClienteEntity implements Serializable {
     private EnderecoEntity endereco;
 
     public static ClienteEntity from(Cliente cliente) {
-        var enderecoEntity = EnderecoEntity.from(cliente.endereco());
+        var enderecoEntity = EnderecoEntity.from(cliente.getEndereco());
         var clienteEntity = new ClienteEntity(
-                cliente.codigo(),
-                cliente.cpf(),
-                cliente.nomeCompleto(),
-                cliente.email(),
+                cliente.getCodigo(),
+                cliente.getCpf(),
+                cliente.getNomeCompleto(),
+                cliente.getEmail(),
                 enderecoEntity
         );
         enderecoEntity.cliente(clienteEntity);

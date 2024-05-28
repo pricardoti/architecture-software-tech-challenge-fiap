@@ -1,0 +1,433 @@
+{
+	"info": {
+		"_postman_id": "b3761c01-a4cf-4edc-86da-952778fa8065",
+		"name": "Delivery API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9810786",
+		"_collection_link": "https://lunar-astronaut-382938.postman.co/workspace/FIAP-%7C-Software-Achitecture~dbed1408-14ab-46db-a23a-fc2702d0a5a3/collection/9810786-b3761c01-a4cf-4edc-86da-952778fa8065?action=share&source=collection_link&creator=9810786"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Cadastrar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"01446476480\",\r\n    \"nomeCompleto\": \"Nicholas Mateus\",\r\n    \"email\": \"nicholas.mateus@gmail.com.br\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua João Figueiredo Maia\",\r\n        \"numero\": \"10\",\r\n        \"complemento\": \"Quadra D7\",\r\n        \"bairro\": \"Ouro Preto\",\r\n        \"cidade\": \"Olinda\",\r\n        \"cep\": \"53370-670\",\r\n        \"uf\": \"PE\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\": \"01446476480\",\r\n    \"nomeCompleto\": \"Nicholas Mateus Jurubeba\",\r\n    \"email\": \"nicholas.falamansa@gmail.com\",\r\n    \"endereco\": {\r\n        \"codigo\": \"c6e92a93-b97c-4bb3-974a-33f1789aa50b\",\r\n        \"logradouro\": \"Rua João Figueiredo Maia\",\r\n        \"numero\": \"33\",\r\n        \"complemento\": \"Quadra D7\",\r\n        \"bairro\": \"Onde o vento faz a curva\",\r\n        \"cidade\": \"Olinda\",\r\n        \"cep\": \"53370-670\",\r\n        \"uf\": \"PE\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/clientes/f66b196b-0d51-469d-b218-62aa7c558e9e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"clientes",
+								"f66b196b-0d51-469d-b218-62aa7c558e9e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Cliente por CPF",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"clientes"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "01446476480",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/clientes/f66b196b-0d51-469d-b218-62aa7c558e9e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"clientes",
+								"f66b196b-0d51-469d-b218-62aa7c558e9e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "Cadastrar Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"codigoCliente\": \"d7044ef4-76ea-4d2c-ac7d-0ab889044baa\",\r\n    \"produtos\": [\r\n        {\r\n            \"codigoProduto\": \"2cbfd930-4295-4b11-8fc7-b714c53bddbb\",\r\n            \"quantidade\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pedidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pedido",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"FINALIZADO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/pedidos/f2324c3b-2886-4a98-ad97-168a4abc31d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pedidos",
+								"f2324c3b-2886-4a98-ad97-168a4abc31d4"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/pedidos/c9e22657-8911-4f81-a9a1-6307367a35cf/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pedidos",
+								"c9e22657-8911-4f81-a9a1-6307367a35cf",
+								"checkout"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Pedido",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/pedidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"pedidos"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Cadastrar Produto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Batata Frita\",\r\n    \"descricao\": \"Bebida 500ml\",\r\n    \"preco\": 12.75,\r\n    \"categoria\": \"ACOMPANHAMENTO\",\r\n    \"imagemUrl\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/produtos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Pudim de Leite\",\r\n    \"descricao\": \"Pudim de leite condesando\",\r\n    \"preco\": 15.00,\r\n    \"categoria\": \"SOBREMESA\",\r\n    \"imagemUrl\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrzHFvCC9OYRrhPkksPPar4GJV7JaYGHNbRVhDWoQQcw&s\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/produtos/2967f70f-31db-4b16-8f8e-4c0ef8be8056",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"produtos",
+								"2967f70f-31db-4b16-8f8e-4c0ef8be8056"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Produto",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/produtos/2967f70f-31db-4b16-8f8e-4c0ef8be8056",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"produtos",
+								"2967f70f-31db-4b16-8f8e-4c0ef8be8056"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Produto por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/produtos/2967f70f-31db-4b16-8f8e-4c0ef8be8056",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"produtos",
+								"2967f70f-31db-4b16-8f8e-4c0ef8be8056"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Produto por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/v1/produtos?categoria=SOBREMESA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "categoria",
+									"value": "SOBREMESA"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_LOCAL_URL",
+			"value": "http://localhost:8080"
+		}
+	]
+}
