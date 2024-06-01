@@ -143,7 +143,7 @@ http://localhost:8080/swagger-ui/index.html
  
 ## Collection Postman / Insomnia
 
-Para baixar a collection da [API de Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
+Para baixar, importar ou executar a collection da [API Delivery](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY)
 
 ## Seção 04 - MELHORIAS FUTURAS PARA A API
 

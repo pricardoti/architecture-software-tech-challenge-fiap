@@ -35,7 +35,7 @@ public class PedidoRestAdapter {
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarPedidoResponse> cadastrar(@RequestBody @Valid CadastrarPedidoRequest cadastrarPedidoRequest) {
         var pedido = cadastrarPedidoInboundPort.cadastrar(cadastrarPedidoRequest.toDomain());
-        var response = CadastrarPedidoResponse.createByCodigoPedido(pedido.getCodigoPedido());
+        var response = CadastrarPedidoResponse.createByCodigoPedido(pedido.codigoPedido());
         return ResponseEntity
                 .status(CREATED)
                 .body(response);
@@ -58,7 +58,7 @@ public class PedidoRestAdapter {
     @ResponseStatus(OK)
     public ResponseEntity<Void> checkout(@PathVariable("codigoPedido") String codigoPedido) {
         var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
-        realizarCheckoutPedidoInboundPort.checkout(pedido.getCodigoPedido());
+        realizarCheckoutPedidoInboundPort.checkout(pedido.codigoPedido());
         return ResponseEntity
                 .status(OK)
                 .build();

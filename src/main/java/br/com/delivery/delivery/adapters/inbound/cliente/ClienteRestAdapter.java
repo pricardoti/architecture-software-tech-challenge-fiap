@@ -13,9 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static java.util.Objects.nonNull;
 import static org.springframework.http.HttpStatus.*;
@@ -40,7 +38,7 @@ public class ClienteRestAdapter {
             @RequestBody @Valid CadastrarClienteRequest cadastrarClienteRequest
     ) {
         var cliente = cadastrarClienteInboundPort.cadastrar(cadastrarClienteRequest.toDomain());
-        return ResponseEntity.status(CREATED).body(CadastrarClienteResponse.from(cliente.getCodigo()));
+        return ResponseEntity.status(CREATED).body(CadastrarClienteResponse.from(cliente.codigo()));
     }
 
     @PutMapping(
@@ -62,13 +60,22 @@ public class ClienteRestAdapter {
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<Collection<Cliente>> consultarClientes(@RequestParam(value = "cpf", required = false) String cpf) {
-        if (nonNull(cpf))
-            return ResponseEntity.ok(List.of(consultarClienteInboundPort.consultarPorCpf(cpf)));
+        if (nonNull(cpf)) {
+            var cliente = consultarClienteInboundPort.consultarPorCpf(cpf);
+            return validacaoClientePorCpfNaoEncontrado(cliente);
+        }
 
-        var clientes = consultarClienteInboundPort.consultarClientes();
         return ResponseEntity
                 .status(OK)
-                .body(clientes);
+                .body(consultarClienteInboundPort.consultarClientes());
+    }
+
+    private static ResponseEntity<Collection<Cliente>> validacaoClientePorCpfNaoEncontrado(Cliente cliente) {
+        if (Objects.isNull(cliente)) return ResponseEntity.status(NOT_FOUND).body(Collections.emptyList());
+
+        return ResponseEntity
+                .status(OK)
+                .body(List.of(cliente));
     }
 
     @DeleteMapping(path = "/{codigoCliente}", consumes = APPLICATION_JSON_VALUE)

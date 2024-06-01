@@ -7,6 +7,7 @@ import br.com.delivery.delivery.application.ports.outbound.cliente.EditarCliente
 import br.com.delivery.delivery.application.ports.outbound.cliente.ExcluirClienteOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -21,6 +22,7 @@ public class ClienteOutboundAdapter implements CadastrarClienteOutboundPort,
     private final ClienteRepository clienteRepository;
 
     @Override
+    @Transactional
     public Cliente cadastrar(Cliente cliente) {
         return clienteRepository
                 .save(ClienteEntity.from(cliente))
@@ -29,7 +31,8 @@ public class ClienteOutboundAdapter implements CadastrarClienteOutboundPort,
 
     @Override
     public Cliente consultarPorCpf(String cpf) {
-        return clienteRepository.findByCpf(cpf).toDomain();
+        var buscarPorCpf = clienteRepository.findByCpf(cpf);
+        return buscarPorCpf.map(ClienteEntity::toDomain).orElse(null);
     }
 
     @Override
@@ -41,12 +44,14 @@ public class ClienteOutboundAdapter implements CadastrarClienteOutboundPort,
     }
 
     @Override
+    @Transactional
     public Cliente editar(Cliente cliente) {
         var clientEntity = clienteRepository.save(ClienteEntity.from(cliente));
         return clientEntity.toDomain();
     }
 
     @Override
+    @Transactional
     public void excluir(UUID codigoCliente) {
         clienteRepository.deleteById(codigoCliente);
     }

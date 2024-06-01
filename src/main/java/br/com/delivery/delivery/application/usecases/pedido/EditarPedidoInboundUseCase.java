@@ -15,10 +15,10 @@ public class EditarPedidoInboundUseCase implements EditarPedidoInboundPort {
 
     @Override
     public void editar(Pedido pedido, StatusPedido statusPedido) {
-        if (AGUARDANDO_PAGAMENTO.equals(pedido.getStatus()))
+        if (AGUARDANDO_PAGAMENTO.equals(pedido.status()))
             throw new IllegalArgumentException("o status do pedido nao pode ser atualizado, por favor realizar o checkout.");
 
-        pedido.setStatus(statusPedido);
+        pedido.status(statusPedido);
         editarPedidoOutboundPort.editar(pedido);
     }
 }

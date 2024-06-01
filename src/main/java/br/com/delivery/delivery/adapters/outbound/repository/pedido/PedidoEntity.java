@@ -44,19 +44,19 @@ public class PedidoEntity implements Serializable {
     private ClienteEntity cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    List<PedidoProdutoEntity> produtos;
+    private List<PedidoProdutoEntity> produtos;
 
     public static PedidoEntity createByDomain(Pedido pedido) {
         return PedidoEntity.builder()
-                .codigo(pedido.getCodigoPedido())
-                .codigoCliente(pedido.getCliente())
-                .status(pedido.getStatus())
-                .dataHoraSolicitacao(pedido.getDataHoraSolicitacao())
-                .valorTotal(pedido.getValorTotal())
+                .codigo(pedido.codigoPedido())
+                .codigoCliente(pedido.cliente())
+                .status(pedido.status())
+                .dataHoraSolicitacao(pedido.dataHoraSolicitacao())
+                .valorTotal(pedido.valorTotal())
                 .produtos(
-                        pedido.getProdutos()
+                        pedido.produtos()
                                 .stream()
-                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.getCodigoPedido(), produto))
+                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.codigoPedido(), produto))
                                 .toList()
                 )
                 .build();

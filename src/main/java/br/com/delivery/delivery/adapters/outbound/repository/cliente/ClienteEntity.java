@@ -37,12 +37,12 @@ public class ClienteEntity implements Serializable {
     private EnderecoEntity endereco;
 
     public static ClienteEntity from(Cliente cliente) {
-        var enderecoEntity = EnderecoEntity.from(cliente.getEndereco());
+        var enderecoEntity = EnderecoEntity.from(cliente.endereco());
         var clienteEntity = new ClienteEntity(
-                cliente.getCodigo(),
-                cliente.getCpf(),
-                cliente.getNomeCompleto(),
-                cliente.getEmail(),
+                cliente.codigo(),
+                cliente.cpf(),
+                cliente.nomeCompleto(),
+                cliente.email(),
                 enderecoEntity
         );
         enderecoEntity.cliente(clienteEntity);

@@ -25,6 +25,7 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
     private final PedidoRepository pedidoRepository;
 
     @Override
+    @Transactional
     public Pedido salvar(Pedido pedido) {
         return pedidoRepository
                 .save(PedidoEntity.createByDomain(pedido))
@@ -47,6 +48,7 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
     }
 
     @Override
+    @Transactional
     public void editar(Pedido pedido) {
         pedidoRepository.save(PedidoEntity.createByDomain(pedido));
     }

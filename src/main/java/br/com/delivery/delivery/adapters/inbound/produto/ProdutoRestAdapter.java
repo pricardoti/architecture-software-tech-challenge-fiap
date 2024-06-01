@@ -10,10 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.UUID;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RequiredArgsConstructor
@@ -46,7 +46,14 @@ public class ProdutoRestAdapter {
             @RequestBody CadastrarProdutoRequest cadastrarProdutoRequest
     ) {
         var produto = consultarProdutoPorIdInboundPort.consultar(UUID.fromString(codigoProduto));
-        editarProdutoInboundPort.editar(produto);
+
+        if (Objects.isNull(produto)) {
+            return ResponseEntity
+                    .status(NO_CONTENT)
+                    .build();
+        }
+
+        editarProdutoInboundPort.editar(cadastrarProdutoRequest.toDomain(UUID.fromString(codigoProduto)));
         return ResponseEntity
                 .status(OK)
                 .build();

@@ -45,8 +45,8 @@ public class PedidoProdutoEntity implements Serializable {
 
     public PedidoProdutoEntity(UUID codigoPedido, PedidoProduto produto) {
         this.codigoPedido = codigoPedido;
-        this.codigoProduto = produto.getCodigoProduto();
-        this.quantidade = produto.getQuantidade();
+        this.codigoProduto = produto.codigoProduto();
+        this.quantidade = produto.quantidade();
     }
 
     public static PedidoProdutoEntity createByDomain(UUID codigoPedido, PedidoProduto produto) {

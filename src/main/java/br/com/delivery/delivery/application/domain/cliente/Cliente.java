@@ -1,14 +1,19 @@
 package br.com.delivery.delivery.application.domain.cliente;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.util.UUID;
 
-@Getter
-@Setter
+@Getter(onMethod = @__(@JsonProperty))
+@Setter(onMethod = @__(@JsonProperty))
+@Accessors(fluent = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class Cliente {
 
     private UUID codigo;

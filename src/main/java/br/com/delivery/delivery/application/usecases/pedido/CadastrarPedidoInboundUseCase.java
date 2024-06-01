@@ -18,19 +18,19 @@ public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort
 
     @Override
     public Pedido cadastrar(Pedido pedido) {
-        pedido.setValorTotal(calcularValorTotalPedido(pedido));
+        pedido.valorTotal(calcularValorTotalPedido(pedido));
         return cadastrarPedidoOutboundPort.salvar(pedido);
     }
 
     private BigDecimal calcularValorTotalPedido(Pedido pedido) {
         var valorTotal = BigDecimal.ZERO;
-        for (var pedidoProduto : pedido.getProdutos()) {
+        for (var pedidoProduto : pedido.produtos()) {
 
-            if (pedidoProduto.getQuantidade() < QUANTIDADE_MINIMA)
+            if (pedidoProduto.quantidade() < QUANTIDADE_MINIMA)
                 throw new IllegalArgumentException("o produto precisa ter pelo menos uma unidade adicionada ao pedido");
 
-            var produto = consultarProdutoPorCodigoInboundUseCase.consultar(pedidoProduto.getCodigoProduto());
-            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())));
+            var produto = consultarProdutoPorCodigoInboundUseCase.consultar(pedidoProduto.codigoProduto());
+            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.quantidade())));
         }
         return valorTotal;
     }
