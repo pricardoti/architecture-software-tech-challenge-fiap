@@ -30,7 +30,7 @@ import java.util.UUID;
 
 import static java.util.Objects.nonNull;
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -87,7 +87,7 @@ public class ClienteRestAdapter {
     }
 
     private static ResponseEntity<Collection<Cliente>> validacaoClientePorCpfNaoEncontrado(Cliente cliente) {
-        if (Objects.isNull(cliente)) return ResponseEntity.status(NOT_FOUND).body(Collections.emptyList());
+        if (Objects.isNull(cliente)) return ResponseEntity.status(NO_CONTENT).body(Collections.emptyList());
 
         return ResponseEntity
                 .status(OK)
