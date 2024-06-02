@@ -4,8 +4,19 @@ import br.com.delivery.delivery.adapters.outbound.repository.cliente.ClienteEnti
 import br.com.delivery.delivery.adapters.outbound.repository.produto.PedidoProdutoEntity;
 import br.com.delivery.delivery.application.domain.enums.StatusPedido;
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -44,19 +55,19 @@ public class PedidoEntity implements Serializable {
     private ClienteEntity cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    List<PedidoProdutoEntity> produtos;
+    private List<PedidoProdutoEntity> produtos;
 
     public static PedidoEntity createByDomain(Pedido pedido) {
         return PedidoEntity.builder()
-                .codigo(pedido.getCodigoPedido())
-                .codigoCliente(pedido.getCliente())
-                .status(pedido.getStatus())
-                .dataHoraSolicitacao(pedido.getDataHoraSolicitacao())
-                .valorTotal(pedido.getValorTotal())
+                .codigo(pedido.codigoPedido())
+                .codigoCliente(pedido.cliente())
+                .status(pedido.status())
+                .dataHoraSolicitacao(pedido.dataHoraSolicitacao())
+                .valorTotal(pedido.valorTotal())
                 .produtos(
-                        pedido.getProdutos()
+                        pedido.produtos()
                                 .stream()
-                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.getCodigoPedido(), produto))
+                                .map(produto -> PedidoProdutoEntity.createByDomain(pedido.codigoPedido(), produto))
                                 .toList()
                 )
                 .build();

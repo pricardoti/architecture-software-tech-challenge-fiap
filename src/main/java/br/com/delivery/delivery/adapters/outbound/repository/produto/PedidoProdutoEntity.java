@@ -3,7 +3,14 @@ package br.com.delivery.delivery.adapters.outbound.repository.produto;
 
 import br.com.delivery.delivery.adapters.outbound.repository.pedido.PedidoEntity;
 import br.com.delivery.delivery.application.domain.pedido.PedidoProduto;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -45,8 +52,8 @@ public class PedidoProdutoEntity implements Serializable {
 
     public PedidoProdutoEntity(UUID codigoPedido, PedidoProduto produto) {
         this.codigoPedido = codigoPedido;
-        this.codigoProduto = produto.getCodigoProduto();
-        this.quantidade = produto.getQuantidade();
+        this.codigoProduto = produto.codigoProduto();
+        this.quantidade = produto.quantidade();
     }
 
     public static PedidoProdutoEntity createByDomain(UUID codigoPedido, PedidoProduto produto) {
