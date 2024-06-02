@@ -1,7 +1,12 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Cliente;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -37,12 +42,12 @@ public class ClienteEntity implements Serializable {
     private EnderecoEntity endereco;
 
     public static ClienteEntity from(Cliente cliente) {
-        var enderecoEntity = EnderecoEntity.from(cliente.getEndereco());
+        var enderecoEntity = EnderecoEntity.from(cliente.endereco());
         var clienteEntity = new ClienteEntity(
-                cliente.getCodigo(),
-                cliente.getCpf(),
-                cliente.getNomeCompleto(),
-                cliente.getEmail(),
+                cliente.codigo(),
+                cliente.cpf(),
+                cliente.nomeCompleto(),
+                cliente.email(),
                 enderecoEntity
         );
         enderecoEntity.cliente(clienteEntity);

@@ -24,6 +24,7 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
 
     private final PedidoRepository pedidoRepository;
 
+    @Transactional
     @Override
     public Pedido salvar(Pedido pedido) {
         return pedidoRepository
@@ -46,6 +47,7 @@ public class PedidoRepositoryAdapter implements CadastrarPedidoOutboundPort,
                 .orElseThrow(() -> new IllegalArgumentException("pedido nao econtrado"));
     }
 
+    @Transactional
     @Override
     public void editar(Pedido pedido) {
         pedidoRepository.save(PedidoEntity.createByDomain(pedido));

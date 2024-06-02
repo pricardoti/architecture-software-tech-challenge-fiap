@@ -26,7 +26,7 @@ public class RealizarCheckoutPedidoInboundUseCase implements RealizarCheckoutPed
     public void checkout(UUID codigoPedido) {
         var pedido = consultarPedidoPorCodigoInboundPort.consultar(codigoPedido);
 
-        if (!AGUARDANDO_PAGAMENTO.equals(pedido.getStatus())) {
+        if (!AGUARDANDO_PAGAMENTO.equals(pedido.status())) {
             throw new IllegalArgumentException("nao foi possivel realizar o checkout do pedido");
         }
 

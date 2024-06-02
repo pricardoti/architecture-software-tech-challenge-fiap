@@ -4,11 +4,22 @@ import br.com.delivery.delivery.adapters.inbound.pedido.request.AtualizarPedidoR
 import br.com.delivery.delivery.adapters.inbound.pedido.request.CadastrarPedidoRequest;
 import br.com.delivery.delivery.adapters.inbound.pedido.response.CadastrarPedidoResponse;
 import br.com.delivery.delivery.application.domain.pedido.Pedido;
-import br.com.delivery.delivery.application.ports.inbound.pedido.*;
+import br.com.delivery.delivery.application.ports.inbound.pedido.CadastrarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.ConsultarPedidoPorCodigoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.EditarPedidoInboundPort;
+import br.com.delivery.delivery.application.ports.inbound.pedido.RealizarCheckoutPedidoInboundPort;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -35,7 +46,7 @@ public class PedidoRestAdapter {
     @ResponseStatus(CREATED)
     public ResponseEntity<CadastrarPedidoResponse> cadastrar(@RequestBody @Valid CadastrarPedidoRequest cadastrarPedidoRequest) {
         var pedido = cadastrarPedidoInboundPort.cadastrar(cadastrarPedidoRequest.toDomain());
-        var response = CadastrarPedidoResponse.createByCodigoPedido(pedido.getCodigoPedido());
+        var response = CadastrarPedidoResponse.createByCodigoPedido(pedido.codigoPedido());
         return ResponseEntity
                 .status(CREATED)
                 .body(response);
@@ -58,7 +69,7 @@ public class PedidoRestAdapter {
     @ResponseStatus(OK)
     public ResponseEntity<Void> checkout(@PathVariable("codigoPedido") String codigoPedido) {
         var pedido = consultarPedidoPorCodigoInboundPort.consultar(UUID.fromString(codigoPedido));
-        realizarCheckoutPedidoInboundPort.checkout(pedido.getCodigoPedido());
+        realizarCheckoutPedidoInboundPort.checkout(pedido.codigoPedido());
         return ResponseEntity
                 .status(OK)
                 .build();

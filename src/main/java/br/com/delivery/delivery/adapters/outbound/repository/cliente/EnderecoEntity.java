@@ -1,7 +1,12 @@
 package br.com.delivery.delivery.adapters.outbound.repository.cliente;
 
 import br.com.delivery.delivery.application.domain.cliente.Endereco;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -63,14 +68,14 @@ public class EnderecoEntity implements Serializable {
 
     public static EnderecoEntity from(Endereco endereco) {
         return new EnderecoEntity(
-                endereco.getCodigo(),
-                endereco.getLogradouro(),
-                endereco.getNumero(),
-                endereco.getComplemento(),
-                endereco.getBairro(),
-                endereco.getCidade(),
-                endereco.getCep(),
-                endereco.getUf()
+                endereco.codigo(),
+                endereco.logradouro(),
+                endereco.numero(),
+                endereco.complemento(),
+                endereco.bairro(),
+                endereco.cidade(),
+                endereco.cep(),
+                endereco.uf()
         );
     }
 

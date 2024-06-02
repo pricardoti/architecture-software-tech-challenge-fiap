@@ -9,6 +9,7 @@ import br.com.delivery.delivery.application.ports.outbound.produto.EditarProduto
 import br.com.delivery.delivery.application.ports.outbound.produto.ExcluirProdutoOutboundPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -23,11 +24,13 @@ public class ProdutoRepositoryAdapter implements CadastrarProdutoOutboundPort,
 
     private final ProdutoRepository produtoRepository;
 
+    @Transactional
     @Override
     public Produto cadastrar(Produto produto) {
         return salvarProduto(produto);
     }
 
+    @Transactional
     @Override
     public Produto editar(Produto produto) {
         return salvarProduto(produto);
@@ -49,6 +52,7 @@ public class ProdutoRepositoryAdapter implements CadastrarProdutoOutboundPort,
                 .toList();
     }
 
+    @Transactional
     @Override
     public void excluir(UUID codigoProduto) {
         produtoRepository.deleteById(codigoProduto);
