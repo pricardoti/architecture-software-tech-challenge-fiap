@@ -68,14 +68,14 @@ public class EnderecoEntity implements Serializable {
 
     public static EnderecoEntity from(Endereco endereco) {
         return new EnderecoEntity(
-                endereco.codigo(),
-                endereco.logradouro(),
-                endereco.numero(),
-                endereco.complemento(),
-                endereco.bairro(),
-                endereco.cidade(),
-                endereco.cep(),
-                endereco.uf()
+                endereco.getCodigo(),
+                endereco.getLogradouro(),
+                endereco.getNumero(),
+                endereco.getComplemento(),
+                endereco.getBairro(),
+                endereco.getCidade(),
+                endereco.getCep(),
+                endereco.getUf()
         );
     }
 

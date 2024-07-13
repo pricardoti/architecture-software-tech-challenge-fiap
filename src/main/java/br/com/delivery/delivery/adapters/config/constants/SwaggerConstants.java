@@ -1,4 +1,4 @@
-package br.com.delivery.delivery.application.constants;
+package br.com.delivery.delivery.adapters.config.constants;
 
 import lombok.experimental.UtilityClass;
 

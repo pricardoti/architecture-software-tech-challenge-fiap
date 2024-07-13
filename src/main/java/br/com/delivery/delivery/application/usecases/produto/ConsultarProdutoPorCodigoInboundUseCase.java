@@ -7,10 +7,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
-@RequiredArgsConstructor
 public class ConsultarProdutoPorCodigoInboundUseCase implements ConsultarProdutoPorIdInboundPort {
 
     private final ConsultarProdutoPorIdOutboundPort consultarProdutoPorIdOutboundPort;
+
+    public ConsultarProdutoPorCodigoInboundUseCase(ConsultarProdutoPorIdOutboundPort consultarProdutoPorIdOutboundPort) {
+        this.consultarProdutoPorIdOutboundPort = consultarProdutoPorIdOutboundPort;
+    }
 
     @Override
     public Produto consultar(UUID codigoProduto) {

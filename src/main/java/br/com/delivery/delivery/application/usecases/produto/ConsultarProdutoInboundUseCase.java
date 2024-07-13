@@ -8,10 +8,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
 
-@RequiredArgsConstructor
 public class ConsultarProdutoInboundUseCase implements ConsultarProdutoInboundPort {
 
     private final ConsultarProdutoOutboundPort consultarProdutoOutboundPort;
+
+    public ConsultarProdutoInboundUseCase(ConsultarProdutoOutboundPort consultarProdutoOutboundPort) {
+        this.consultarProdutoOutboundPort = consultarProdutoOutboundPort;
+    }
 
     @Override
     public Collection<Produto> consultar(CategoriaProduto categoria) {

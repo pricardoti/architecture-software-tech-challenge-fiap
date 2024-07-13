@@ -7,10 +7,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Collection;
 
-@RequiredArgsConstructor
 public class ConsultarClienteInboundUseCase implements ConsultarClienteInboundPort {
 
     private final ConsultarClienteOutboundPort consultarClienteOutboundPort;
+
+    public ConsultarClienteInboundUseCase(ConsultarClienteOutboundPort consultarClienteOutboundPort) {
+        this.consultarClienteOutboundPort = consultarClienteOutboundPort;
+    }
 
     @Override
     public Cliente consultarPorCpf(String cpf) {

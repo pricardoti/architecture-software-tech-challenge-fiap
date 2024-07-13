@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 
-@RequiredArgsConstructor
 public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort {
 
     private static final int QUANTIDADE_MINIMA = 1;
@@ -16,21 +15,26 @@ public class CadastrarPedidoInboundUseCase implements CadastrarPedidoInboundPort
     private final ConsultarProdutoPorIdInboundPort consultarProdutoPorCodigoInboundUseCase;
     private final CadastrarPedidoOutboundPort cadastrarPedidoOutboundPort;
 
+    public CadastrarPedidoInboundUseCase(ConsultarProdutoPorIdInboundPort consultarProdutoPorCodigoInboundUseCase, CadastrarPedidoOutboundPort cadastrarPedidoOutboundPort) {
+        this.consultarProdutoPorCodigoInboundUseCase = consultarProdutoPorCodigoInboundUseCase;
+        this.cadastrarPedidoOutboundPort = cadastrarPedidoOutboundPort;
+    }
+
     @Override
     public Pedido cadastrar(Pedido pedido) {
-        pedido.valorTotal(calcularValorTotalPedido(pedido));
+        pedido.setValorTotal(calcularValorTotalPedido(pedido));
         return cadastrarPedidoOutboundPort.salvar(pedido);
     }
 
     private BigDecimal calcularValorTotalPedido(Pedido pedido) {
         var valorTotal = BigDecimal.ZERO;
-        for (var pedidoProduto : pedido.produtos()) {
+        for (var pedidoProduto : pedido.getProdutos()) {
 
-            if (pedidoProduto.quantidade() < QUANTIDADE_MINIMA)
+            if (pedidoProduto.getQuantidade() < QUANTIDADE_MINIMA)
                 throw new IllegalArgumentException("o produto precisa ter pelo menos uma unidade adicionada ao pedido");
 
-            var produto = consultarProdutoPorCodigoInboundUseCase.consultar(pedidoProduto.codigoProduto());
-            valorTotal = valorTotal.add(produto.preco().multiply(BigDecimal.valueOf(pedidoProduto.quantidade())));
+            var produto = consultarProdutoPorCodigoInboundUseCase.consultar(pedidoProduto.getCodigoProduto());
+            valorTotal = valorTotal.add(produto.getPreco().multiply(BigDecimal.valueOf(pedidoProduto.getQuantidade())));
         }
         return valorTotal;
     }

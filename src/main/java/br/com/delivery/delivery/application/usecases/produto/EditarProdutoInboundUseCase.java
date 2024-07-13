@@ -5,10 +5,13 @@ import br.com.delivery.delivery.application.ports.inbound.produto.EditarProdutoI
 import br.com.delivery.delivery.application.ports.outbound.produto.EditarProdutoOutboundPort;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 public class EditarProdutoInboundUseCase implements EditarProdutoInboundPort {
 
     private final EditarProdutoOutboundPort editarProdutoOutboundPort;
+
+    public EditarProdutoInboundUseCase(EditarProdutoOutboundPort editarProdutoOutboundPort) {
+        this.editarProdutoOutboundPort = editarProdutoOutboundPort;
+    }
 
     @Override
     public Produto editar(Produto produto) {

@@ -1,21 +1,10 @@
 package br.com.delivery.delivery.application.domain.produto;
 
 import br.com.delivery.delivery.application.domain.enums.CategoriaProduto;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Getter(onMethod = @__(@JsonProperty))
-@Setter(onMethod = @__(@JsonProperty))
-@Accessors(fluent = true)
-@NoArgsConstructor
-@AllArgsConstructor
 public class Produto {
     private UUID codigo;
     private String nome;
@@ -32,5 +21,38 @@ public class Produto {
             String imagemUrl
     ) {
         this(UUID.randomUUID(), nome, descricao, preco, categoria, imagemUrl);
+    }
+
+    public Produto(UUID codigo, String nome, String descricao, BigDecimal preco, CategoriaProduto categoria, String imagemUrl) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.categoria = categoria;
+        this.imagemUrl = imagemUrl;
+    }
+
+    public UUID getCodigo() {
+        return codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public CategoriaProduto getCategoria() {
+        return categoria;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
     }
 }

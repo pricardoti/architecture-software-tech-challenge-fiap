@@ -5,10 +5,14 @@ import br.com.delivery.delivery.application.ports.inbound.cliente.EditarClienteI
 import br.com.delivery.delivery.application.ports.outbound.cliente.EditarClienteOutboundPort;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+
 public class EditarClienteInboundUseCase implements EditarClienteInboundPort {
 
     private final EditarClienteOutboundPort editarClienteOutboundPort;
+
+    public EditarClienteInboundUseCase(EditarClienteOutboundPort editarClienteOutboundPort) {
+        this.editarClienteOutboundPort = editarClienteOutboundPort;
+    }
 
     @Override
     public Cliente editar(Cliente cliente) {

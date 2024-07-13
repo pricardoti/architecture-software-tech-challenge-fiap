@@ -1,21 +1,12 @@
 package br.com.delivery.delivery.application.domain.pedido;
 
 import br.com.delivery.delivery.application.domain.enums.StatusPedido;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Getter(onMethod = @__(@JsonProperty))
-@Setter(onMethod = @__(@JsonProperty))
-@Accessors(fluent = true)
-@Builder
 public class Pedido {
 
     private UUID codigoPedido;
@@ -24,4 +15,52 @@ public class Pedido {
     private List<PedidoProduto> produtos;
     private StatusPedido status;
     private LocalDateTime dataHoraSolicitacao;
+
+    public UUID getCodigoPedido() {
+        return codigoPedido;
+    }
+
+    public void setCodigoPedido(UUID codigoPedido) {
+        this.codigoPedido = codigoPedido;
+    }
+
+    public UUID getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(UUID cliente) {
+        this.cliente = cliente;
+    }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public List<PedidoProduto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<PedidoProduto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDataHoraSolicitacao() {
+        return dataHoraSolicitacao;
+    }
+
+    public void setDataHoraSolicitacao(LocalDateTime dataHoraSolicitacao) {
+        this.dataHoraSolicitacao = dataHoraSolicitacao;
+    }
 }

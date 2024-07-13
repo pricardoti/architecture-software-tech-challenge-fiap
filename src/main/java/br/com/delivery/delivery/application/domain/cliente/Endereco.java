@@ -1,19 +1,7 @@
 package br.com.delivery.delivery.application.domain.cliente;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.experimental.Accessors;
-
 import java.util.UUID;
 
-@Getter(onMethod = @__(@JsonProperty))
-@Setter(onMethod = @__(@JsonProperty))
-@Accessors(fluent = true)
-@AllArgsConstructor
-@NoArgsConstructor
 public class Endereco {
 
     private UUID codigo;
@@ -35,5 +23,48 @@ public class Endereco {
             String uf
     ) {
         this(UUID.randomUUID(), logradouro, numero, complemento, bairro, cidade, cep, uf);
+    }
+
+    public Endereco(UUID codigo, String logradouro, String numero, String complemento, String bairro, String cidade, String cep, String uf) {
+        this.codigo = codigo;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.uf = uf;
+    }
+
+    public UUID getCodigo() {
+        return codigo;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getUf() {
+        return uf;
     }
 }
