@@ -1,0 +1,19 @@
+name: Push Image to DockerHub
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        run: docker login -u nicholasmateus -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t nicholasmateus/app-delivery-image .
+          docker push nicholasmateus/app-delivery-image
