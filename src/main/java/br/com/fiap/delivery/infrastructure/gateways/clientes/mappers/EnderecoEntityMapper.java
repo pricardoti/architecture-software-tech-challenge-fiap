@@ -1,13 +1,14 @@
 package br.com.fiap.delivery.infrastructure.gateways.clientes.mappers;
 
 import br.com.fiap.delivery.domain.cliente.Endereco;
+import br.com.fiap.delivery.infrastructure.persistence.clientes.entities.ClienteEntity;
 import br.com.fiap.delivery.infrastructure.persistence.clientes.entities.EnderecoEntity;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class EnderecoEntityMapper {
 
-    public static EnderecoEntity toEntity(Endereco endereco) {
+    public static EnderecoEntity toEntity(Endereco endereco, ClienteEntity clienteEntity) {
         return new EnderecoEntity(
                 endereco.getCodigo(),
                 endereco.getLogradouro(),
@@ -16,7 +17,8 @@ public class EnderecoEntityMapper {
                 endereco.getBairro(),
                 endereco.getCidade(),
                 endereco.getCep(),
-                endereco.getUf()
+                endereco.getUf(),
+                clienteEntity
         );
     }
 

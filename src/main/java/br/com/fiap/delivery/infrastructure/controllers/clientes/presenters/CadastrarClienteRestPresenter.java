@@ -1,4 +1,4 @@
-package br.com.fiap.delivery.infrastructure.controllers.clientes;
+package br.com.fiap.delivery.infrastructure.controllers.clientes.presenters;
 
 import br.com.fiap.delivery.application.presenters.CadastrarClientePresenter;
 import br.com.fiap.delivery.domain.cliente.Cliente;
@@ -6,10 +6,10 @@ import br.com.fiap.delivery.infrastructure.controllers.clientes.dtos.CadastrarCl
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClienteRestPresenter implements CadastrarClientePresenter<CadastrarClienteResponse> {
+public class CadastrarClienteRestPresenter implements CadastrarClientePresenter<CadastrarClienteResponse> {
 
     @Override
-    public CadastrarClienteResponse handle(Cliente cliente) {
+    public CadastrarClienteResponse handler(Cliente cliente) {
         return new CadastrarClienteResponse(cliente.getCodigo().toString());
     }
 }

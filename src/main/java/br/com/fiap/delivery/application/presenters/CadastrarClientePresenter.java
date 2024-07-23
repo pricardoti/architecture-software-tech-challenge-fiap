@@ -4,5 +4,5 @@ import br.com.fiap.delivery.domain.cliente.Cliente;
 
 public interface CadastrarClientePresenter<T> {
 
-    T handle(Cliente cliente);
+    T handler(Cliente cliente);
 }

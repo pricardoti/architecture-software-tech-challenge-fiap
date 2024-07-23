@@ -28,8 +28,8 @@ public class ClienteGatewayJPA implements ClienteGateway {
     @Override
     public Cliente consultarPorCpf(String cpf) {
         var buscarPorCpf = clienteRepository.findByCpf(cpf);
-        return buscarPorCpf
-                .map(ClienteEntityMapper::toDomain).get();
+        return buscarPorCpf.map(ClienteEntityMapper::toDomain)
+                .orElse(null);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ClienteGatewayJPA implements ClienteGateway {
 
     @Override
     @Transactional
-    public Cliente editar(Cliente cliente) {
+    public Cliente atualizar(Cliente cliente) {
         var clienteEntity = ClienteEntityMapper.toEntity(cliente);
         clienteRepository.save(clienteEntity);
         return ClienteEntityMapper.toDomain(clienteEntity);

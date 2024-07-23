@@ -8,14 +8,12 @@ import lombok.experimental.UtilityClass;
 public class ClienteEntityMapper {
 
     public static ClienteEntity toEntity(Cliente cliente) {
-        var enderecoEntity = EnderecoEntityMapper.toEntity(cliente.getEndereco());
-        var clienteEntity = new ClienteEntity(
-                cliente.getCodigo(),
-                cliente.getCpf(),
-                cliente.getNomeCompleto(),
-                cliente.getEmail(),
-                enderecoEntity
-        );
+        var clienteEntity = new ClienteEntity();
+        clienteEntity.codigo(cliente.getCodigo());
+        clienteEntity.cpf(cliente.getCpf());
+        clienteEntity.nomeCompleto(cliente.getNomeCompleto());
+        clienteEntity.email(cliente.getEmail());
+        clienteEntity.endereco(EnderecoEntityMapper.toEntity(cliente.getEndereco(), clienteEntity));
         return clienteEntity;
     }
 

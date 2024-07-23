@@ -6,10 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,8 +19,6 @@ import java.util.UUID;
 @Accessors(fluent = true)
 @Table(name = "clientes")
 @DynamicUpdate
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ClienteEntity implements Serializable {
 

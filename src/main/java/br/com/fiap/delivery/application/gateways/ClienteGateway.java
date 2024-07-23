@@ -9,7 +9,7 @@ public interface ClienteGateway {
 
     Cliente cadastrar(Cliente cliente);
 
-    Cliente editar(Cliente cliente);
+    Cliente atualizar(Cliente cliente);
 
     void excluir(UUID codigoCliente);
 

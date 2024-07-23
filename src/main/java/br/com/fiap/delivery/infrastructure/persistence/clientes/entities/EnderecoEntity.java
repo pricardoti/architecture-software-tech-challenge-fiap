@@ -1,5 +1,6 @@
 package br.com.fiap.delivery.infrastructure.persistence.clientes.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,6 +12,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -19,6 +21,7 @@ import java.util.UUID;
 @Entity
 @Accessors(fluent = true)
 @Table(name = "enderecos")
+@DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -41,27 +44,7 @@ public class EnderecoEntity implements Serializable {
     @Column(length = 2)
     private String uf;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "codigo", name = "codigo_cliente")
     private ClienteEntity cliente;
-
-    public EnderecoEntity(
-            UUID codigo,
-            String logradouro,
-            String numero,
-            String complemento,
-            String bairro,
-            String cidade,
-            String cep,
-            String uf
-    ) {
-        this.codigo = codigo;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.cep = cep;
-        this.uf = uf;
-    }
 }

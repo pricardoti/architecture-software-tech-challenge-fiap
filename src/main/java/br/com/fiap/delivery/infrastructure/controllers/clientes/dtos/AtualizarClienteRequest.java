@@ -26,10 +26,6 @@ public class AtualizarClienteRequest {
     @NotNull
     private @Valid AtualizarEnderecoRequest endereco;
 
-    public Cliente toDomain() {
-        return new Cliente(cpf, nomeCompleto, email, endereco.toDomain());
-    }
-
     public Cliente toDomain(UUID codiogoCliente) {
         return new Cliente(codiogoCliente, cpf, nomeCompleto, email, endereco.toDomain());
     }
