@@ -13,6 +13,8 @@ public interface ClienteGateway {
 
     void excluir(UUID codigoCliente);
 
+    Cliente consultarPorCodigo(UUID codigoCliente);
+
     Cliente consultarPorCpf(String cpf);
 
     Collection<Cliente> consultarClientes();

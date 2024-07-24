@@ -54,4 +54,10 @@ public class ClienteGatewayJPA implements ClienteGateway {
         // TODO: mudar para uma exclusão logica na base de dados
         clienteRepository.deleteById(codigoCliente);
     }
+
+    @Override
+    public Cliente consultarPorCodigo(UUID codigoCliente) {
+        var clienteEntity = clienteRepository.getReferenceById(codigoCliente);
+        return ClienteEntityMapper.toDomain(clienteEntity);
+    }
 }

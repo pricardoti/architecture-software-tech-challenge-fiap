@@ -1,8 +1,8 @@
-package br.com.fiap.delivery.infrastructure.controllers.clientes.presenters;
+package br.com.fiap.delivery.infrastructure.api.clientes.presenters;
 
 import br.com.fiap.delivery.application.presenters.ConsultarClientePresenter;
 import br.com.fiap.delivery.domain.cliente.Cliente;
-import br.com.fiap.delivery.infrastructure.controllers.clientes.dtos.ConsultarClienteResponse;
+import br.com.fiap.delivery.infrastructure.api.clientes.dtos.ConsultarClienteResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;

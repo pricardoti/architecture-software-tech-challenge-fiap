@@ -1,4 +1,4 @@
-package br.com.fiap.delivery.infrastructure.controllers.clientes.dtos;
+package br.com.fiap.delivery.infrastructure.api.clientes.dtos;
 
 import br.com.fiap.delivery.domain.cliente.Cliente;
 import jakarta.validation.Valid;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class CadastrarClienteRequest {
+public class AtualizarClienteRequest {
 
     @CPF
     @NotNull
@@ -24,11 +24,7 @@ public class CadastrarClienteRequest {
     private String email;
 
     @NotNull
-    private @Valid CadastrarEnderecoRequest endereco;
-
-    public Cliente toDomain() {
-        return new Cliente(UUID.randomUUID(), cpf, nomeCompleto, email, endereco.toDomain());
-    }
+    private @Valid AtualizarEnderecoRequest endereco;
 
     public Cliente toDomain(UUID codiogoCliente) {
         return new Cliente(codiogoCliente, cpf, nomeCompleto, email, endereco.toDomain());

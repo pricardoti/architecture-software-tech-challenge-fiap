@@ -3,17 +3,17 @@ package br.com.fiap.delivery.application.usecases.clientes;
 import br.com.fiap.delivery.application.gateways.ClienteGateway;
 import br.com.fiap.delivery.domain.cliente.Cliente;
 
-import java.util.Collection;
+import java.util.UUID;
 
-public class ConsultarClientesUseCase {
+public class ConsultarClientePorCodigoUseCase {
 
     private final ClienteGateway clienteGateway;
 
-    public ConsultarClientesUseCase(ClienteGateway clienteGateway) {
+    public ConsultarClientePorCodigoUseCase(ClienteGateway clienteGateway) {
         this.clienteGateway = clienteGateway;
     }
 
-    public Collection<Cliente> executar() {
-        return clienteGateway.consultarClientes();
+    public Cliente executar(UUID codigo) {
+        return clienteGateway.consultarPorCodigo(codigo);
     }
 }

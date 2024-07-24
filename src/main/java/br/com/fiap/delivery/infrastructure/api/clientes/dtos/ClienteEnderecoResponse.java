@@ -1,4 +1,4 @@
-package br.com.fiap.delivery.infrastructure.controllers.clientes.dtos;
+package br.com.fiap.delivery.infrastructure.api.clientes.dtos;
 
 import br.com.fiap.delivery.domain.cliente.Endereco;
 import com.fasterxml.jackson.annotation.JsonProperty;
