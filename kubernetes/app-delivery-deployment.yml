@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-delivery-deployment
+  labels: 
+    app: app-delivery
 spec:
   replicas: 3
   selector:
@@ -16,7 +18,8 @@ spec:
         - name: app-delivery-container
           image: nicholasmateus/app-delivery-image:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+              name: http-web-svc
           envFrom:
             - configMapRef:
                 name: app-delivery-configmap

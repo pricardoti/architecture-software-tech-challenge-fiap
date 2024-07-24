@@ -7,6 +7,7 @@ spec:
     app: app-delivery
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8080
-  type: ClusterIP
+      port: 80
+      targetPort: http-web-svc
+      nodePort: 30001
+  type: NodePort
