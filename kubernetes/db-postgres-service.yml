@@ -6,8 +6,7 @@ spec:
   selector:
     app: db-postgresql-deployment
   ports:
-    - protocol: TCP
-      port: 5432
+    - port: 5432
       targetPort: http-ptg-port
       nodePort: 30002
   type: NodePort

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: db-postgresql-deployment
-  label: 
+  labels:
     app: db-postgresql-deployment
 spec:
   replicas: 1
@@ -26,16 +26,8 @@ spec:
           volumeMounts:
             - name: db-postgresql-storage
               mountPath: /var/lib/postgresql/data
-          readinessProbe:
-            exec:
-              command: ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
-            initialDelaySeconds: 5
-            periodSeconds: 10
-          livenessProbe:
-            exec:
-              command: ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
-            initialDelaySeconds: 15
-            periodSeconds: 20
+          resources: { }
+      restartPolicy: Always
       volumes:
         - name: db-postgresql-storage
-          emptyDir: {}
+          emptyDir: { }

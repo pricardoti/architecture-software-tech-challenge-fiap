@@ -5,7 +5,7 @@ metadata:
   labels: 
     app: app-delivery
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: app-delivery
@@ -17,6 +17,7 @@ spec:
       containers:
         - name: app-delivery-container
           image: nicholasmateus/app-delivery-image:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
               name: http-web-svc
@@ -27,6 +28,17 @@ spec:
             - name: delivery-config-volume
               mountPath: /etc/config
               readOnly: true
+          resources:
+            limits:
+              cpu: "1"
+              memory: "700Mi"
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+      restartPolicy: Always
       volumes:
         - name: delivery-config-volume
           emptyDir: {}
