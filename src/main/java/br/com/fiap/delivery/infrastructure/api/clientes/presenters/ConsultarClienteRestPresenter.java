@@ -1,6 +1,6 @@
 package br.com.fiap.delivery.infrastructure.api.clientes.presenters;
 
-import br.com.fiap.delivery.application.presenters.ConsultarClientePresenter;
+import br.com.fiap.delivery.application.presenters.clientes.ConsultarClientePresenter;
 import br.com.fiap.delivery.domain.cliente.Cliente;
 import br.com.fiap.delivery.infrastructure.api.clientes.dtos.ConsultarClienteResponse;
 import org.springframework.stereotype.Component;
@@ -15,5 +15,10 @@ public class ConsultarClienteRestPresenter implements ConsultarClientePresenter<
         return clientes.stream()
                 .map(ConsultarClienteResponse::new)
                 .toList();
+    }
+
+    @Override
+    public ConsultarClienteResponse handler(Cliente cliente) {
+        return new ConsultarClienteResponse(cliente);
     }
 }

@@ -28,9 +28,9 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1/clientes")
+@RequiredArgsConstructor
 public class ClienteAPIAdapter {
 
     private final ClienteController<CadastrarClienteResponse, ConsultarClienteResponse> clienteController;
@@ -47,11 +47,10 @@ public class ClienteAPIAdapter {
     }
 
     @GetMapping(produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(OK)
     public ResponseEntity<Collection<ConsultarClienteResponse>> consultarClientes(@RequestParam(value = "cpf", required = false) String cpf) {
         var clientes = clienteController.consultar(cpf);
-        return ResponseEntity
-                .status(OK)
-                .body(clientes);
+        return ResponseEntity.ok(clientes);
     }
 
     @PutMapping(
@@ -72,7 +71,8 @@ public class ClienteAPIAdapter {
 
     @DeleteMapping(path = "/{codigoCliente}")
     @ResponseStatus(NO_CONTENT)
-    public void excluirCadastro(@PathVariable("codigoCliente") String codigoCliente) throws CadastroUsuarioException {
+    public ResponseEntity.HeadersBuilder<?> excluirCadastro(@PathVariable("codigoCliente") String codigoCliente) throws CadastroUsuarioException {
         clienteController.excluir(UUID.fromString(codigoCliente));
+        return ResponseEntity.noContent();
     }
 }

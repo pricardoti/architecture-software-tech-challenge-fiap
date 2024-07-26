@@ -2,8 +2,8 @@ package br.com.fiap.delivery.application.controllers;
 
 import br.com.fiap.delivery.application.exception.CadastroUsuarioException;
 import br.com.fiap.delivery.application.gateways.ClienteGateway;
-import br.com.fiap.delivery.application.presenters.CadastrarClientePresenter;
-import br.com.fiap.delivery.application.presenters.ConsultarClientePresenter;
+import br.com.fiap.delivery.application.presenters.clientes.CadastrarClientePresenter;
+import br.com.fiap.delivery.application.presenters.clientes.ConsultarClientePresenter;
 import br.com.fiap.delivery.application.usecases.clientes.AtualizarClienteUseCase;
 import br.com.fiap.delivery.application.usecases.clientes.CadastrarClienteUseCase;
 import br.com.fiap.delivery.application.usecases.clientes.ConsultarClientePorCodigoUseCase;
@@ -53,7 +53,7 @@ public class ClienteController<T1, T2> {
     public Collection<T2> consultar(String cpf) {
         if (nonNull(cpf)) {
             var cliente = consultarClientePorCpfUseCase.executar(cpf);
-            return consultarClientePresenter.handler(List.of(cliente));
+            return List.of(consultarClientePresenter.handler(cliente));
         }
 
         var clientes = consultarClientesUseCase.executar();
