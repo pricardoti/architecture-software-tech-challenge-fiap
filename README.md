@@ -1,62 +1,23 @@
 #  FIAP Tech Challenge | Delivery
 
-### Fase 01 - Tech Challenge | Pós-graduação em Arquitetura de Software
+### Fase 02 - Tech Challenge | Pós-graduação em Arquitetura de Software
 
 ----
 
 ## Seção 01 - INFORMAÇÕES DO GRUPO E INTEGRANTES
 
-### Grupo 15
+| MATRÍCULA  | NOME                                              | E-MAIL                                                        |  GRUPO  |
+|:-----------|:--------------------------------------------------|:--------------------------------------------------------------|:-------:|
+| RM354688   | Nicholas Mateus Barreto Veloso de Azevedo Dantas  | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)             |   15    |
+| RM354692   | Paulo Ricardo Gonçalves dos Santos                | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                 |   15    |
+| RM356150   | Tarcisio Dantas de Andrade                        | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com)  |   15    |
 
-| MATRÍCULA | NOME                                             | E-MAIL                                                       |
-|-----------|--------------------------------------------------|--------------------------------------------------------------|
-| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)            |
-| RM354692  | Paulo Ricardo Gonçalves dos Santos               | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                |
-| RM356150  | Tarcisio Dantas de Andrade                       | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
+## Seção 02 - Arquitetura do Sistema
 
-## Seção 02 - EVENT STORMING
+Na abordagem utilizada para a arquitetura do sistema, visando o fluxogroma na **"Arqutetura Limpa"**, possui a seguinte
+imagem para ilustrar esse fluxo:
 
-Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mais de contexto para a solução do problema
-do [delivery](./docs/contexto/delivery-tech-challenge-fiap.md), podemos apresentar alguns contextos abordados durante
-essa seção, sendo eles:
-
-<details>
-<summary>  <b>Etapa 00 - Legendas e Linguagem Ubíqua</b> </summary>
-
-![Legendas](docs/images/etapa-00_legendas.svg)
-![Linguagem Ubíqua](docs/images/etapa-00_linguagem-ubiqua.svg)
-
-</details>
-
-<details>
-<summary>  <b>Etapa 01 - Brainstorm</b> </summary>
-
-![Brainstorm](docs/images/etapa-01_brainstorm.svg)
-
-</details>
-
-<details>
-<summary>  <b>Etapa 02 - Eventos e Pontos de Atenção do Fluxo</b> </summary>
-
-![Eventos e Pontos de Atenção](docs/images/etapa-02_eventos-e-pontos-de-atencao.svg)
-
-</details>
-
-<details>
-<summary>  <b>Etapa 03 - Versão Final dos Eventos</b> </summary>
-
-![Versão Final dos Eventos](docs/images/etapa-03_versao-final-eventos.svg)
-
-</details>
-
-<details>
-<summary>  <b>Etapa 04 - Versão Final dos Agregados e Contextos Delimitados</b> </summary>
-
-![Versão Final dos Agregados e Contextos Delimitados](docs/images/etapa-04_versao-final-agregados-e-contextos-delimitados.svg)
-
-</details>
-
-> Para maiores informações, o acesso para visualização no **[Miro](https://encurtador.com.br/1XQOW)**
+![Arquitetura App Delivery](./docs/images/arquitetura_app_delivery.drawio.svg)
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
@@ -71,70 +32,117 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-
-## Pré-requisitos do Projeto ```DELIVERY```
-
-- `src/main/java`: Diretório do código fonte da aplicação
-- `src/test/java`: Diretório do código fonte dos testes da aplicação
-- `src/main/resources`: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
-- <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação
-- `docker-compose.yml`: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
-### Etapa 01: Instalação do Docker Desktop ou Docker Engine
+Esta documentação oferece diretrizes detalhadas para a configuração do ambiente Minikube, a implantação de aplicativos e o 
+acesso a serviços num cluster Kubernetes local. A seguir, você encontrará os procedimentos que descrevem cada uma das 
+etapas necessárias:
 
-Para realizar a instalação do docker, devemos selecionar a opção do nosso sistema operacional na documentação abaixo:
+### Etapa 01: Habilitar Métricas do Minikube
 
-#### DOCKER DESKTOP
+Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
 
-- **Windows**
-    - [Instalar Docker Desktop para Windows](https://docs.docker.com/desktop/install/windows-install/)
-- **MAC**
-    - [Instalar Docker Desktop para MAC](https://docs.docker.com/desktop/install/mac-install/)
-- **Linux**
-    - [Instalar Docker Desktop para Linux](https://docs.docker.com/desktop/install/linux-install/)
-
-#### DOCKER ENGINE
-
-- [Instalar Docker Engine](https://docs.docker.com/engine/install/)
-
-> **Para maiores informações, poderá acessar a documentação do próprio [Docker](https://www.docker.com/get-started/)**
-
-### Etapa 02: Construção e Inicialização das Imagens para Execução dos Serviços via Docker
-
-Para realizar a execução da aplicação, será necessário antes, a construção das imagens para o containers do **Docker**.
-
-Estando com o **Docker Desktop** aberto ou com seu serviço em execução, precisa navegar até o diretório do projeto para
-executar o comando abaixo:
-
-```docker
-docker compose up -d
+```bash
+minikube addons list
+minikube addons enable metrics-server
 ```
 
-> Lembrando que o parâmetro "-d", vem de "detached mode" ou modo desanexado.
-> Para que o docker compose inicie os containers em segundo plano.
+### Etapa 02: Iniciar o Minikube
 
-O comando supracitado irá criar e iniciar os seguintes containers:
+Para iniciar o Minikube, utilize o seguinte comando:
 
-- ```postgres-db-server``` - Container responsável pela execução do Banco de Dados Relacional **PostgreSQL**
-- ```app-delivery-service``` - Container responsável pela execução da aplicação Java **delivery**
-
-Para encerrar os containers, será necessário executar o comando abaixo:
-
-```docker
-docker compose down -v
+```bash
+minikube start
 ```
 
-> Lembrando que o parâmetro "-v", vem de "volume".
-> Para que o docker compose encerre a execução dos containers e exclua os volumes relacionados aos mesmos.
+### Etapa 03: Utilizar o Daemon Docker dentro da Instância do Minikube
+
+Para configurar o uso do daemon Docker dentro da instância do Minikube, execute o seguinte comando:
+
+```bash
+eval $(minikube docker-env)
+```
+
+### Etapa 04: Gerar a Imagem do Projeto
+
+Para construir a imagem do projeto no diretório do projeto, utilize o seguinte comando:
+
+```bash
+docker build --no-cache -t tech-challenge .
+```
+
+### Etapa 05: Executar os Scripts de Implantação
+
+Para implantar os recursos necessários no Kubernetes, execute os seguintes comandos:
+
+```bash
+kubectl apply -f postgres-configmap-1.yaml
+kubectl apply -f postgres-pvc-pv-2.yaml
+kubectl apply -f postgres-deployment-3.yaml
+kubectl apply -f postgres-service-4.yaml
+kubectl apply -f tech-challenge-fiap-deployment-5.yaml
+kubectl apply -f tech-challenge-fiap-service-6.yaml
+kubectl apply -f hpa.yaml
+```
+
+### Etapa 06: Conectar o DBeaver ao PostgreSQL
+
+Para conectar o DBeaver ao PostgreSQL implantado no Kubernetes, execute os seguintes comandos:
+
+```bash
+kubectl get pods
+kubectl port-forward pod/[pod-name] 5432:5432
+```
+
+Após isso, conecte o DBeaver à seguinte URL:
+
+```
+localhost:5432/postgres
+```
+
+Use as seguintes credenciais:
+
+- Usuário: fiap
+- Senha: fiap123
+
+### Etapa 07: Expor a Porta 80 do Container da Aplicação
+
+Para acessar a aplicação via porta 8080, execute o seguinte comando:
+
+```bash
+kubectl port-forward pod/[pod-name] 8080:8080
+```
+
+Após isso, você pode acessar a seguinte URL para acessar a API de combos:
+
+```bash
+localhost:8080/v1/clientes
+```
+
+### Etapa 08: Encerrar o Minikube
+
+Para encerrar o Minikube, utilize o seguinte comando:
+
+```bash
+minikube stop
+```
+
+Após isso, você pode excluir os containers:
+
+```bash
+minikube delete all --all
+```
 
 ## Swagger
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
 ```html
-http://localhost:8080/swagger-ui/index.html
+https://pricardoti.github.io/architecture-software-tech-challenge-fiap/
 ```
 
 > Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja
@@ -145,25 +153,4 @@ http://localhost:8080/swagger-ui/index.html
 
 Para baixar a collection da [API Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
 
-Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY) 
-
-## Seção 04 - MELHORIAS FUTURAS PARA A API
-
-### Exclusão Lógica dos Produtos
-
-Para que os produtos não gerem problemas em cadastros já realizados anteriormente no banco de dados em que estão
-sendo usados, seria necessário colocar uma *exclusão lógica*, sendo que o produto iria ter um campo boleano (TRUE|FALSE)
-que iria indicar, se o mesmo está "ativo" ou "inativo" para ser usado.
-
-### Criação de Testes Unitários | Criação de Testes de Integração | Criação de Testes Arquiteturais
-
-A criação dos testes supracitados no título, ajuda na melhoria da qualidade do código, eficiente e também trazendo mais
-resiliência para a aplicação a ser testado.
-
-### Adicionar Paginação nas Consultas
-
-Realizar a implementação das paginações necessários referente aos endpoints que possuem tal necessidade.
-
-### Melhoria nas Mensagens de Exceção
-
-Necessidade de trazer mensagens mais amigáveis no retorno dos enpoints para melhor entendimento do problema exposto.
+Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY)
