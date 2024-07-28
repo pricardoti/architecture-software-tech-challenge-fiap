@@ -45,7 +45,7 @@ public class ProdutoController<P1, P2> {
 
     public P1 cadastrar(Produto produto) throws ProdutoException {
         var produtoCadastrado = cadastrarProdutoUseCase.executar(produto);
-        return cadastrarProdutoPresenter.handler(produto);
+        return cadastrarProdutoPresenter.handler(produtoCadastrado);
     }
 
     public Collection<P2> consultarPorCategoria(CategoriaProduto categoriaProduto) {

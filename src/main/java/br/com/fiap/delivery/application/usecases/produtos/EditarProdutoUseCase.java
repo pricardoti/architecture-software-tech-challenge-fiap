@@ -23,6 +23,6 @@ public class EditarProdutoUseCase {
         if (produtoCadastrao.isPresent())
             throw new ProdutoException("produto não cadastrado, por favor verifique as informações.");
 
-        produtoGateway.cadastrar(produto);
+        produtoGateway.atualizar(produto);
     }
 }

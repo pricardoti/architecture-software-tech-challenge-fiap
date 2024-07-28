@@ -4,13 +4,13 @@ import br.com.fiap.delivery.domain.produto.CategoriaProduto;
 import br.com.fiap.delivery.domain.produto.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.experimental.Accessors;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
-@Accessors(fluent = true)
+@Setter
 @AllArgsConstructor
 public class ConsultarProdutoResponse {
 
