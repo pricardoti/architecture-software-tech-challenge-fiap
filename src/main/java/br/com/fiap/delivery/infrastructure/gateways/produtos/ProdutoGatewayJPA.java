@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -25,8 +26,13 @@ public class ProdutoGatewayJPA implements ProdutoGateway {
     }
 
     @Override
-    public Produto consultar(Produto produto) {
-        return null;
+    public Optional<Produto> consultar(Produto produto) {
+        var produtoEntity = produtoRepository.findByNomeAndCategoria(produto.getNome(), produto.getCategoria());
+
+        if (produtoEntity.isEmpty())
+            return Optional.empty();
+
+        return produtoEntity.map(ProdutoEntityMapper::toDomain);
     }
 
     @Override

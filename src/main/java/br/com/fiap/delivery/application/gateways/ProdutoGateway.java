@@ -4,13 +4,14 @@ import br.com.fiap.delivery.domain.produto.CategoriaProduto;
 import br.com.fiap.delivery.domain.produto.Produto;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface ProdutoGateway {
 
     Produto cadastrar(Produto produto);
 
-    Produto consultar(Produto produto);
+    Optional<Produto> consultar(Produto produto);
 
     Collection<Produto> consultarPorCategoria(CategoriaProduto categoriaProduto);
 
