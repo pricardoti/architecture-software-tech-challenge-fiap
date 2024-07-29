@@ -11,3 +11,9 @@ spring:
         format_sql: true
     hibernate:
       ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+
+api:
+  pagamento:
+    mercadopago:
+      url: 'https://api.mercadopago.com'
+      token: 'TEST-8025751384948506-072819-0d04b2e9dbbc225451d516a688b01c2a-33409927'

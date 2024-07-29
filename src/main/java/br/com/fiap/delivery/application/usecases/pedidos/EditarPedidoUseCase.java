@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static br.com.fiap.delivery.domain.pedido.StatusPedido.AGUARDANDO_PAGAMENTO;
+import static br.com.fiap.delivery.domain.pedido.StatusPedido.RECEBIDO;
 import static br.com.fiap.delivery.domain.pedido.StatusPedido.CANCELADO;
 import static br.com.fiap.delivery.domain.pedido.StatusPedido.EM_PREPARACAO;
 import static br.com.fiap.delivery.domain.pedido.StatusPedido.FINALIZADO;
@@ -24,7 +24,7 @@ public class EditarPedidoUseCase {
 
     static {
         FLUXO_STATUS_PEDIDO = new HashMap<>();
-        FLUXO_STATUS_PEDIDO.put(AGUARDANDO_PAGAMENTO, EM_PREPARACAO);
+        FLUXO_STATUS_PEDIDO.put(RECEBIDO, EM_PREPARACAO);
         FLUXO_STATUS_PEDIDO.put(EM_PREPARACAO, PRONTO_ENTREGA);
         FLUXO_STATUS_PEDIDO.put(PRONTO_ENTREGA, FINALIZADO);
     }

@@ -43,6 +43,6 @@ public class BeansConfiguration {
             CadastrarPedidoPresenter<P1> cadastrarPedidoPresenter,
             ConsultarPedidoPresenter<P2> consultarPedidoPresenter
     ) {
-        return new PedidoController<>(pedidoGateway, produtoGateway, cadastrarPedidoPresenter, consultarPedidoPresenter);
+        return new PedidoController<>(pedidoGateway, produtoGateway, null, cadastrarPedidoPresenter, consultarPedidoPresenter);
     }
 }

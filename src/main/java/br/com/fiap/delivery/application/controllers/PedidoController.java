@@ -1,6 +1,7 @@
 package br.com.fiap.delivery.application.controllers;
 
 import br.com.fiap.delivery.application.exception.PedidoException;
+import br.com.fiap.delivery.application.gateways.PagamentoGateway;
 import br.com.fiap.delivery.application.gateways.PedidoGateway;
 import br.com.fiap.delivery.application.gateways.ProdutoGateway;
 import br.com.fiap.delivery.application.presenters.pedido.CadastrarPedidoPresenter;
@@ -30,6 +31,7 @@ public class PedidoController<T1, T2> {
     public PedidoController(
             PedidoGateway pedidoGateway,
             ProdutoGateway produtoGateway,
+            PagamentoGateway pagamentoGateway,
             CadastrarPedidoPresenter<T1> cadastrarPedidoPresenter,
             ConsultarPedidoPresenter<T2> consultarPedidoPresenter
     ) {
@@ -42,7 +44,7 @@ public class PedidoController<T1, T2> {
 
         var consultarPedidoPorCodigoUseCase = new ConsultarPedidoPorCodigoUseCase(pedidoGateway);
         this.editarPedidoUseCase = new EditarPedidoUseCase(pedidoGateway, consultarPedidoPorCodigoUseCase);
-        this.realizarCheckoutPedidoUseCase = new RealizarCheckoutPedidoUseCase(pedidoGateway, consultarPedidoPorCodigoUseCase);
+        this.realizarCheckoutPedidoUseCase = new RealizarCheckoutPedidoUseCase(pedidoGateway, pagamentoGateway, consultarPedidoPorCodigoUseCase);
     }
 
     public T1 cadastrar(Pedido pedido) throws PedidoException {

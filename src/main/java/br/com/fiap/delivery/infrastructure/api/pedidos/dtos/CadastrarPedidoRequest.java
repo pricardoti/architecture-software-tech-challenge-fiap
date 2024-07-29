@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-import static br.com.fiap.delivery.domain.pedido.StatusPedido.AGUARDANDO_PAGAMENTO;
+import static br.com.fiap.delivery.domain.pedido.StatusPedido.RECEBIDO;
 
 @Getter
 @Setter
@@ -33,7 +33,7 @@ public class CadastrarPedidoRequest {
         var pedido = new Pedido();
         pedido.setCodigoPedido(UUID.randomUUID());
         pedido.setCliente(UUID.fromString(codigoCliente));
-        pedido.setStatus(AGUARDANDO_PAGAMENTO);
+        pedido.setStatus(RECEBIDO);
         pedido.setDataHoraSolicitacao(LocalDateTime.now());
         pedido.setProdutos(
                 produtos.stream()
