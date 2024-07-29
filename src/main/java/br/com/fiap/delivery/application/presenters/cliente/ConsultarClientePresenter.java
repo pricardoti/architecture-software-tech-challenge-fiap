@@ -1,4 +1,4 @@
-package br.com.fiap.delivery.application.presenters.clientes;
+package br.com.fiap.delivery.application.presenters.cliente;
 
 import br.com.fiap.delivery.domain.cliente.Cliente;
 

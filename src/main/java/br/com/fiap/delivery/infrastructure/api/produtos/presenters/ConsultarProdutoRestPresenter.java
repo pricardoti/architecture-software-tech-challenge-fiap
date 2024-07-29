@@ -1,6 +1,6 @@
 package br.com.fiap.delivery.infrastructure.api.produtos.presenters;
 
-import br.com.fiap.delivery.application.presenters.produtos.ConsultarProdutoPresenter;
+import br.com.fiap.delivery.application.presenters.produto.ConsultarProdutoPresenter;
 import br.com.fiap.delivery.domain.produto.Produto;
 import br.com.fiap.delivery.infrastructure.api.produtos.dtos.ConsultarProdutoResponse;
 import org.springframework.stereotype.Component;
