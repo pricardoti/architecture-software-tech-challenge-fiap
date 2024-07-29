@@ -4,12 +4,10 @@ metadata:
   name: postgres
   labels:
     app: postgres
-    tier: database
 spec:
-#  type: NodePort
+  type: NodePort
   ports:
     - port: 5432
       targetPort: 5432
   selector:
     app: postgres
-    tier: database

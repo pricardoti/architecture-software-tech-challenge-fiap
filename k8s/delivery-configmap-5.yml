@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: delivery-config
+data:
+  application.properties: |
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/delivery
+  SPRING_DATASOURCE_USERNAME: fiap
+  SPRING_DATASOURCE_PASSWORD: fiap123
+  SPRING_JPA_HIBERNATE_DDL_AUTO: create

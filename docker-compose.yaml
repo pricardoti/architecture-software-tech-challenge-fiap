@@ -1,18 +1,16 @@
 services:
 
   postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      - POSTGRES_USER=fiap
-      - POSTGRES_PASSWORD=fiap123
-      - POSTGRES_DB=delivery
-    ports:
-      - 5432:5432
+    image: postgres:16-alpine
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
+    container_name: postgres
+    env_file: ./env/postgres.env
+    ports:
+      - 5432:5432
+    restart: unless-stopped
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER" ]
+      test: pg_isready -d $$POSTGRES_DB -h db -p 5432 -U $$POSTGRES_USER
       interval: 10s
       timeout: 5s
       retries: 5
@@ -29,12 +27,9 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      postgres-db-server:
+      postgres:
         condition: service_healthy
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/delivery
-      - SPRING_DATASOURCE_USERNAME=fiap
-      - SPRING_DATASOURCE_PASSWORD=fiap123
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+    restart: unless-stopped
+    env_file: ./env/app.env
     ports:
       - 8080:8080

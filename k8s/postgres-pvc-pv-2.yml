@@ -20,7 +20,6 @@ metadata:
   name: postgres-pv-claim
   labels:
     app: postgres
-    tier: database
 spec:
   storageClassName: manual
   accessModes:

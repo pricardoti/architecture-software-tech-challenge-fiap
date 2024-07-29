@@ -47,3 +47,7 @@ build/
 ### VS Code ###
 .vscode/
 postgres_data/
+
+!env
+/env/
+/env

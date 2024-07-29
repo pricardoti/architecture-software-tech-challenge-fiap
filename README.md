@@ -88,13 +88,14 @@ docker build --no-cache -t delivery .
 Para implantar os recursos necessários no Kubernetes, execute os seguintes comandos:
 
 ```bash
-kubectl apply -f postgres-configmap-1.yml
-kubectl apply -f postgres-pvc-pv-2.yml
-kubectl apply -f postgres-deployment-3.yml
-kubectl apply -f postgres-service-4.yml
-kubectl apply -f app-delivery-deployment-5.yml
-kubectl apply -f app-delivery-service-6.yml
-kubectl apply -f app-delivery-hpa.yml
+kubectl apply -f k8s/postgres-configmap-1.yml
+kubectl apply -f k8s/postgres-pvc-pv-2.yml
+kubectl apply -f k8s/postgres-deployment-3.yml
+kubectl apply -f k8s/postgres-service-4.yml
+kubectl apply -f k8s/delivery-configmap-5.yml
+kubectl apply -f k8s/delivery-deployment-6.yml
+kubectl apply -f k8s/delivery-service-7.yml
+kubectl apply -f k8s/delivery-hpa.yml
 ```
 
 ### Etapa 06: Conectar o DBeaver ao PostgreSQL
