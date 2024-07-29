@@ -1,0 +1,385 @@
+openapi: 3.0.3
+
+info:
+  title: PósTech FIAP - Tech Challenge - 7SOAT
+  description: |-
+    Api para realização de pedidos num restaurante de fastfood
+  version: 1.0.0
+
+externalDocs:
+  description: Sobre o projeto
+  url: https://github.com/pricardoti/architecture-software-tech-challenge-fiap/wiki
+
+servers:
+  - url: http://localhost:8080
+
+tags:
+  - name: "Cliente"
+    description: "Tudo sobre o cliente"
+  - name: "Ingrediente"
+    description: "Tudo sobre os ingredientes"
+  - name: "Produto"
+    description: "Tudo sobre os produtos"
+  - name: "Combos"
+    description: "Tudo sobre os combos"
+  - name: "Pedido"
+    description: "Tudo sobre o pedido"
+
+paths:
+  /v1/clientes:
+    post:
+      tags:
+        - Cliente
+      description: Tudo sobre o cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cpf:
+                  type: string
+                  example: "00000000191"
+                  description: Cpf do cliente
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: "#/definitions/CPF"
+
+        "400":
+          description: Bad Request
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /api/ingredientes:
+    post:
+      tags:
+        - Ingrediente
+      description: Tudo sobre o ingrediente do produto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+                  example: "Batata"
+                  description: Descrição do ingrediente
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: "#/definitions/Ingrediente"
+
+  /api/produto:
+    post:
+      tags:
+        - Produto
+      description: Tudo sobre o produto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: "x-Salada"
+                  description: Nome do lanche
+                preco:
+                  type: decimal
+                  example: 30.0
+                  description: "Preço do lanche"
+                descricao:
+                  type: string
+                  example: "Lanche com salada de alface"
+                  description: "Descrição do lanche"
+                tipo:
+                  type: string
+                  example: "lanche"
+                  description: "Tipo do produto (Ex. lanche, acompanhamento, bebida)"
+                ingredientes:
+                  type: object
+                  example: [ "7ad00a46-3e0b-483d-a05e-037d37c3db67" ]
+                  description: "uuid do ingrediente cadastrado"
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: "#/definitions/Produto"
+
+  /api/combos:
+    get:
+      tags:
+        - Combos
+      description: Tudo sobre combos
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: "#/definitions/Combos"
+    post:
+      tags:
+        - Combos
+      description:
+        Cria um combo com os produtos cadastrados
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                produtos:
+                  type: "object"
+                  example: [ "ac45080a-ba2c-4380-be2c-e25c702cc9ef","221b9655-c759-41fd-a958-8dc1d2118c54","67ea9b61-18af-41e1-b782-540634ea450f" ]
+                  description: uuid dos produtos
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: "#/definitions/Combos"
+        "400":
+          description: "Bad request"
+          schema:
+            $ref: "#/definitions/ApiResponse"
+
+  /api/pedidos:
+    post:
+      tags:
+        - Pedido
+      description:
+        Criar o pedido do cliente
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientId:
+                  type: string
+                  example: "00000000191"
+                  description: CPF do cliente
+                produtosId:
+                  type: object
+                  example:
+                    [
+                      "67ea9b61-18af-41e1-b782-540634ea450f",
+                      "1d5a8cb2-4556-4cf6-a430-20b396ebe2f3",
+                      "221b9655-c759-41fd-a958-8dc1d2118c54"
+                    ]
+                  description: Produtos que vão conter o pedido
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: "#/definitions/Pedido"
+
+  /api/pedidos/:
+    get:
+      tags:
+        - Pedido
+      description:
+        Retorna todos os pedidos
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Pedido"
+
+  /api/pedidos/{uuid}:
+    get:
+      tags:
+        - Pedido
+      description:
+        Retorna o pedido correspondente
+      parameters:
+        - name: id
+          in: path
+          description: uuid do pedido
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "e6b78e28-f4d9-4d39-ac7d-5ce0d72719cc"
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: "#/definitions/Pedido"
+
+  /api/pedidos/{uuid}/callback:
+    patch:
+      tags:
+        - Pedido
+      description:
+        Recebe confirmação do pagamento do pedido
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid da pedido
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "e168e493-59fe-4610-a0c1-561112e79c15"
+      responses:
+        "204":
+          description: Successfull operation (No Content)
+
+  /api/pedidos/{uuid}/preparo-finalizado:
+    patch:
+      tags:
+        - Pedido
+      description:
+        Conclui a preparação do pedido e atualiza o status
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid da pedido
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "e168e493-59fe-4610-a0c1-561112e79c15"
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: "#/definitions/Pedido"
+
+  /api/pedidos/{uuid}/entregue:
+    patch:
+      tags:
+        - Pedido
+      description: |
+        Recebe confirmação do pagamento do pedido
+      parameters:
+        - name: uuid
+          in: path
+          description: Uuid da pedido
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "e168e493-59fe-4610-a0c1-561112e79c15"
+
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            $ref: "#/definitions/Pedido"
+
+definitions:
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+  CPF:
+    type: "object"
+    properties:
+      cpf:
+        type: "string"
+        description: "CPF do Cliente"
+
+  Ingrediente:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: "id do ingrediente"
+      descricao:
+        type: string
+        description: "Descrição do ingrediente"
+
+  Produto:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: "id do produto"
+      nome:
+        type: string
+        description: "nome do produto"
+      preco:
+        type: decimal
+        description: "valor do produto"
+      tipo:
+        type: string
+        description: "Tipo do produto"
+      ingredientes:
+        type: "object"
+        properties:
+          id:
+            type: string
+            description: "id do ingrediente"
+          descricao:
+            type: string
+            description: "descricao do ingrediente"
+
+  Combos:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: "id do combo"
+      precoTotal:
+        type: decimal
+        description: "Valor do combo"
+      produtos:
+        type: "object"
+        properties:
+          id:
+            type: string
+            description: "id do produto"
+          nome:
+            type: string
+            description: "nome do produto"
+          descricao:
+            type: string
+            description: "descricao do produto"
+          preco:
+            type: string
+            description: "valor do produto"
+          tipo:
+            type: string
+            description: "tipo do produto"
+          ingredientes:
+            type: "object"
+            properties:
+              id:
+                type: string
+                description: "id do ingrediente"
+              descricao:
+                type: string
+                description: "descrição do ingrediente"
+
+  Pedido:
+    type: "object"
+    properties:
+      id:
+        type: string
+        description: "id do pedido"
+      cpf:
+        type: string
+        description: "CPF do cliente"
+      produtosId:
+        type: "object"
+        properties:
+          type: string
+          description: "id dos produtos"
+      status:
+        type: string
+        description: "Status do pedido"
+      pagamentoQrCode:
+        type: string
+        description: "QR code para pagamento do pedido"

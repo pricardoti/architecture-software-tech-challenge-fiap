@@ -42,6 +42,14 @@ Esta documentação oferece diretrizes detalhadas para a configuração do ambie
 acesso a serviços num cluster Kubernetes local. A seguir, você encontrará os procedimentos que descrevem cada uma das 
 etapas necessárias:
 
+### Etapa 00: Instalar o Minikube
+
+Para verificar as instruções para instalar o Minikube, basta acessar o seguinte link:
+
+- [Minikube-Install-Windows](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+- [Minikube-Install-Linux](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+- [Minikube-Install-macOS](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
+
 ### Etapa 01: Habilitar Métricas do Minikube
 
 Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
@@ -72,7 +80,7 @@ eval $(minikube docker-env)
 Para construir a imagem do projeto no diretório do projeto, utilize o seguinte comando:
 
 ```bash
-docker build --no-cache -t tech-challenge .
+docker build --no-cache -t delivery .
 ```
 
 ### Etapa 05: Executar os Scripts de Implantação
@@ -80,13 +88,13 @@ docker build --no-cache -t tech-challenge .
 Para implantar os recursos necessários no Kubernetes, execute os seguintes comandos:
 
 ```bash
-kubectl apply -f postgres-configmap-1.yaml
-kubectl apply -f postgres-pvc-pv-2.yaml
-kubectl apply -f postgres-deployment-3.yaml
-kubectl apply -f postgres-service-4.yaml
-kubectl apply -f tech-challenge-fiap-deployment-5.yaml
-kubectl apply -f tech-challenge-fiap-service-6.yaml
-kubectl apply -f hpa.yaml
+kubectl apply -f postgres-configmap-1.yml
+kubectl apply -f postgres-pvc-pv-2.yml
+kubectl apply -f postgres-deployment-3.yml
+kubectl apply -f postgres-service-4.yml
+kubectl apply -f app-delivery-deployment-5.yml
+kubectl apply -f app-delivery-service-6.yml
+kubectl apply -f app-delivery-hpa.yml
 ```
 
 ### Etapa 06: Conectar o DBeaver ao PostgreSQL

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment
+  labels:
+    app: deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deployment
+  template:
+    metadata:
+      labels:
+        app: deployment
+    spec:
+      containers:
+        - name: delivery
+#          image: 'nicholasmateus/app-delivery-image:latest'
+          image: 'delivery:latest'
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+#          livenessProbe:
+#            httpGet:
+#              path: /actuator/health/liveness
+#              port: 8080
+#            periodSeconds: 10
+#            failureThreshold: 3
+#            initialDelaySeconds: 20
+#          readinessProbe:
+#            httpGet:
+#              path: /actuator/health/readiness
+#              port: 8080
+#            periodSeconds: 10
+#            failureThreshold: 5
+#            initialDelaySeconds: 3
+          resources:
+            requests:
+              cpu: "1m"
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres:5432/delivery
+            - name: SPRING_DATASOURCE_USERNAME
+              value: fiap
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: fiap123
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: create
