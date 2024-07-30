@@ -11,375 +11,502 @@ externalDocs:
   url: https://github.com/pricardoti/architecture-software-tech-challenge-fiap/wiki
 
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/v1
 
 tags:
   - name: "Cliente"
     description: "Tudo sobre o cliente"
-  - name: "Ingrediente"
-    description: "Tudo sobre os ingredientes"
   - name: "Produto"
     description: "Tudo sobre os produtos"
-  - name: "Combos"
-    description: "Tudo sobre os combos"
   - name: "Pedido"
     description: "Tudo sobre o pedido"
 
 paths:
-  /v1/clientes:
+  /clientes:
     post:
       tags:
         - Cliente
       description: Tudo sobre o cliente
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                cpf:
-                  type: string
-                  example: "00000000191"
-                  description: Cpf do cliente
+         $ref: "#/components/requestBodies/ClienteResquest"
       responses:
         "201":
-          description: Created
-          schema:
-            $ref: "#/definitions/CPF"
+          $ref: "#/components/responses/ClienteResponse"
 
         "400":
-          description: Bad Request
-          schema:
-            $ref: "#/definitions/ApiResponse"
-
-  /api/ingredientes:
-    post:
+          $ref: "#/components/responses/BadRequest"
+    get:
       tags:
-        - Ingrediente
-      description: Tudo sobre o ingrediente do produto
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                descricao:
-                  type: string
-                  example: "Batata"
-                  description: Descrição do ingrediente
-      responses:
-        "201":
-          description: Created
+        - Cliente
+      description: Tudo sobre o cliente
+      parameters:
+        - name: cpf
+          in: query
+          description: CPF do usuário
+          required: false
           schema:
-            $ref: "#/definitions/Ingrediente"
+            type: string
+            example: 72831839491
+      responses:
+        "200":
+          $ref: "#/components/responses/ClientesReponse"
 
-  /api/produto:
+        "400":
+          $ref: "#/components/responses/BadRequest"
+     
+  /clientes/{codigoCliente}:
+     put:
+      tags:
+        - Cliente
+      description: Atualização do Cliente
+      parameters:
+        - name: codigoCliente
+          in: path
+          description: Código do Cliente
+          required: true
+          schema:
+            type: string
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      responses:
+        "200":
+          $ref: "#/components/responses/Sucess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+     delete:
+      tags:
+        - Cliente
+      description: Deletar o Cliente
+      parameters:
+        - name: codigoCliente
+          in: path
+          description: Código do Cliente
+          required: true
+          schema:
+            type: string
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      responses:
+        "200":
+          $ref: "#/components/responses/Sucess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+          
+
+  /produtos:
     post:
       tags:
         - Produto
-      description: Tudo sobre o produto
+      description: Criar o produto
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                nome:
-                  type: string
-                  example: "x-Salada"
-                  description: Nome do lanche
-                preco:
-                  type: decimal
-                  example: 30.0
-                  description: "Preço do lanche"
-                descricao:
-                  type: string
-                  example: "Lanche com salada de alface"
-                  description: "Descrição do lanche"
-                tipo:
-                  type: string
-                  example: "lanche"
-                  description: "Tipo do produto (Ex. lanche, acompanhamento, bebida)"
-                ingredientes:
-                  type: object
-                  example: [ "7ad00a46-3e0b-483d-a05e-037d37c3db67" ]
-                  description: "uuid do ingrediente cadastrado"
+        $ref: "#/components/requestBodies/ProdutoResquest"
       responses:
         "201":
-          description: Created
-          schema:
-            $ref: "#/definitions/Produto"
-
-  /api/combos:
-    get:
+          $ref: "#/components/responses/ProdutoResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+  /produtos/{codigoProduto}:
+    put:
       tags:
-        - Combos
-      description: Tudo sobre combos
+        - Produto
+      description: Atualizar o produto
+      parameters:
+        - name: codigoProduto
+          in: path
+          description: Código do Produto
+          required: true
+          schema:
+            type: string
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      requestBody:
+        $ref: "#/components/requestBodies/ProdutoResquest"
       responses:
         "200":
-          description: Successful operation
-          schema:
-            $ref: "#/definitions/Combos"
-    post:
+          $ref: "#/components/responses/Sucess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+    delete:
       tags:
-        - Combos
-      description:
-        Cria um combo com os produtos cadastrados
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                produtos:
-                  type: "object"
-                  example: [ "ac45080a-ba2c-4380-be2c-e25c702cc9ef","221b9655-c759-41fd-a958-8dc1d2118c54","67ea9b61-18af-41e1-b782-540634ea450f" ]
-                  description: uuid dos produtos
+        - Produto
+      description: Atualizar o produto
+      parameters:
+        - name: codigoProduto
+          in: path
+          description: Código do Produto
+          required: true
+          schema:
+            type: string
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      responses:
+        "200":
+          $ref: "#/components/responses/Sucess"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+    get:
+      tags:
+        - Produto
+      description: Buscar o produto
+      parameters:
+        - name: categoria
+          in: query
+          description: CPF do usuário
+          required: false
+          schema:
+            type: string
+            enum: [EM_PREPARACAO, PRONTO_ENTREGA, CANCELADO, FINALIZADO]
+        - name: codigoProduto
+          in: path
+          description: Código do Produto
+          required: true
+          schema:
+            type: string
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
       responses:
         "201":
-          description: Created
-          schema:
-            $ref: "#/definitions/Combos"
+          $ref: "#/components/responses/ProdutosReponse"
         "400":
-          description: "Bad request"
-          schema:
-            $ref: "#/definitions/ApiResponse"
+          $ref: "#/components/responses/BadRequest"
+          
 
-  /api/pedidos:
+  /pedidos:
     post:
       tags:
         - Pedido
       description:
         Criar o pedido do cliente
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                clientId:
-                  type: string
-                  example: "00000000191"
-                  description: CPF do cliente
-                produtosId:
-                  type: object
-                  example:
-                    [
-                      "67ea9b61-18af-41e1-b782-540634ea450f",
-                      "1d5a8cb2-4556-4cf6-a430-20b396ebe2f3",
-                      "221b9655-c759-41fd-a958-8dc1d2118c54"
-                    ]
-                  description: Produtos que vão conter o pedido
+        $ref: "#/components/requestBodies/PedidoResquest"
       responses:
         "201":
-          description: Created
-          schema:
-            $ref: "#/definitions/Pedido"
-
-  /api/pedidos/:
+          $ref: "#/components/responses/PedidoResponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
     get:
       tags:
         - Pedido
       description:
-        Retorna todos os pedidos
-      responses:
-        "200":
-          description: Successful operation
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/Pedido"
-
-  /api/pedidos/{uuid}:
-    get:
-      tags:
-        - Pedido
-      description:
-        Retorna o pedido correspondente
+        Criar o pedido do cliente
       parameters:
-        - name: id
-          in: path
-          description: uuid do pedido
-          required: true
+        - name: cpf
+          in: query
+          description: CPF do usuário
+          required: false
           schema:
             type: string
-            format: uuid
-            example: "e6b78e28-f4d9-4d39-ac7d-5ce0d72719cc"
+            enum: [EM_PREPARACAO, PRONTO_ENTREGA, CANCELADO, FINALIZADO]        
       responses:
         "200":
-          description: Successful operation
-          schema:
-            $ref: "#/definitions/Pedido"
-
-  /api/pedidos/{uuid}/callback:
+          $ref: "#/components/responses/PedidosReponse"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+  /pedidos/{codigoPedido}:
     patch:
       tags:
         - Pedido
       description:
-        Recebe confirmação do pagamento do pedido
+        Criar o pedido do cliente
       parameters:
-        - name: uuid
+        - name: codigoPedido
           in: path
-          description: Uuid da pedido
+          description: Código do Pedido
           required: true
           schema:
             type: string
-            format: uuid
-            example: "e168e493-59fe-4610-a0c1-561112e79c15"
-      responses:
-        "204":
-          description: Successfull operation (No Content)
-
-  /api/pedidos/{uuid}/preparo-finalizado:
-    patch:
-      tags:
-        - Pedido
-      description:
-        Conclui a preparação do pedido e atualiza o status
-      parameters:
-        - name: uuid
-          in: path
-          description: Uuid da pedido
-          required: true
-          schema:
-            type: string
-            format: uuid
-            example: "e168e493-59fe-4610-a0c1-561112e79c15"
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      requestBody:
+        $ref: "#/components/requestBodies/StatusPedidoResquest"
       responses:
         "200":
-          description: Successful operation
-          schema:
-            $ref: "#/definitions/Pedido"
-
-  /api/pedidos/{uuid}/entregue:
-    patch:
+          $ref: "#/components/responses/Sucess"
+  /pedidos/{codigoPedido}/checkout:
+    post:
       tags:
         - Pedido
-      description: |
-        Recebe confirmação do pagamento do pedido
+      description: Checkout do Pedido
       parameters:
-        - name: uuid
+        - name: codigoPedido
           in: path
-          description: Uuid da pedido
+          description: Código do Pedido
           required: true
           schema:
             type: string
-            format: uuid
-            example: "e168e493-59fe-4610-a0c1-561112e79c15"
-
+            example: d57b37c6-8842-41c2-9806-ec287d220dc7 
+      requestBody:
+        $ref: "#/components/requestBodies/StatusPedidoResquest"
       responses:
         "200":
-          description: Successful operation
-          schema:
-            $ref: "#/definitions/Pedido"
+          $ref: "#/components/responses/Sucess"
+   
 
-definitions:
-  ApiResponse:
-    type: "object"
-    properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
-  CPF:
-    type: "object"
-    properties:
-      cpf:
-        type: "string"
-        description: "CPF do Cliente"
-
-  Ingrediente:
-    type: "object"
-    properties:
-      id:
-        type: string
-        description: "id do ingrediente"
-      descricao:
-        type: string
-        description: "Descrição do ingrediente"
-
-  Produto:
-    type: "object"
-    properties:
-      id:
-        type: string
-        description: "id do produto"
-      nome:
-        type: string
-        description: "nome do produto"
-      preco:
-        type: decimal
-        description: "valor do produto"
-      tipo:
-        type: string
-        description: "Tipo do produto"
-      ingredientes:
-        type: "object"
-        properties:
-          id:
-            type: string
-            description: "id do ingrediente"
-          descricao:
-            type: string
-            description: "descricao do ingrediente"
-
-  Combos:
-    type: "object"
-    properties:
-      id:
-        type: string
-        description: "id do combo"
-      precoTotal:
-        type: decimal
-        description: "Valor do combo"
-      produtos:
-        type: "object"
-        properties:
-          id:
-            type: string
-            description: "id do produto"
-          nome:
-            type: string
-            description: "nome do produto"
-          descricao:
-            type: string
-            description: "descricao do produto"
-          preco:
-            type: string
-            description: "valor do produto"
-          tipo:
-            type: string
-            description: "tipo do produto"
-          ingredientes:
-            type: "object"
-            properties:
-              id:
-                type: string
-                description: "id do ingrediente"
-              descricao:
-                type: string
-                description: "descrição do ingrediente"
-
-  Pedido:
-    type: "object"
-    properties:
-      id:
-        type: string
-        description: "id do pedido"
-      cpf:
-        type: string
-        description: "CPF do cliente"
-      produtosId:
-        type: "object"
-        properties:
-          type: string
-          description: "id dos produtos"
+components:
+  schemas:
+    StatusPedido:
+     type: object
+     properties:
       status:
+       type: string
+       enum: [EM_PREPARACAO, PRONTO_ENTREGA, CANCELADO, FINALIZADO]
+    
+    
+
+    Produto:
+      type: "object"
+      properties:
+        nome:
+          type: string
+          description: "nome do produto"
+          example: Batata Frita
+        descricao:
+          type: string
+          description: "descricao do produto"
+          example: Bebida 500ml
+        preco:
+          type: integer
+          format: double
+          description: "preco do produto"
+          example: 12.75
+        categoria:
+         type: string
+         description: "preco do produto"
+         example: ACOMPANHAMENTO
+        imagemUrl:
+         type: string
+         description: "imagem Url do produto"
+         example: null
+    Produtos:
+      type: "object"
+      properties:
+        codigo: 
+         type: string
+         example: fea06d61-3fd5-4475-8871-a88ebd5cb31d
+        nome:
+          type: string
+          description: "nome do produto"
+          example: Batata Frita
+        descricao:
+          type: string
+          description: "descricao do produto"
+          example: Bebida 500ml
+        preco:
+          type: integer
+          format: double
+          description: "preco do produto"
+          example: 12.75
+        categoria:
+         type: string
+         description: "preco do produto"
+         example: ACOMPANHAMENTO
+        imagemUrl:
+         type: string
+         description: "imagem Url do produto"
+         example: null
+    PedidosRetorno:
+     type: object
+     properties:
+       codigoPedido:
         type: string
-        description: "Status do pedido"
-      pagamentoQrCode:
+        example: dfcc5491-005e-416f-832d-a4ab6e835581
+       cliente: 
         type: string
-        description: "QR code para pagamento do pedido"
+        example: fd45d78e-9f33-46d4-9b54-f2f158d7b397
+       valorTotal:
+        type: integer
+        format: duble
+        example: 141.75
+       produtos:
+        type: array
+        items:
+          type: object
+          properties:
+            codigoProduto:
+              type: string
+              example: 257c13bd-ecc6-463c-bd5f-fc229180671e
+            quantidade:
+              type: integer
+              format: int64
+              example: 1
+           
+
+    Pedido:
+      type: "object"
+      properties:
+        codigoCliente:
+          type: string
+          description: "id do pedido"
+        produtos:
+          type: array
+          items:
+            type: object
+            properties:
+             codigoProduto:
+              type: string
+              example: e2d931cb-140a-420e-a428-6c29fd2f2ba8
+             quantidade:
+              type: integer
+              format: int64
+              example: 2
+    ClienteCadastro:
+      type: "object"
+      properties:
+        cpf:
+          type: string
+          example: 72831839491
+        nomeCompleto:
+          type: string
+          example: Clara Teresinha
+        email: 
+         type: string
+         example: mateus_duarte@focustg.com.br
+        endereco:
+         type: "object"
+         properties:
+          logradouro:
+           type: string
+           example: Rua Quatro de Outubro 1
+          numero:
+           type: string
+           example: 955
+          complemento:
+           type: string
+           example: Casa
+          bairro:
+           type: string
+           example: Centro
+          cidade:
+           type: string
+           example: Belém de Maria
+          cep:
+           type: string
+           example: 55440-970
+          uf:
+           type: string
+           example: PE
+    ClienteRetorno:
+      type: "object"
+      properties:
+        codigoCliente:
+          type: string
+          example: d57b37c6-8842-41c2-9806-ec287d220dc7
+    PedidoRetorno:
+      type: "object"
+      properties:
+        codigoPedido:
+          type: string
+          example: d57b37c6-8842-41c2-9806-ec287d220dc7
+    ProdutoRetorno:
+      type: "object"
+      properties:
+        codigoProduto:
+          type: string
+          example: d57b37c6-8842-41c2-9806-ec287d220dc7
+    ClientesRetorno:
+      type: "object"
+      properties:
+        codigo:
+          type: string
+          example: d57b37c6-8842-41c2-9806-ec287d220dc7
+        cpf:
+          type: string
+          example: 72831839491
+        nomeCompleto:
+          type: string
+          example: Clara Teresinha
+        email: 
+         type: string
+         example: mateus_duarte@focustg.com.br
+        endereco:
+         type: "object"
+         properties:
+          logradouro:
+           type: string
+           example: Rua Quatro de Outubro 1
+          numero:
+           type: string
+           example: 955
+          complemento:
+           type: string
+           example: Casa
+          bairro:
+           type: string
+           example: Centro
+          cidade:
+           type: string
+           example: Belém de Maria
+          cep:
+           type: string
+           example: 55440-970
+          uf:
+           type: string
+           example: PE
+          
+  requestBodies:
+    ClienteResquest:
+      description: Created user object
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/ClienteCadastro"
+    PedidoResquest:
+      description: Created user object
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/Pedido"
+    ProdutoResquest:
+      description: Created user object
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/Produto"
+    StatusPedidoResquest:
+      description: Created user object
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/StatusPedido"
+  responses:
+    ClientesReponse:
+      description: Successful Operation
+      content:
+        application/json:
+            schema:
+             type: array
+             items:
+               $ref: "#/components/schemas/ClientesRetorno"
+    ProdutosReponse:
+      description: Successful Operation
+      content:
+        application/json:
+            schema:
+             type: array
+             items:
+               $ref: "#/components/schemas/Produtos"
+    PedidosReponse:
+      description: Successful Operation
+      content:
+        application/json:
+            schema:
+             type: array
+             items:
+               $ref: "#/components/schemas/PedidosRetorno"
+
+    ClienteResponse:
+      description: Created
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/ClienteRetorno"
+    PedidoResponse:
+      description: Created
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/PedidoRetorno"
+    ProdutoResponse:
+      description: Created
+      content:
+        application/json:
+            schema:
+              $ref: "#/components/schemas/ProdutoRetorno"
+    BadRequest:
+      description: Bad Request
+    Sucess:
+      description: Successful Operation
