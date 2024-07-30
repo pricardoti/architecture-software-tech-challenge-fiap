@@ -214,9 +214,7 @@ minikube stop
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
-```html
-https://pricardoti.github.io/architecture-software-tech-challenge-fiap/
-```
+[Delivery-Swagger](https://pricardoti.github.io/architecture-software-tech-challenge-fiap/)
 
 > Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja
 > em execução.
