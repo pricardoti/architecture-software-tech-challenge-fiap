@@ -14,24 +14,56 @@
 
 ## Seção 02 - Arquitetura do Sistema e Infraestrutura
 
-Na abordagem utilizada para a arquitetura do sistema, foi adotada a _Clean Architecture_ (**Arqutetura Limpa**). Essa arquitetura fornece grandes beneficios como:
+#### Arquitetura da Aplicação - Clean Architecture:
 
-- Maintainability 
-- Testability 
-- Modularity 
-- Separation of concerns 
-- Loose coupling 
-- Dependency inversion 
+Na abordagem utilizada para a arquitetura do sistema, foi adotada a _Clean Architecture_ (**Arqutetura Limpa**). 
+
+Essa arquitetura fornece 6 grandes beneficios, sendo eles:
+
+1. **Modularidade:** A Clean Architecture promove um código modular, facilitando a manutenção e a escalabilidade do sistema.
+2. **Independência de Frameworks:** Permite que os desenvolvedores mudem frameworks ou bancos de dados com mínima alteração no código, aumentando a flexibilidade.
+3. **Testabilidade:** A separação de responsabilidades facilita a criação de testes automatizados, permitindo que diferentes partes do sistema sejam testadas de forma isolada.
+4. **Manutenção Simplificada:** Com a estrutura bem definida, fica mais fácil identificar e corrigir bugs ou implementar novas funcionalidades.
+5. **Clareza e Compreensão:** Uma boa organização do código torna mais fácil entender e navegar pela base de código, especialmente para novos desenvolvedores.
+6. **Princípio da inversão de dependência:** Inversão de Dependência é a estratégia de depender de interfaces ou funções e classes abstratas em vez de funções e classes concretas. O que da maior flexibilidade e baixo acomplamento entre todas as camadas.
 
 ### Quais cenários ou situações devemos usar ?
 
-Construir aplicações **complexas** ou de **longa duração** onde a **manutenção, a testabilidade e a escalabilidade são cruciais**. _Clean Architecture_ é adequado para projetos onde o modelo de domínio é fundamental para a funcionalidade da aplicação e precisa ser bem definido e encapsulado.
+Construir aplicações **complexas** ou de **longa duração** onde a **manutenção, a testabilidade e a escalabilidade são cruciais**. _Clean Architecture_ é adequado para projetos onde o modelo de domínio é fundamental para a funcionalidade da aplicação e precisa ser bem definido e encapsulado. 
 
-Diagrama da nossa arquitetura:
+**Projetos que Precisam de Integração com Múltiplos Sistemas:** Facilita a integração e as mudanças necessárias à medida que novos componentes são adicionados ao ecossistema do software.
+**Ambientes Ágeis:** Pode ser benéfica em ambientes onde são frequentes as mudanças nos requisitos, permitindo que a estrutura ajude a adaptar o código de maneira eficiente.
+
+
+---
+
+![Clean Architecture](./docs/images/clean-architecture.png)
+
+_Diagrama Clean Architecture (Robert C. Martin)._
+
+---
 
 ![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.svg)
 
-- Arquitetura Infraestrutura Kubernetes
+_Fluxo de execução das camadas da aplicação._
+
+#### Arquitetura Infraestrutura - Kubernetes
+
+O Kubernetes é um sistema de orquestração de contêineres de código aberto, desenvolvido pelo Google, que automatiza a implantação, o dimensionamento e a gestão de aplicações em contêineres. 
+
+*Usabilidade:*
+- *Automação:* Gerencia automaticamente a distribuição e a execução dos contêineres em clusters de máquinas.
+- *Escalabilidade:* Permite escalar aplicações para cima ou para baixo conforme a demanda.
+- *Alta Disponibilidade:* Garante que a aplicação esteja disponível e funcionando mesmo se houver falhas em alguns contêineres ou nós.
+- *Desdobramento e Atualizações:* Facilita a implementação de novas versões de aplicações e rollback em caso de falhas.
+
+*Cenários de Uso:*
+- *Desenvolvimento de Microserviços:* Ideal para ambientes com múltiplos microserviços que precisam ser gerenciados e escalados de forma eficiente.
+- *Ambientes de Nuvem:* Usado em plataformas de nuvem para fornecer portabilidade e gestão uniforme de contêineres.
+- *Infraestrutura de DevOps:* Apoia pipelines CI/CD, melhorando a automação e a integração contínua.
+- *Gerenciamento de Recursos:* Adequado para ambientes com recursos limitados, como em edge computing e IoT.
+
+Essencialmente, o Kubernetes simplifica a complexidade da gestão de aplicações em contêineres, tornando-as mais resilientes e fáceis de gerenciar em ambientes dinâmicos.
 
 ![Arquitetura Infraestrutura_Kubernetes_App Delivery](./docs/images/arquitetura-infraestrutura.svg)
 
@@ -72,7 +104,7 @@ Para verificar as instruções para instalar o Minikube, basta acessar o seguint
 
 ---
 
-> **EXECUTAR OS COMANDOS DAS ETEPAS SEGUINTES NO GIT BASH**
+> :warning: **Sugestão: executar os comandos abaixo no GitBash**
 
 ---
 
@@ -150,7 +182,7 @@ Use as seguintes credenciais:
 - **Usuário:** fiap
 - **Senha:** fiap123
 
-### Etapa 07: Expor a Porta 80 do Container da Aplicação
+### Etapa 07: Expor a porta 8080 do container/serviço da aplicação
 
 Para acessar a aplicação via porta 8080, execute o seguinte comando:
 
@@ -158,16 +190,16 @@ Para acessar a aplicação via porta 8080, execute o seguinte comando:
 kubectl port-forward pod/[pod-name] 8080:8080
 ```
 
-Para acessar a aplicação via porta 30080 externa do cluster, acessar com a seguinte URL:
-
-```
-localhost:30080/v1/clientes
-```
-
 Após isso, você pode acessar a seguinte URL para acessar a API de Delivery:
 
 ```
 localhost:8080/v1/clientes
+```
+
+Caso contrário, o acesso a aplicação seá somente via porta **30080** (externa do cluster), acessar com a seguinte URL:
+
+```
+localhost:30080/v1/clientes
 ```
 
 ### Etapa 08: Encerrar o Minikube
