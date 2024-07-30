@@ -17,7 +17,7 @@
 Na abordagem utilizada para a arquitetura do sistema, visando o fluxogroma na **"Arqutetura Limpa"**, possui a seguinte
 imagem para ilustrar esse fluxo:
 
-![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.png)
+![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.svg)
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
