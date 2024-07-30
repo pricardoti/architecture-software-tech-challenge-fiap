@@ -1,0 +1,35 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    container_name: postgres
+    env_file: ./env/postgres.env
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    healthcheck:
+      test: pg_isready -d $$POSTGRES_DB -h db -p 5432 -U $$POSTGRES_USER
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+  delivery:
+    container_name: delivery
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+    env_file: ./env/app.env
+    ports:
+      - 8080:8080

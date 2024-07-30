@@ -1,68 +1,81 @@
 #  FIAP Tech Challenge | Delivery
 
-### Fase 01 - Tech Challenge | Pós-graduação em Arquitetura de Software
+### Fase 02 - Tech Challenge | Pós-graduação em Arquitetura de Software
 
 ----
 
 ## Seção 01 - INFORMAÇÕES DO GRUPO E INTEGRANTES
 
-### Grupo 15
+| MATRÍCULA  | NOME                                              | E-MAIL                                                        |  GRUPO  |
+|:-----------|:--------------------------------------------------|:--------------------------------------------------------------|:-------:|
+| RM354688   | Nicholas Mateus Barreto Veloso de Azevedo Dantas  | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)             |   15    |
+| RM354692   | Paulo Ricardo Gonçalves dos Santos                | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                 |   15    |
+| RM356150   | Tarcisio Dantas de Andrade                        | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com)  |   15    |
 
-| MATRÍCULA | NOME                                             | E-MAIL                                                       |
-|-----------|--------------------------------------------------|--------------------------------------------------------------|
-| RM354688  | Nicholas Mateus Barreto Veloso de Azevedo Dantas | [Enviar E-mail](mailto:nicholas.mateus@gmail.com)            |
-| RM354692  | Paulo Ricardo Gonçalves dos Santos               | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                |
-| RM356150  | Tarcisio Dantas de Andrade                       | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com) |
+## Seção 02 - Arquitetura do Sistema e Infraestrutura
 
-## Seção 02 - EVENT STORMING
+#### Arquitetura da Aplicação - Clean Architecture:
 
-Na abordagem utilizando o ```EVENT STORMING``` para trazer ideias e um pouco mais de contexto para a solução do problema
-do [delivery](./docs/contexto/delivery-tech-challenge-fiap.md), podemos apresentar alguns contextos abordados durante
-essa seção, sendo eles:
+Na abordagem utilizada para a arquitetura do sistema, foi adotada a _Clean Architecture_ (**Arqutetura Limpa**). 
 
-<details>
-<summary>  <b>Etapa 00 - Legendas e Linguagem Ubíqua</b> </summary>
+Essa arquitetura fornece 6 grandes beneficios, sendo eles:
 
-![Legendas](docs/images/etapa-00_legendas.svg)
-![Linguagem Ubíqua](docs/images/etapa-00_linguagem-ubiqua.svg)
+1. **Modularidade:** A Clean Architecture promove um código modular, facilitando a manutenção e a escalabilidade do sistema.
+2. **Independência de Frameworks:** Permite que os desenvolvedores mudem frameworks ou bancos de dados com mínima alteração no código, aumentando a flexibilidade.
+3. **Testabilidade:** A separação de responsabilidades facilita a criação de testes automatizados, permitindo que diferentes partes do sistema sejam testadas de forma isolada.
+4. **Manutenção Simplificada:** Com a estrutura bem definida, fica mais fácil identificar e corrigir bugs ou implementar novas funcionalidades.
+5. **Clareza e Compreensão:** Uma boa organização do código torna mais fácil entender e navegar pela base de código, especialmente para novos desenvolvedores.
+6. **Princípio da inversão de dependência:** Inversão de Dependência é a estratégia de depender de interfaces ou funções e classes abstratas em vez de funções e classes concretas. O que da maior flexibilidade e baixo acomplamento entre todas as camadas.
 
-</details>
+### Quais cenários ou situações devemos usar ?
 
-<details>
-<summary>  <b>Etapa 01 - Brainstorm</b> </summary>
+Construir aplicações **complexas** ou de **longa duração** onde a **manutenção, a testabilidade e a escalabilidade são cruciais**. _Clean Architecture_ é adequado para projetos onde o modelo de domínio é fundamental para a funcionalidade da aplicação e precisa ser bem definido e encapsulado. 
 
-![Brainstorm](docs/images/etapa-01_brainstorm.svg)
+**Projetos que Precisam de Integração com Múltiplos Sistemas:** Facilita a integração e as mudanças necessárias à medida que novos componentes são adicionados ao ecossistema do software.
+**Ambientes Ágeis:** Pode ser benéfica em ambientes onde são frequentes as mudanças nos requisitos, permitindo que a estrutura ajude a adaptar o código de maneira eficiente.
 
-</details>
 
-<details>
-<summary>  <b>Etapa 02 - Eventos e Pontos de Atenção do Fluxo</b> </summary>
+---
 
-![Eventos e Pontos de Atenção](docs/images/etapa-02_eventos-e-pontos-de-atencao.svg)
+![Clean Architecture](./docs/images/clean-architecture.png)
 
-</details>
+_Diagrama Clean Architecture (Robert C. Martin)._
 
-<details>
-<summary>  <b>Etapa 03 - Versão Final dos Eventos</b> </summary>
+---
 
-![Versão Final dos Eventos](docs/images/etapa-03_versao-final-eventos.svg)
+![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.svg)
 
-</details>
+_Fluxo de execução das camadas da aplicação._
 
-<details>
-<summary>  <b>Etapa 04 - Versão Final dos Agregados e Contextos Delimitados</b> </summary>
+#### Arquitetura Infraestrutura - Kubernetes
 
-![Versão Final dos Agregados e Contextos Delimitados](docs/images/etapa-04_versao-final-agregados-e-contextos-delimitados.svg)
+O Kubernetes é um sistema de orquestração de contêineres de código aberto, desenvolvido pelo Google, que automatiza a implantação, o dimensionamento e a gestão de aplicações em contêineres. 
 
-</details>
+*Usabilidade:*
+- *Automação:* Gerencia automaticamente a distribuição e a execução dos contêineres em clusters de máquinas.
+- *Escalabilidade:* Permite escalar aplicações para cima ou para baixo conforme a demanda.
+- *Alta Disponibilidade:* Garante que a aplicação esteja disponível e funcionando mesmo se houver falhas em alguns contêineres ou nós.
+- *Desdobramento e Atualizações:* Facilita a implementação de novas versões de aplicações e rollback em caso de falhas.
 
-> Para maiores informações, o acesso para visualização no **[Miro](https://encurtador.com.br/1XQOW)**
+*Cenários de Uso:*
+- *Desenvolvimento de Microserviços:* Ideal para ambientes com múltiplos microserviços que precisam ser gerenciados e escalados de forma eficiente.
+- *Ambientes de Nuvem:* Usado em plataformas de nuvem para fornecer portabilidade e gestão uniforme de contêineres.
+- *Infraestrutura de DevOps:* Apoia pipelines CI/CD, melhorando a automação e a integração contínua.
+- *Gerenciamento de Recursos:* Adequado para ambientes com recursos limitados, como em edge computing e IoT.
+
+Essencialmente, o Kubernetes simplifica a complexidade da gestão de aplicações em contêineres, tornando-as mais resilientes e fáceis de gerenciar em ambientes dinâmicos.
+
+![Arquitetura Infraestrutura_Kubernetes_App Delivery](./docs/images/arquitetura-infraestrutura.svg)
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
 ### Sobre o Projeto DELIVERY
 
 Projeto referente a gestão de pedidos para uma lanchonete.
+
+Saiba mais sobre o problema proposto:
+
+[Fase 02 - Documentação](https://nicholas-mateus.notion.site/Fase-02-Tech-Challenge-87229bcf3ef645fb959fcdde72bdbd9e)
 
 ## Tecnologias Usadas
 
@@ -71,70 +84,138 @@ Projeto referente a gestão de pedidos para uma lanchonete.
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
-
-## Pré-requisitos do Projeto ```DELIVERY```
-
-- `src/main/java`: Diretório do código fonte da aplicação
-- `src/test/java`: Diretório do código fonte dos testes da aplicação
-- `src/main/resources`: Diretório dos recursos da aplicação (configurações, scripts do banco de dados e outros)
-- <code>Dockerfile</code>:  Arquivo responsável pelas instruções de criação da imagem **Docker** da aplicação
-- `docker-compose.yml`: Arquivo responsável pelas configurações de iniciar os serviços do **Docker**
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
-### Etapa 01: Instalação do Docker Desktop ou Docker Engine
+Esta documentação oferece diretrizes detalhadas para a configuração do ambiente Minikube, a implantação de aplicativos e o 
+acesso a serviços num cluster Kubernetes local. A seguir, você encontrará os procedimentos que descrevem cada uma das 
+etapas necessárias:
 
-Para realizar a instalação do docker, devemos selecionar a opção do nosso sistema operacional na documentação abaixo:
+### Etapa 00: Instalar o Minikube
 
-#### DOCKER DESKTOP
+Para verificar as instruções para instalar o Minikube, basta acessar o seguinte link:
 
-- **Windows**
-    - [Instalar Docker Desktop para Windows](https://docs.docker.com/desktop/install/windows-install/)
-- **MAC**
-    - [Instalar Docker Desktop para MAC](https://docs.docker.com/desktop/install/mac-install/)
-- **Linux**
-    - [Instalar Docker Desktop para Linux](https://docs.docker.com/desktop/install/linux-install/)
+- [Minikube-Install-Windows](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+- [Minikube-Install-Linux](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
+- [Minikube-Install-macOS](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
 
-#### DOCKER ENGINE
+---
 
-- [Instalar Docker Engine](https://docs.docker.com/engine/install/)
+> :warning: **Sugestão: executar os comandos abaixo no GitBash**
 
-> **Para maiores informações, poderá acessar a documentação do próprio [Docker](https://www.docker.com/get-started/)**
+---
 
-### Etapa 02: Construção e Inicialização das Imagens para Execução dos Serviços via Docker
+### Etapa 01: Habilitar Métricas do Minikube
 
-Para realizar a execução da aplicação, será necessário antes, a construção das imagens para o containers do **Docker**.
+Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
 
-Estando com o **Docker Desktop** aberto ou com seu serviço em execução, precisa navegar até o diretório do projeto para
-executar o comando abaixo:
-
-```docker
-docker compose up -d
+```bash
+minikube addons list
+minikube addons enable metrics-server
 ```
 
-> Lembrando que o parâmetro "-d", vem de "detached mode" ou modo desanexado.
-> Para que o docker compose inicie os containers em segundo plano.
+Para acessar o dashboard do kubernetes, execute o seguinte comando:
 
-O comando supracitado irá criar e iniciar os seguintes containers:
-
-- ```postgres-db-server``` - Container responsável pela execução do Banco de Dados Relacional **PostgreSQL**
-- ```app-delivery-service``` - Container responsável pela execução da aplicação Java **delivery**
-
-Para encerrar os containers, será necessário executar o comando abaixo:
-
-```docker
-docker compose down -v
+```bash
+minikube dashboard
 ```
 
-> Lembrando que o parâmetro "-v", vem de "volume".
-> Para que o docker compose encerre a execução dos containers e exclua os volumes relacionados aos mesmos.
+### Etapa 02: Iniciar o Minikube
+
+Para iniciar o Minikube, utilize o seguinte comando:
+
+```bash
+minikube start
+```
+
+### Etapa 03: Utilizar o Daemon Docker dentro da Instância do Minikube
+
+Para configurar o uso do daemon Docker dentro da instância do Minikube, execute o seguinte comando:
+
+```bash
+eval $(minikube docker-env)
+```
+
+### Etapa 04: Gerar a Imagem do Projeto
+
+Para construir a imagem do projeto no diretório do projeto, utilize o seguinte comando:
+
+```bash
+docker build --no-cache -t delivery .
+```
+
+### Etapa 05: Executar os Scripts de Implantação
+
+Para implantar os recursos necessários no Kubernetes, execute os seguintes comandos:
+
+```bash
+kubectl apply -f k8s/postgres-configmap-1.yml
+kubectl apply -f k8s/postgres-pvc-pv-2.yml
+kubectl apply -f k8s/postgres-deployment-3.yml
+kubectl apply -f k8s/postgres-service-4.yml
+kubectl apply -f k8s/delivery-configmap-5.yml
+kubectl apply -f k8s/delivery-deployment-6.yml
+kubectl apply -f k8s/delivery-service-7.yml
+kubectl apply -f k8s/delivery-hpa.yml
+```
+
+### Etapa 06: Conectar o DBeaver ao PostgreSQL
+
+Para conectar o DBeaver ao PostgreSQL implantado no Kubernetes, execute os seguintes comandos:
+
+```bash
+kubectl get pods
+kubectl port-forward pod/[pod-name] 5432:5432
+```
+
+Após isso, conecte o DBeaver à seguinte URL:
+
+```
+localhost:5432/postgres
+```
+
+Use as seguintes credenciais:
+
+- **Usuário:** fiap
+- **Senha:** fiap123
+
+### Etapa 07: Expor a porta 8080 do container/serviço da aplicação
+
+Para acessar a aplicação via porta 8080, execute o seguinte comando:
+
+```bash
+kubectl port-forward pod/[pod-name] 8080:8080
+```
+
+Após isso, você pode acessar a seguinte URL para acessar a API de Delivery:
+
+```
+localhost:8080/v1/clientes
+```
+
+Caso contrário, o acesso a aplicação seá somente via porta **30080** (externa do cluster), acessar com a seguinte URL:
+
+```
+localhost:30080/v1/clientes
+```
+
+### Etapa 08: Encerrar o Minikube
+
+Para encerrar o Minikube, utilize o seguinte comando:
+
+```bash
+minikube stop
+```
 
 ## Swagger
 
 O acesso a documentação da API REST da aplicação **Delivery**, está disponível no link abaixo:
 
 ```html
-http://localhost:8080/swagger-ui/index.html
+https://pricardoti.github.io/architecture-software-tech-challenge-fiap/
 ```
 
 > Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja
@@ -145,25 +226,9 @@ http://localhost:8080/swagger-ui/index.html
 
 Para baixar a collection da [API Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
 
-Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY) 
+Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY)
 
-## Seção 04 - MELHORIAS FUTURAS PARA A API
+## Apresentação da Arquitetura Desenvolvida
 
-### Exclusão Lógica dos Produtos
+[Projeto Delivery - Apresentação Arquitetura](...)
 
-Para que os produtos não gerem problemas em cadastros já realizados anteriormente no banco de dados em que estão
-sendo usados, seria necessário colocar uma *exclusão lógica*, sendo que o produto iria ter um campo boleano (TRUE|FALSE)
-que iria indicar, se o mesmo está "ativo" ou "inativo" para ser usado.
-
-### Criação de Testes Unitários | Criação de Testes de Integração | Criação de Testes Arquiteturais
-
-A criação dos testes supracitados no título, ajuda na melhoria da qualidade do código, eficiente e também trazendo mais
-resiliência para a aplicação a ser testado.
-
-### Adicionar Paginação nas Consultas
-
-Realizar a implementação das paginações necessários referente aos endpoints que possuem tal necessidade.
-
-### Melhoria nas Mensagens de Exceção
-
-Necessidade de trazer mensagens mais amigáveis no retorno dos enpoints para melhor entendimento do problema exposto.
