@@ -14,8 +14,20 @@
 
 ## Seção 02 - Arquitetura do Sistema
 
-Na abordagem utilizada para a arquitetura do sistema, visando o fluxogroma na **"Arqutetura Limpa"**, possui a seguinte
-imagem para ilustrar esse fluxo:
+Na abordagem utilizada para a arquitetura do sistema, foi adotada a _Clean Architecture_ (**Arqutetura Limpa**). Essa arquitetura fornece grandes beneficios como:
+
+- Maintainability 
+- Testability 
+- Modularity 
+- Separation of concerns 
+- Loose coupling 
+- Dependency inversion 
+
+### Quais cenários ou situações devemos usar ?
+
+Construir aplicações **complexas** ou de **longa duração** onde a **manutenção, a testabilidade e a escalabilidade são cruciais**. _Clean Architecture_ é adequado para projetos onde o modelo de domínio é fundamental para a funcionalidade da aplicação e precisa ser bem definido e encapsulado.
+
+Diagrama da nossa arquitetura:
 
 ![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.png)
 
