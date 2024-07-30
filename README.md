@@ -12,7 +12,7 @@
 | RM354692   | Paulo Ricardo Gonçalves dos Santos                | [Enviar E-mail](mailto:pricardo.ti@gmail.com)                 |   15    |
 | RM356150   | Tarcisio Dantas de Andrade                        | [Enviar E-mail](mailto:tarcisiodantas_deandrade@hotmail.com)  |   15    |
 
-## Seção 02 - Arquitetura do Sistema
+## Seção 02 - Arquitetura do Sistema e Infraestrutura
 
 Na abordagem utilizada para a arquitetura do sistema, foi adotada a _Clean Architecture_ (**Arqutetura Limpa**). Essa arquitetura fornece grandes beneficios como:
 
@@ -29,13 +29,21 @@ Construir aplicações **complexas** ou de **longa duração** onde a **manuten�
 
 Diagrama da nossa arquitetura:
 
-![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.png)
+![Arquitetura App Delivery](./docs/images/arquitetura-aplicacao.svg)
+
+- Arquitetura Infraestrutura Kubernetes
+
+![Arquitetura Infraestrutura_Kubernetes_App Delivery](./docs/images/arquitetura-infraestrutura.svg)
 
 ## Seção 03 - INFORMAÇÕES SOBRE O PROJETO
 
 ### Sobre o Projeto DELIVERY
 
 Projeto referente a gestão de pedidos para uma lanchonete.
+
+Saiba mais sobre o problema proposto:
+
+[Fase 02 - Documentação](https://nicholas-mateus.notion.site/Fase-02-Tech-Challenge-87229bcf3ef645fb959fcdde72bdbd9e)
 
 ## Tecnologias Usadas
 
@@ -62,6 +70,12 @@ Para verificar as instruções para instalar o Minikube, basta acessar o seguint
 - [Minikube-Install-Linux](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
 - [Minikube-Install-macOS](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
 
+---
+
+> **EXECUTAR OS COMANDOS DAS ETEPAS SEGUINTES NO GIT BASH**
+
+---
+
 ### Etapa 01: Habilitar Métricas do Minikube
 
 Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
@@ -69,6 +83,12 @@ Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
 ```bash
 minikube addons list
 minikube addons enable metrics-server
+```
+
+Para acessar o dashboard do kubernetes, execute o seguinte comando:
+
+```bash
+minikube dashboard
 ```
 
 ### Etapa 02: Iniciar o Minikube
@@ -127,8 +147,8 @@ localhost:5432/postgres
 
 Use as seguintes credenciais:
 
-- Usuário: fiap
-- Senha: fiap123
+- **Usuário:** fiap
+- **Senha:** fiap123
 
 ### Etapa 07: Expor a Porta 80 do Container da Aplicação
 
@@ -138,9 +158,15 @@ Para acessar a aplicação via porta 8080, execute o seguinte comando:
 kubectl port-forward pod/[pod-name] 8080:8080
 ```
 
-Após isso, você pode acessar a seguinte URL para acessar a API de combos:
+Para acessar a aplicação via porta 30080 externa do cluster, acessar com a seguinte URL:
 
-```bash
+```
+localhost:30080/v1/clientes
+```
+
+Após isso, você pode acessar a seguinte URL para acessar a API de Delivery:
+
+```
 localhost:8080/v1/clientes
 ```
 
@@ -150,12 +176,6 @@ Para encerrar o Minikube, utilize o seguinte comando:
 
 ```bash
 minikube stop
-```
-
-Após isso, você pode excluir os containers:
-
-```bash
-minikube delete all --all
 ```
 
 ## Swagger
@@ -175,3 +195,8 @@ https://pricardoti.github.io/architecture-software-tech-challenge-fiap/
 Para baixar a collection da [API Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
 
 Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com/view/9810786/2sA3QwbVKY)
+
+## Apresentação da Arquitetura Desenvolvida
+
+[Projeto Delivery - Apresentação Arquitetura](...)
+
