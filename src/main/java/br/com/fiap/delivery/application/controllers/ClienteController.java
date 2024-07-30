@@ -2,8 +2,8 @@ package br.com.fiap.delivery.application.controllers;
 
 import br.com.fiap.delivery.application.exception.CadastroUsuarioException;
 import br.com.fiap.delivery.application.gateways.ClienteGateway;
-import br.com.fiap.delivery.application.presenters.clientes.CadastrarClientePresenter;
-import br.com.fiap.delivery.application.presenters.clientes.ConsultarClientePresenter;
+import br.com.fiap.delivery.application.presenters.cliente.CadastrarClientePresenter;
+import br.com.fiap.delivery.application.presenters.cliente.ConsultarClientePresenter;
 import br.com.fiap.delivery.application.usecases.clientes.AtualizarClienteUseCase;
 import br.com.fiap.delivery.application.usecases.clientes.CadastrarClienteUseCase;
 import br.com.fiap.delivery.application.usecases.clientes.ConsultarClientePorCodigoUseCase;

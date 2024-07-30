@@ -4,8 +4,6 @@ import br.com.fiap.delivery.application.exception.ProdutoException;
 import br.com.fiap.delivery.application.gateways.ProdutoGateway;
 import br.com.fiap.delivery.domain.produto.Produto;
 
-import static java.util.Objects.nonNull;
-
 public class CadastrarProdutoUseCase {
 
     private final ProdutoGateway produtoGateway;
@@ -22,7 +20,7 @@ public class CadastrarProdutoUseCase {
     public Produto executar(Produto produto) throws ProdutoException {
         var produtoCadastrao = consultarProdutoUseCase.executar(produto);
 
-        if (nonNull(produtoCadastrao))
+        if (produtoCadastrao.isPresent())
             throw new ProdutoException("produto já cadastrado, por favor verifique as informações.");
 
         return produtoGateway.cadastrar(produto);

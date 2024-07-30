@@ -2,8 +2,8 @@ package br.com.fiap.delivery.application.controllers;
 
 import br.com.fiap.delivery.application.exception.ProdutoException;
 import br.com.fiap.delivery.application.gateways.ProdutoGateway;
-import br.com.fiap.delivery.application.presenters.produtos.CadastrarProdutoPresenter;
-import br.com.fiap.delivery.application.presenters.produtos.ConsultarProdutoPresenter;
+import br.com.fiap.delivery.application.presenters.produto.CadastrarProdutoPresenter;
+import br.com.fiap.delivery.application.presenters.produto.ConsultarProdutoPresenter;
 import br.com.fiap.delivery.application.usecases.produtos.CadastrarProdutoUseCase;
 import br.com.fiap.delivery.application.usecases.produtos.ConsultarProdutoPorCategoriaUseCase;
 import br.com.fiap.delivery.application.usecases.produtos.ConsultarProdutoPorCodigoUseCase;
@@ -45,7 +45,7 @@ public class ProdutoController<P1, P2> {
 
     public P1 cadastrar(Produto produto) throws ProdutoException {
         var produtoCadastrado = cadastrarProdutoUseCase.executar(produto);
-        return cadastrarProdutoPresenter.handler(produto);
+        return cadastrarProdutoPresenter.handler(produtoCadastrado);
     }
 
     public Collection<P2> consultarPorCategoria(CategoriaProduto categoriaProduto) {

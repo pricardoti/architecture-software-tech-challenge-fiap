@@ -3,6 +3,7 @@ package br.com.fiap.delivery.domain.pedido;
 import java.util.UUID;
 
 public class PedidoProduto {
+
     private UUID codigoProduto;
     private Integer quantidade;
 
