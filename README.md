@@ -91,10 +91,9 @@ Saiba mais sobre o problema proposto:
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
 Esta documentação oferece diretrizes detalhadas para a configuração do ambiente, a implantação de aplicativos e o 
-acesso a serviços num cluster Kubernetes local. A seguir, você encontrará os procedimentos que descrevem cada uma das 
-etapas necessárias:
+acesso a serviços num cluster Kubernetes local. 
 
-:warning: **Sugestão: executar os comandos abaixo no GitBash**
+A seguir, você encontrará os procedimentos que descrevem cada uma das etapas necessárias:
 
 ### Pré-requisitos para rodar a infraestrutura Kubernetes
 
@@ -194,5 +193,5 @@ Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com
 
 ## Apresentação da Arquitetura Desenvolvida
 
-[Projeto Delivery - Apresentação Arquitetura](https://youtu.be/sYWqJYqzQ4w)
+[Projeto Delivery - Apresentação Arquitetura (vídeo)](https://youtu.be/sYWqJYqzQ4w)
 
