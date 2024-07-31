@@ -372,7 +372,7 @@ components:
               example: Centro
             cidade:
               type: string
-              example: Belém de Maria
+              example: Belem de Maria
             cep:
               type: string
               example: 55440-970
@@ -429,7 +429,7 @@ components:
               example: Centro
             cidade:
               type: string
-              example: Belém de Maria
+              example: Belem de Maria
             cep:
               type: string
               example: 55440-970

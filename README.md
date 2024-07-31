@@ -155,13 +155,18 @@ Para implantar os recursos necessários no Kubernetes, execute os seguintes coma
 kubectl apply -f k8s/postgres-configmap-1.yml
 kubectl apply -f k8s/postgres-pvc-pv-2.yml
 kubectl apply -f k8s/postgres-deployment-3.yml
-kubectl apply -f k8s/postgres-service-4.yml
 kubectl apply -f k8s/delivery-configmap-5.yml
 kubectl apply -f k8s/delivery-deployment-6.yml
-kubectl apply -f k8s/delivery-service-7.yml
 kubectl apply -f k8s/delivery-hpa.yml
 ```
 
+```bash
+kubectl apply -f k8s/postgres-service-4.yml
+```
+
+```bash
+kubectl apply -f k8s/delivery-service-7.yml
+```
 ### Etapa 06: Conectar o DBeaver ao PostgreSQL
 
 Para conectar o DBeaver ao PostgreSQL implantado no Kubernetes, execute os seguintes comandos:
