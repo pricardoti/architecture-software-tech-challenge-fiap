@@ -108,30 +108,21 @@ Para verificar as instruções para instalar o Minikube, basta acessar o seguint
 
 ---
 
-### Etapa 01: Habilitar Métricas do Minikube
+### Pré-requisitos para rodar a infraestrutura Kubernetes
 
-Para habilitar a coleta de métricas no Minikube, execute os seguintes comandos:
+É necessário ter o seguintes softwares instalados: 
+1. [Docker](https://www.docker.com/get-started/);
+2. [Docker compose](https://docs.docker.com/compose/install/);
+3. [Docker Desktop](https://www.docker.com/products/docker-desktop/);
+4. Habilitar o Kubernetes:
+  4.1 Habilitar o Kubernetes através do menu de configuração do Docker Desktop.
+  4.2 Após abrir o Docker Desktop, clique na engrnagem no canto superior direito.
+  4.3 Na opção em "Kubernetes" Habilite o Kubernetes selecionando o check box "Enable Kubernetes".
 
-```bash
-minikube addons list
-minikube addons enable metrics-server
-```
+Ao final deste processo o resultado via docker desktop deve estar de acordo com a imagem a seguir:
+![configuracao kubernetes](./docs/images/configuracao-kubernetes.png)
 
-### Etapa 02: Iniciar o Minikube
-
-Para iniciar o Minikube, utilize o seguinte comando:
-
-```bash
-minikube start
-```
-
-Para acessar o dashboard do kubernetes, execute o seguinte comando:
-
-```bash
-minikube dashboard
-```
-
-### Etapa 03: Utilizar o Daemon Docker dentro da Instância do Minikube
+### Utilizar o Daemon Docker dentro da Instância do Minikube
 
 Para configurar o uso do daemon Docker dentro da instância do Minikube, execute o seguinte comando:
 
@@ -139,7 +130,7 @@ Para configurar o uso do daemon Docker dentro da instância do Minikube, execute
 eval $(minikube docker-env)
 ```
 
-### Etapa 04: Gerar a Imagem do Projeto
+### Gerar a Imagem do Projeto
 
 Para construir a imagem do projeto no diretório do projeto, utilize o seguinte comando:
 
@@ -147,7 +138,7 @@ Para construir a imagem do projeto no diretório do projeto, utilize o seguinte 
 docker build --no-cache -t delivery .
 ```
 
-### Etapa 05: Executar os Scripts de Implantação
+### Executar os Scripts de Implantação
 
 Para implantar os recursos necessários no Kubernetes, execute os seguintes comandos:
 
@@ -163,11 +154,13 @@ kubectl apply -f k8s/delivery-hpa.yml
 kubectl apply -f k8s/postgres-service-4.yml
 ```
 
+:warning: Nesta etapa, é necessário aguardar o pod/deployment do banco de dados (PostgresSQL) ficar no status "running" para poder executar os próximos comandos (deployment e service da aplicação).  
+
 ```bash
 kubectl apply -f k8s/delivery-deployment-6.yml
 kubectl apply -f k8s/delivery-service-7.yml
 ```
-### Etapa 06: Conectar o DBeaver ao PostgreSQL
+### Conectar o DBeaver ao PostgreSQL
 
 Para conectar o DBeaver ao PostgreSQL implantado no Kubernetes, execute os seguintes comandos:
 
@@ -187,7 +180,7 @@ Use as seguintes credenciais:
 - **Usuário:** fiap
 - **Senha:** fiap123
 
-### Etapa 07: Expor a porta 8080 do container/serviço da aplicação
+### Expor a porta 8080 do container/serviço da aplicação
 
 Para acessar a aplicação via porta 8080, execute o seguinte comando:
 
@@ -205,14 +198,6 @@ Caso contrário, o acesso a aplicação seá somente via porta **30080** (extern
 
 ```
 localhost:30080/v1/clientes
-```
-
-### Etapa 08: Encerrar o Minikube
-
-Para encerrar o Minikube, utilize o seguinte comando:
-
-```bash
-minikube stop
 ```
 
 ## Swagger
