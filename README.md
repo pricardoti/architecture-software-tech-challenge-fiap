@@ -117,18 +117,18 @@ minikube addons list
 minikube addons enable metrics-server
 ```
 
-Para acessar o dashboard do kubernetes, execute o seguinte comando:
-
-```bash
-minikube dashboard
-```
-
 ### Etapa 02: Iniciar o Minikube
 
 Para iniciar o Minikube, utilize o seguinte comando:
 
 ```bash
 minikube start
+```
+
+Para acessar o dashboard do kubernetes, execute o seguinte comando:
+
+```bash
+minikube dashboard
 ```
 
 ### Etapa 03: Utilizar o Daemon Docker dentro da Instância do Minikube
@@ -221,10 +221,6 @@ O acesso a documentação da API REST da aplicação **Delivery**, está dispon�
 
 [Delivery-Swagger](https://pricardoti.github.io/architecture-software-tech-challenge-fiap/)
 
-> Para acessar as informações do contrato da API Rest do **Delivery**, será necessário que a aplicação esteja
-> em execução.
- 
- 
 ## Collection Postman / Insomnia
 
 Para baixar a collection da [API Delivery](./docs/collections/DeliveryAPI.postman_collection_v1.json)
@@ -233,5 +229,5 @@ Para acesar e baixar a collection no [Postman](https://documenter.getpostman.com
 
 ## Apresentação da Arquitetura Desenvolvida
 
-[Projeto Delivery - Apresentação Arquitetura](...)
+[Projeto Delivery - Apresentação Arquitetura](https://youtu.be/sYWqJYqzQ4w)
 
