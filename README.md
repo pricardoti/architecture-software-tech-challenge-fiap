@@ -90,23 +90,11 @@ Saiba mais sobre o problema proposto:
 
 ## Etapas de Configuração e Execução do Projeto **Delivery**
 
-Esta documentação oferece diretrizes detalhadas para a configuração do ambiente Minikube, a implantação de aplicativos e o 
+Esta documentação oferece diretrizes detalhadas para a configuração do ambiente, a implantação de aplicativos e o 
 acesso a serviços num cluster Kubernetes local. A seguir, você encontrará os procedimentos que descrevem cada uma das 
 etapas necessárias:
 
-### Etapa 00: Instalar o Minikube
-
-Para verificar as instruções para instalar o Minikube, basta acessar o seguinte link:
-
-- [Minikube-Install-Windows](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
-- [Minikube-Install-Linux](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
-- [Minikube-Install-macOS](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Fx86-64%2Fstable%2Fbinary+download)
-
----
-
-> :warning: **Sugestão: executar os comandos abaixo no GitBash**
-
----
+:warning: **Sugestão: executar os comandos abaixo no GitBash**
 
 ### Pré-requisitos para rodar a infraestrutura Kubernetes
 
@@ -121,14 +109,6 @@ Para verificar as instruções para instalar o Minikube, basta acessar o seguint
 
 Ao final deste processo o resultado via docker desktop deve estar de acordo com a imagem a seguir:
 ![configuracao kubernetes](./docs/images/configuracao-kubernetes.png)
-
-### Utilizar o Daemon Docker dentro da Instância do Minikube
-
-Para configurar o uso do daemon Docker dentro da instância do Minikube, execute o seguinte comando:
-
-```bash
-eval $(minikube docker-env)
-```
 
 ### Gerar a Imagem do Projeto
 
